@@ -37,3 +37,8 @@ function get_glome_pairing_code()
     }
 
 }
+
+function is_glome_session_paired()
+{
+    return true;
+}

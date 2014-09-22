@@ -42,5 +42,14 @@ function glome_ajax_challenge()
     echo json_encode(str_split($code, 4));
     exit;
 }
-
 add_action( 'wp_ajax_nopriv_challenge', 'glome_ajax_challenge' );
+
+function glome_ajax_verify()
+{
+    $code = is_glome_session_paired();
+    if ($code === true) {
+        echo 1;
+    }
+    exit;
+}
+add_action( 'wp_ajax_nopriv_verify', 'glome_ajax_verify' );

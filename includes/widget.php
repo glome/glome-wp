@@ -20,6 +20,15 @@ class glome_login_widget extends WP_Widget
      */
     public function widget ($args, $instance)
     {
+
+        if (isset($_SESSION['glome']) === false) {
+            $_SESSION['glome'] = array();
+        }
+
+        if (isset($_SESSION['glome']['session']) === false) {
+            $_SESSION['glome']['session'] = get_glome_session_id();
+        }
+
         //Hide the widget for logged in users?
         if (empty ($instance ['widget_hide_for_logged_in_users']) OR !is_user_logged_in ())
         {

@@ -15,6 +15,8 @@ function glome_login_render_login_form ($source, $args = array ())
     }
     else
     {
+
+
         include __DIR__ . '/../templates/login.php';
     }
 }
@@ -24,7 +26,21 @@ function glome_login_render_login_form ($source, $args = array ())
 function glome_add_scripts ()
 {
     $filepath = plugins_url('/glome-login/assets/js/script.js');
-    wp_enqueue_script('glome-scipt', $filepath, false, '0.1', true);
+    wp_enqueue_script('glome-script', $filepath, false, '0.1', true);
+    wp_localize_script( 'glome-script', 'glome_scope', array(
+        'pipe' => admin_url( 'admin-ajax.php' ),
+        'state' => 'guest',
+    ));
 }
 
 add_action( 'wp_enqueue_scripts', 'glome_add_scripts');
+
+
+function glome_ajax_challenge()
+{
+    $code = get_glome_pairing_code();
+    echo json_encode(str_split($code, 4));
+    exit;
+}
+
+add_action( 'wp_ajax_nopriv_challenge', 'glome_ajax_challenge' );

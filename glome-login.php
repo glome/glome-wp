@@ -13,6 +13,9 @@ Author URI: http://glome.me/
 */
 
 
+include __DIR__ . '/includes/comms.php';
+
+
 function glome_login_activate ()
 {
     if (!function_exists ('register_post_status'))
@@ -54,6 +57,7 @@ function glome_settings()
     {
         update_option('glome_api_uid', $_POST['glome_login_settings']['api_uid']);
         update_option('glome_api_key', $_POST['glome_login_settings']['api_key']);
+        update_option('glome_api_domain', $_POST['glome_login_settings']['api_domain']);
     }
 
     $domain = get_option('glome_api_domain');
@@ -74,6 +78,14 @@ function glome_login_admin_menu ()
     add_submenu_page('users.php' , 'Glome settings', 'Glome settings', 'manage_options', 'glome-settings', 'glome_settings');
 }
 add_action ('admin_menu', 'glome_login_admin_menu');
+
+
+function glome_start_session() {
+    if(!session_id()) {
+        session_start();
+    }
+}
+add_action('init', 'glome_start_session', 1);
 
 
 include __DIR__ . '/includes/ui.php';

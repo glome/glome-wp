@@ -75,3 +75,6 @@ function glome_login_admin_menu ()
 }
 add_action ('admin_menu', 'glome_login_admin_menu');
 
+
+include __DIR__ . '/includes/ui.php';
+include __DIR__ . '/includes/widget.php';

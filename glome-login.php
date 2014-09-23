@@ -13,6 +13,7 @@ Author URI: http://glome.me/
 */
 
 
+include __DIR__ . '/includes/auth.php';
 include __DIR__ . '/includes/comms.php';
 
 

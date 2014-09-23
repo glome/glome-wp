@@ -38,6 +38,12 @@ add_action( 'wp_enqueue_scripts', 'glome_add_scripts');
 
 function glome_ajax_challenge()
 {
+    if (is_glome_session_paired()) {
+        $id = $_SESSION['glome']['id'];
+        glome_login_user($id);
+        echo 1;
+        exit;
+    }
     $code = get_glome_pairing_code();
     echo json_encode(str_split($code, 4));
     exit;
@@ -48,8 +54,28 @@ function glome_ajax_verify()
 {
     $code = is_glome_session_paired();
     if ($code === true) {
+
+        $id = $_SESSION['glome']['id'];
+        if (glome_user_exists($id) === false) {
+            glome_create_user($id);
+        }
+
+        glome_login_user($id);
+
         echo 1;
+    } else {
+        echo 0;
     }
+
+
     exit;
 }
 add_action( 'wp_ajax_nopriv_verify', 'glome_ajax_verify' );
+
+function glome_logout()
+{
+    if (isset($_SESSION['glome'])) {
+        unset($_SESSION['glome']);
+    }
+}
+add_action('wp_logout', 'glome_logout');

@@ -20,33 +20,41 @@ var glome_scope = glome_scope || {};
                 return function () {
 
                     if (tries <= 0) {
-                        this.stop();
+                        that.stop();
                         return;
                     }
 
 
                     tries -= 1;
-                    jQuery.ajax(scope.pipe, {
-                        data: {'action': 'verify'},
-                        context: that
-                    }).done(function (response){
-                        if (response === '1') {
-                            this.stop();
-                            jQuery('#glome-qr').html('complete');
-                        }
-                    });
+                    that.query.apply(that);
                 }
             }),
 
 
-            start: function () {
+            query: function () {
+                jQuery.ajax(scope.pipe, {
+                    data: {'action': 'verify'},
+                    context: this,
+                    cache: false
+                }).done(this.verify);
+            },
 
+            verify: function (response){
+                if (response === '1') {
+                    this.stop();
+                    jQuery('#glome-qr').html('complete');
+                    window.location.reload();
+                }
+            },
+
+            start: function () {
                 handle = window.setInterval(this.check(this), 2000);
             },
 
 
             stop: function () {
                 clearInterval(handle);
+                tries = 30;
             }
 
         };
@@ -54,12 +62,16 @@ var glome_scope = glome_scope || {};
     }());
 
     $('#glome-login').on('click', function(){
-        var data = {
-            'action': 'challenge',
-        };
         console.log(':: trigger');
-        jQuery.get(scope.pipe, data, function(response) {
+        jQuery.ajax(scope.pipe, {
+            data: {'action': 'challenge'},
+            cache: false
+        }).done(function(response) {
             var parts;
+            if (response === '1') {
+                window.location.reload();
+                return;
+            }
             parts = JSON.parse(response);
             $('#glome-qr').html(parts.join(' - '));
             ticker.start();

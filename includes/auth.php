@@ -2,7 +2,7 @@
 
 function glome_user_exists($id)
 {
-    $user = get_userdatabylogin( glome_get_username($id) );
+    $user = get_user_by('login',  glome_get_username($id) );
     return $user !== false;
 }
 

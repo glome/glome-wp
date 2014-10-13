@@ -10,7 +10,7 @@ class glome_login_widget extends WP_Widget
      */
     public function __construct ()
     {
-        parent::WP_Widget ('glome_login', 'Glome Login', array (
+        parent::WP_Widget('glome_login', 'Glome Login', array(
             'description' => __ ('Allow your visitors to login with anonymous Glome Wallet account.', 'glome_login')
         ));
     }
@@ -30,8 +30,7 @@ class glome_login_widget extends WP_Widget
         }
 
         //Hide the widget for logged in users?
-        if (empty ($instance ['widget_hide_for_logged_in_users']) OR !is_user_logged_in ())
-        {
+        if (empty ($instance ['widget_hide_for_logged_in_users']) OR !is_user_logged_in ()) {
             //Before Widget
             echo $args ['before_widget'];
 
@@ -55,15 +54,10 @@ class glome_login_widget extends WP_Widget
     public function form ($instance)
     {
         //Default settings
-        $default_settings = array (
+        $default_settings = array(
             'widget_title' => __ ('Anonymous login with Glome Wallet', 'glome_login'),
             'widget_hide_for_logged_in_users' => '1'
         );
-
-        foreach ($instance as $key => $value)
-        {
-            //$instance [$key] = glome_login_esc_attr ($value);
-        }
 
         $instance = wp_parse_args ((array) $instance, $default_settings);
         ?>
@@ -90,5 +84,4 @@ class glome_login_widget extends WP_Widget
         return $instance;
     }
 }
-
 add_action ('widgets_init', create_function ('', 'return register_widget( "glome_login_widget" );'));

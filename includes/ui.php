@@ -9,18 +9,17 @@ function glome_login_render_login_form ($source, $args = array ())
     //Check if logged in
     if (!empty ($current_user->ID) AND is_numeric ($current_user->ID))
     {
-        //Current user
-        $user_id = $current_user->ID;
-        var_dump($user_id);
+        if (is_glome_session_paired()) {
+            echo 'all done!';
+        } else {
+            include __DIR__ . '/../templates/pair.php';
+        }
     }
     else
     {
-
-
         include __DIR__ . '/../templates/login.php';
     }
 }
-
 
 
 function glome_add_scripts ()
@@ -32,7 +31,6 @@ function glome_add_scripts ()
         'state' => 'guest',
     ));
 }
-
 add_action( 'wp_enqueue_scripts', 'glome_add_scripts');
 
 
@@ -48,20 +46,13 @@ function glome_ajax_challenge()
     echo json_encode(str_split($code, 4));
     exit;
 }
-add_action( 'wp_ajax_nopriv_challenge', 'glome_ajax_challenge' );
+add_action( 'wp_ajax_challenge', 'glome_ajax_challenge' );
+
 
 function glome_ajax_verify()
 {
     $code = is_glome_session_paired();
     if ($code === true) {
-
-        $id = $_SESSION['glome']['id'];
-        if (glome_user_exists($id) === false) {
-            glome_create_user($id);
-        }
-
-        glome_login_user($id);
-
         echo 1;
     } else {
         echo 0;
@@ -70,7 +61,8 @@ function glome_ajax_verify()
 
     exit;
 }
-add_action( 'wp_ajax_nopriv_verify', 'glome_ajax_verify' );
+add_action( 'wp_ajax_verify', 'glome_ajax_verify' );
+
 
 function glome_logout()
 {

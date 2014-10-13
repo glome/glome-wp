@@ -22,7 +22,6 @@ function glome_login_activate ()
     if (!function_exists ('register_post_status'))
     {
         deactivate_plugins (basename (dirname (__FILE__)) . '/' . basename (__FILE__));
-        echo sprintf (__ ('This plugin requires WordPress %s or newer. Please update your WordPress installation to activate this plugin.', 'oa_social_login'), '3.0');
         exit;
     }
     update_option ('glome_login_activation_message', 0);
@@ -76,17 +75,49 @@ function glome_settings()
 
 function glome_login_admin_menu ()
 {
-    add_submenu_page('users.php' , 'Glome settings', 'Glome settings', 'manage_options', 'glome-settings', 'glome_settings');
+    add_submenu_page(
+        'users.php',
+        'Glome settings',
+        'Glome settings',
+        'manage_options',
+        'glome-settings',
+        'glome_settings'
+    );
 }
 add_action ('admin_menu', 'glome_login_admin_menu');
 
 
-function glome_start_session() {
+function glome_start() {
+
+    global $post;
+
     if(!session_id()) {
         session_start();
     }
+
+
+    if (false === isset($_SESSION['glome']['session'])) {
+        $_SESSION['glome']['session'] = get_glome_session_id();
+        $_SESSION['glome']['id'] = get_glome_user_id();
+    }
+
+    if (isset($_POST['gl_login'])) {
+
+        $id = $_SESSION['glome']['id'];
+
+        if (glome_user_exists($id) === false) {
+            glome_create_user($id);
+        }
+
+        glome_login_user($id);
+
+        header('Location: ' .  get_permalink($post->ID));
+        exit;
+    }
+
+    glome_track_activity($_SERVER["SERVER_NAME"] . $_SERVER["REQUEST_URI"]);
 }
-add_action('init', 'glome_start_session', 1);
+add_action('init', 'glome_start', 1);
 
 
 include __DIR__ . '/includes/ui.php';

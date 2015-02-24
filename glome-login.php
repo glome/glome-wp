@@ -63,11 +63,10 @@ function glome_settings()
     $domain = get_option('glome_api_domain');
 
     $settings = array(
-        'api_domain' =>  empty($domain) ? 'https://stage.glome.me/api/v1/' : $domain ,
+        'api_domain' =>  empty($domain) ? 'https://api.glome.me/' : $domain ,
         'api_uid' => get_option('glome_api_uid'),
         'api_key' => get_option('glome_api_key'),
     );
-
 
     include __DIR__ . '/templates/settings.php';
 }
@@ -94,7 +93,6 @@ function glome_start() {
     if(!session_id()) {
         session_start();
     }
-
 
     if (false === isset($_SESSION['glome']['session'])) {
         $_SESSION['glome']['session'] = get_glome_session_id();

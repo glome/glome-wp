@@ -70,7 +70,6 @@ function is_glome_session_paired()
         $json = $response['body'];
         $data = json_decode($json, true);
 
-
         $_SESSION['glome']['id'] = $data['id'];
         return count($data['children']) > 0;
     }
@@ -93,13 +92,11 @@ function glome_track_activity($url)
             glome_user_login($glomeID);
         }
 
-
-
-        $response = wp_remote_post($domain . '/histories.json', array(
+        $response = wp_remote_post($domain . '/users/' . $glomeID . '/data.json', array(
             'body' => array(
                 'application[uid]' => $uid,
                 'application[apikey]' => $key,
-                'history[action]' => 'visit: ' . $url,
+                'userdata[content]' => 'visit: ' . $url,
             ),
             'headers' => array(
                 'X-CSRF-Token'  => $_SESSION['glome']['csrf-token'],

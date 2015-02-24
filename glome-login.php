@@ -109,8 +109,8 @@ function glome_start() {
 
         glome_login_user($id);
 
-        header('Location: ' .  get_permalink($post->ID));
-        exit;
+        #header('Location: ' .  get_permalink($post->ID));
+        #exit;
     }
 
     glome_track_activity($_SERVER["SERVER_NAME"] . $_SERVER["REQUEST_URI"]);

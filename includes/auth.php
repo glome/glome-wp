@@ -2,7 +2,7 @@
 
 function glome_user_exists($id)
 {
-    $user = get_user_by('login',  glome_get_username($id) );
+    $user = get_user_by('login',  glome_get_username($id));
     return $user !== false;
 }
 
@@ -38,11 +38,10 @@ function glome_login_user($id)
 {
     $username = glome_get_username($id);
 
-    if ( !is_user_logged_in() ) {
-        $user = get_userdatabylogin( $username );
-        $user_id = $user->ID;
-        wp_set_current_user( $user_id, $user_login );
-        wp_set_auth_cookie( $user_id );
-        do_action( 'wp_login', $user_login );
+    if ( ! is_user_logged_in() ) {
+        $user = get_user_by('login', $username);
+        wp_set_current_user( $user->ID, $user->get('user_login') );
+        wp_set_auth_cookie( $user->ID );
+        do_action( 'wp_login', $user->get('user_login') );
     }
 }

@@ -1,129 +1,171 @@
 <?php
 
-function get_glome_query($query, $isGet = false, $params = [])
+function glome_get($query, $params = [])
 {
-    $domain = get_option('glome_api_domain');
-    $uid = get_option('glome_api_uid');
-    $key = get_option('glome_api_key');
-    $url = $domain . $query;
-    if ($isGet) {
-        $query = "?application[uid]={$uid}&application[apikey]={$key}";
-        $response = wp_remote_get($url . $query);
-    } else {
-        $response = wp_remote_post($url, array(
-            'body' => array(
-                'application[uid]' => $uid,
-                'application[apikey]' => $key,
-            ) + $params
-        ));
-    }
-    return $response;
+  $domain = get_option('glome_api_domain');
+  $uid = get_option('glome_api_uid');
+  $key = get_option('glome_api_key');
+  $url = $domain . $query;
+  $url .= "?application[uid]={$uid}&application[apikey]={$key}";
+
+  $response = wp_remote_get($url);
+
+  return $response;
 }
 
-function get_glome_session_id()
+function glome_post($query, $params = [])
 {
-    $response = get_glome_query('/users.json');
+  $domain = get_option('glome_api_domain');
+  $uid = get_option('glome_api_uid');
+  $key = get_option('glome_api_key');
+  $url = $domain . $query;
+  $payload = array(
+    'body' => array(
+      'application[uid]' => $uid,
+      'application[apikey]' => $key,
+    ) + $params
+  );
+
+  if (isset($_SESSION['glome']['csrf-token']))
+  {
+    $payload += array('headers' => array(
+      'X-CSRF-Token'  => $_SESSION['glome']['csrf-token']
+    ));
+  }
+
+  if (isset($_SESSION['glome']['cookies']))
+  {
+    $payload += array('cookies' => $_SESSION['glome']['cookies']);
+  }
+
+  $response = wp_remote_post($url, $payload);
+
+  if (array_key_exists('cookies', $response))
+  {
+    $_SESSION['glome']['cookies'] = $response['cookies'];
+  }
+
+  if (array_key_exists('x-csrf-token', $response['headers']))
+  {
+    $_SESSION['glome']['csrf-token'] = $response['headers']['x-csrf-token'];
+  }
+
+  return $response;
+}
+
+function glome_get_key()
+{
+  $data = null;
+  $prev = null;
+
+  if (array_key_exists('key', $_SESSION['glome']))
+  {
+    $prev = $_SESSION['glome']['key'];
+  }
+
+  if ($prev)
+  {
+    // check validity
+    $now = new DateTime();
+    $expires = new DateTime($prev['expires_at']);
+
+    if ($now < $expires)
+    {
+      $data = $prev;
+    }
+  }
+
+  if ($data == null)
+  {
+    $query = '/key.json';
+    $response = glome_post($query, ['synchronization[session]' => session_id()]);
     $json = $response['body'];
-
     $data = json_decode($json, true);
-    return $data['glomeid'];
+  }
+
+  if (is_array($data) and ! array_key_exists('expires_at_friendly', $data))
+  {
+    $expires_at = new DateTime($data['expires_at']);
+    $data['expires_at_friendly'] = $expires_at->format('Y-m-d H:i:s');
+  }
+
+  $_SESSION['glome']['key'] = $data;
+  return $data;
 }
 
-
-function get_glome_pairing_code()
+function glome_create_user()
 {
-    if (isset($_SESSION['glome']['session'])) {
-        $id = $_SESSION['glome']['session'];
-        $query = '/users/' . $id . '/sync.json';
-        $response = get_glome_query($query);
-        $json = $response['body'];
-        $data = json_decode($json, true);
+  $response = glome_post('/users.json');
+  $json = $response['body'];
 
-        return $data['code'];
-    }
-
+  $data = json_decode($json, true);
+  return $data;
 }
 
-
-function get_glome_user_id()
+function glome_get_pairing_code()
 {
-    if (isset($_SESSION['glome']['session'])) {
-        $id = $_SESSION['glome']['session'];
-        $query = '/users/' . $id . '.json';
-        $response = get_glome_query($query, true);
+  if (isset($_SESSION['glome']['id']))
+  {
+    $id = $_SESSION['glome']['id'];
+    $query = '/users/' . $id . '/sync.json';
+    $response = glome_post($query);
+    $json = $response['body'];
+    $data = json_decode($json, true);
 
-        $json = $response['body'];
-        $data = json_decode($json, true);
-
-        return $data['id'];
-    }
+    return $data['code'];
+  }
 }
 
-
-function is_glome_session_paired()
+function glome_get_user_profile()
 {
-    if (isset($_SESSION['glome']['session'])) {
-        $id = $_SESSION['glome']['session'];
-        $query = '/users/' . $id . '.json';
-        $response = get_glome_query($query, true);
+  if (isset($_SESSION['glome']['id']))
+  {
+    $id = $_SESSION['glome']['id'];
+    return $id;
 
-        $json = $response['body'];
-        $data = json_decode($json, true);
+    $query = '/users/' . $id . '.json';
+    $response = glome_get($query);
 
-        $_SESSION['glome']['id'] = $data['id'];
-        return count($data['children']) > 0;
-    }
+    $json = $response['body'];
+    $data = json_decode($json, true);
 
-    return false;
+    return $data['id'];
+  }
 }
 
+function glome_is_session_paired()
+{
+  $ret = false;
+
+  if (isset($_SESSION['glome']['glomeid']))
+  {
+    $id = $_SESSION['glome']['glomeid'];
+    $query = '/users/' . $id . '.json';
+    $response = glome_get($query);
+
+    $json = $response['body'];
+    $data = json_decode($json, true);
+
+    $_SESSION['glome']['id'] = $data['id'];
+
+    $ret = ($data['inwallet'] == 'true');
+  }
+
+  return $ret;
+}
 
 function glome_track_activity($url)
 {
-
-    if (isset($_SESSION['glome']['session'])) {
-        $glomeID = $_SESSION['glome']['session'];
-
-        $domain = get_option('glome_api_domain');
-        $uid = get_option('glome_api_uid');
-        $key = get_option('glome_api_key');
-
-        if (!isset($_SESSION['glome']['cookies'])) {
-            glome_user_login($glomeID);
-        }
-
-        $response = wp_remote_post($domain . '/users/' . $glomeID . '/data.json', array(
-            'body' => array(
-                'application[uid]' => $uid,
-                'application[apikey]' => $key,
-                'userdata[content]' => 'visit: ' . $url,
-            ),
-            'headers' => array(
-                'X-CSRF-Token'  => $_SESSION['glome']['csrf-token'],
-            ),
-            'cookies' => $_SESSION['glome']['cookies'],
-        ));
-
-        $_SESSION['glome']['cookies'] = $response['cookies'];
-    }
+  if (isset($_SESSION['glome']['glomeid']))
+  {
+    $glomeID = $_SESSION['glome']['glomeid'];
+    $query = '/users/' . $glomeID . '/data.json';
+    $response = glome_post($query, ['userdata[content]' => 'visit: ' . $url]);
+  }
 }
-
 
 function glome_user_login($glomeID)
 {
-    $domain = get_option('glome_api_domain');
-
-    $uid = get_option('glome_api_uid');
-    $key = get_option('glome_api_key');
-
-    $response = wp_remote_post($domain . '/users/login.json', array(
-        'body' => array(
-            'application[uid]' => $uid,
-            'application[apikey]' => $key,
-            'user[glomeid]' => $glomeID,
-        ),
-    ));
-
-    $_SESSION['glome']['csrf-token'] = $response['headers']['x-csrf-token'];
-    $_SESSION['glome']['cookies'] = $response['cookies'];
+  $query = '/users/login.json';
+  $response = glome_post($query, ['user[glomeid]' => $glomeID]);
 }

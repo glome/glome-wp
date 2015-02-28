@@ -1,12 +1,10 @@
         <div class="wrap">
             <div class="glome_login_setup">
-                <h2>Glome login settings</h2>
+                <h2>Glome Settings</h2>
             </div>
 
             <form method="post" action="">
-
                 <table class="form-table">
-
                     <tr class="row_odd">
                         <td style="width:120px">
                             <label for="glome_login_settings_api_domain"><?php _e ('API base path', 'glome_login'); ?>:</label>
@@ -40,8 +38,7 @@
                 </table>
                 <p class="submit">
                     <input type="hidden" name="page" value="glome" />
-                    <input type="submit" class="button-primary" value="<?php _e ('Save Changes', 'glome_login') ?>" />
+                    <input type="submit" class="button-primary" value="<?php _e('Save Changes', 'glome_login') ?>" />
                 </p>
             </form>
-
         </div>

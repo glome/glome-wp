@@ -1,47 +1,49 @@
 <?php
 
-function glome_user_exists($id)
+function mywp_random_string($length)
 {
-    $user = get_user_by('login',  glome_get_username($id));
-    return $user !== false;
+  $result = '';
+  $list = '0123456789abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ';
+
+  for ($i = 0; $i < $length; $i++)
+  {
+    $result .= $list[rand(0, strlen($list) - 1)];
+  }
+
+  return $result;
 }
 
-
-function glome_get_username($id)
+function mywp_user_exists($id)
 {
-    return 'GlomeAnonymous' . $id;
+  $user = get_user_by('login', $id);
+  return $user !== false;
 }
 
-function glome_create_user($id)
+function mywp_create_user($id)
 {
-    $userdata = array(
-        'user_login'  => glome_get_username($id),
-        'user_url'    => 'https://glome.me',
-        'user_pass'   => glome_random_string(32),
-        'role'        => 'subscriber',
-    );
+  $userdata = array(
+    'role'        => 'subscriber',
+    'user_url'    => 'http://glome.me',
+    'user_email'  => $id . '@glome.me',
+    'user_login'  => $id,
+    'user_pass'   => mywp_random_string(32),
+    'display_name' => 'Anonymous',
+    'user_nicename' => 'Anonymous'
+  );
 
-    wp_insert_user($userdata);
+  wp_insert_user($userdata);
 }
 
-
-function glome_random_string($length) {
-    $list = '0123456789abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ';
-    $result = '';
-    for ($i = 0; $i < $length; $i++) {
-        $result .= $list[rand(0, strlen($list) - 1)];
+function mywp_login_user($id)
+{
+  if ( ! is_user_logged_in() )
+  {
+    $user = get_user_by('login', $id);
+    if ($user !== false)
+    {
+      wp_set_current_user($user->ID, $user->get('user_login'));
+      wp_set_auth_cookie($user->ID);
+      do_action('wp_login', $user->get('user_login'));
     }
-    return $result;
-}
-
-function glome_login_user($id)
-{
-    $username = glome_get_username($id);
-
-    if ( ! is_user_logged_in() ) {
-        $user = get_user_by('login', $username);
-        wp_set_current_user( $user->ID, $user->get('user_login') );
-        wp_set_auth_cookie( $user->ID );
-        do_action( 'wp_login', $user->get('user_login') );
-    }
+  }
 }

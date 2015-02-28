@@ -1,4 +1,4 @@
-glome-wp
-========
+Glome for Wordpress
+===================
 
-Glome Wordpress plugin
+This plugin helps integrating Wordpress sites with Glome.

@@ -1,0 +1,44 @@
+.loading
+{
+  width: 120px;
+  height: 6px;
+  margin: 0;
+  background-repeat: no-repeat;
+  background-image: url('/wp-includes/js/thickbox/loadingAnimation.gif');
+  background-position: -3px -2px;
+}
+
+.key
+{
+  margin: 0 0 1.5em 0;
+}
+
+#qrcode
+{
+  height: 130px;
+  padding: 10px 0 0 0;
+  width: 130px;
+  margin: 0.5em 0 0.5em 0;
+  padding: 5px;
+  background-color: transparent;
+}
+
+.gnb
+{
+  height: 5px;
+  line-height: 5px;
+  vertical-align: top;
+  position: fixed;
+  z-index: 99999;
+  top: 45px;
+  left: 0px;
+  width: 5px;
+}
+.gnb.active
+{
+  background-color: lightgreen;
+}
+.gnb.unread
+{
+  background-color: yellow;
+}

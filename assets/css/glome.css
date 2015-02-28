@@ -13,6 +13,20 @@
   margin: 0 0 1.5em 0;
 }
 
+#qrcode,
+#qrtext
+{
+  background-color: transparent;
+}
+
+#qrtext
+{
+  border: 0 none !important;
+  font-size: 1.1em;
+  letter-spacing: 2px;
+  color: white;
+}
+
 #qrcode
 {
   height: 130px;
@@ -20,7 +34,6 @@
   width: 130px;
   margin: 0.5em 0 0.5em 0;
   padding: 5px;
-  background-color: transparent;
 }
 
 .gnb

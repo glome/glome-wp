@@ -1,16 +1,16 @@
 <?php
 /**
- * Login Widget
+ * One-time Login Widget
  */
-class glome_login_widget extends WP_Widget
+class glome_one_time_login_widget extends WP_Widget
 {
   /**
    * Constructor
    */
   public function __construct()
   {
-    parent::WP_Widget('glome_login', 'Glome Login', array(
-      'description' => __ ('Allow your visitors to login with Glome.', 'glome_login')
+    parent::WP_Widget('glome_one_time_login', 'Glome One-time Login', array(
+      'description' => __ ('Allow your visitors to login with Glome.', 'glome_one_time_login_widget')
     ));
   }
 
@@ -42,7 +42,7 @@ class glome_login_widget extends WP_Widget
       }
 
       //Content
-      echo render_login('widget', $instance);
+      echo render_one_time_login('widget', $instance);
 
       //After Widget
       echo $args ['after_widget'];
@@ -56,19 +56,19 @@ class glome_login_widget extends WP_Widget
   {
     //Default settings
     $default_settings = array(
-      'widget_title' => __ ('Login with Glome', 'glome_login'),
+      'widget_title' => __ ('Glome One-time Login', 'glome_one_time_login_widget'),
       'widget_hide_for_logged_in_users' => '1'
     );
 
     $instance = wp_parse_args ((array) $instance, $default_settings);
     ?>
       <p>
-        <label for="<?php echo $this->get_field_id ('widget_title'); ?>"><?php _e ('Title', 'glome_login'); ?>:</label>
+        <label for="<?php echo $this->get_field_id ('widget_title'); ?>"><?php _e ('Title', 'glome_one_time_login_widget'); ?>:</label>
         <input class="widefat" id="<?php echo $this->get_field_id ('widget_title'); ?>" name="<?php echo $this->get_field_name ('widget_title'); ?>" type="text" value="<?php echo $instance ['widget_title']; ?>" />
       </p>
       <p>
-        <input type="checkbox" id="<?php echo $this->get_field_id ('widget_hide_for_logged_in_users', 'glome_login'); ?>" name="<?php echo $this->get_field_name ('widget_hide_for_logged_in_users'); ?>" type="text" value="1" <?php echo (!empty ($instance ['widget_hide_for_logged_in_users']) ? 'checked="checked"' : ''); ?> />
-        <label for="<?php echo $this->get_field_id ('widget_hide_for_logged_in_users'); ?>"><?php _e ('Tick to hide widget for logged-in users', 'glome_login'); ?></label>
+        <input type="checkbox" id="<?php echo $this->get_field_id ('widget_hide_for_logged_in_users', 'glome_one_time_login_widget'); ?>" name="<?php echo $this->get_field_name ('widget_hide_for_logged_in_users'); ?>" type="text" value="1" <?php echo (!empty ($instance ['widget_hide_for_logged_in_users']) ? 'checked="checked"' : ''); ?> />
+        <label for="<?php echo $this->get_field_id ('widget_hide_for_logged_in_users'); ?>"><?php _e ('Tick to hide widget for logged-in users', 'glome_one_time_login_widget'); ?></label>
       </p>
     <?php
   }
@@ -84,4 +84,4 @@ class glome_login_widget extends WP_Widget
     return $instance;
   }
 }
-add_action ('widgets_init', create_function ('', 'return register_widget( "glome_login_widget" );'));
+add_action ('widgets_init', create_function ('', 'return register_widget( "glome_one_time_login_widget" );'));

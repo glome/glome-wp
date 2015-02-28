@@ -5,9 +5,14 @@ function render_gnb()
   include __DIR__ . '/../templates/gnb.php';
 }
 
-function render_login($source, $args = array ())
+function render_one_time_login($source, $args = array ())
 {
-  include __DIR__ . '/../templates/login.php';
+  include __DIR__ . '/../templates/one_time_login.php';
+}
+
+function render_key_login($source, $args = array ())
+{
+  include __DIR__ . '/../templates/key_login.php';
 }
 
 function render_pair($source, $args = array ())

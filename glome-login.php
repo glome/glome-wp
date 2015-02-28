@@ -131,6 +131,7 @@ function glome_start()
 add_action('init', 'glome_start', 1);
 
 include __DIR__ . '/includes/ui.php';
-include __DIR__ . '/includes/login_widget.php';
+include __DIR__ . '/includes/one_time_login_widget.php';
+include __DIR__ . '/includes/key_widget.php';
 include __DIR__ . '/includes/gnb_widget.php';
 include __DIR__ . '/includes/pair_widget.php';

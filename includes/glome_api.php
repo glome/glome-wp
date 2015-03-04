@@ -98,56 +98,52 @@ function glome_create_user()
   $response = glome_post('/users.json');
   $json = $response['body'];
 
-  $data = json_decode($json, true);
-  return $data;
+  $ret = json_decode($json, true);
+  return $ret;
 }
 
 function glome_get_pairing_code()
 {
-  if (isset($_SESSION['glome']['id']))
+  $ret = null;
+  $glomeid = mywp_current_glomeid();
+
+  if ($glomeid)
   {
-    $id = $_SESSION['glome']['id'];
-    $query = '/users/' . $id . '/sync.json';
+    $query = '/users/' . $glomeid . '/sync.json';
     $response = glome_post($query);
     $json = $response['body'];
     $data = json_decode($json, true);
 
-    return $data['code'];
+    $ret = $data['code'];
   }
+
+  return $ret;
 }
 
 function glome_get_user_profile()
 {
-  if (isset($_SESSION['glome']['id']))
-  {
-    $id = $_SESSION['glome']['id'];
-    return $id;
+  $ret = null;
+  $glomeid = mywp_current_glomeid();
 
-    $query = '/users/' . $id . '.json';
+  if ($glomeid)
+  {
+    $query = '/users/' . $glomeid . '.json';
     $response = glome_get($query);
 
     $json = $response['body'];
-    $data = json_decode($json, true);
-
-    return $data['id'];
+    $ret = json_decode($json, true);
   }
+
+  return $ret;
 }
 
 function glome_is_session_paired()
 {
   $ret = false;
+  $data = glome_get_user_profile();
 
-  if (isset($_SESSION['glome']['glomeid']))
+  if (isset($data['inwallet']))
   {
-    $id = $_SESSION['glome']['glomeid'];
-    $query = '/users/' . $id . '.json';
-    $response = glome_get($query);
-
-    $json = $response['body'];
-    $data = json_decode($json, true);
-
-    $_SESSION['glome']['id'] = $data['id'];
-
     $ret = ($data['inwallet'] == 'true');
   }
 
@@ -156,16 +152,41 @@ function glome_is_session_paired()
 
 function glome_track_activity($url)
 {
-  if (isset($_SESSION['glome']['glomeid']))
+  $ret = null;
+  $glomeid = mywp_current_glomeid();
+
+  if ($glomeid)
   {
-    $glomeID = $_SESSION['glome']['glomeid'];
-    $query = '/users/' . $glomeID . '/data.json';
+    $query = '/users/' . $glomeid . '/data.json';
     $response = glome_post($query, ['userdata[content]' => 'visit: ' . $url]);
+    $json = $response['body'];
+    $ret = json_decode($json, true);
   }
+
+  return $ret;
 }
 
-function glome_user_login($glomeID)
+/**
+ *
+ * hooked to set_current_user action of Wordpress
+ * see glome.php
+ *
+ */
+function glome_login_user()
 {
-  $query = '/users/login.json';
-  $response = glome_post($query, ['user[glomeid]' => $glomeID]);
+  $ret = null;
+  $glomeid = mywp_current_glomeid();
+
+  if ($glomeid)
+  {
+    $query = '/users/login.json';
+    $response = glome_post($query, ['user[glomeid]' => $glomeid]);
+
+    $json = $response['body'];
+    $ret = json_decode($json, true);
+
+    $_SESSION['glome'] = $ret;
+  }
+
+  return $ret;
 }

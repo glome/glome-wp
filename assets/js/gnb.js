@@ -66,8 +66,6 @@ jQuery(document).on('startgnb', function(event, gnb_params) {
         case "unpaired":
         case "unlocked":
         case "unbrother":
-          document.location.reload(true);
-          break;
         case "erased":
           window.location.href = '/';
           break;
@@ -88,7 +86,7 @@ jQuery(document).on('startgnb', function(event, gnb_params) {
           //console.log('received a key');
           break;
         case "user":
-          jQuery.cookie('magic', response.key + response.user.trackingtoken.token);
+          jQuery.cookie('magic', response.key + response.user.trackingtoken.token + response.user.glomeid);
           //console.log('received user: ' + response.user.trackingtoken.token);
           window.location.href = '/';
           break;

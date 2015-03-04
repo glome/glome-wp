@@ -63,7 +63,7 @@ function glome_ajax_challenge()
   if (glome_is_session_paired())
   {
     $id = $_SESSION['glome']['id'];
-    glome_login_user($id);
+    glome_plugin_user($id);
     echo 1;
     exit;
   }

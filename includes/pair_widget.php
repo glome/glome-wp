@@ -10,7 +10,7 @@ class pair_widget extends WP_Widget
   public function __construct()
   {
     parent::WP_Widget('pair', 'Glome pair widget', array(
-      'description' => __ ('Glome pair widget', 'pair')
+      'description' => __('Pair widget description', 'glome_plugin')
     ));
   }
 

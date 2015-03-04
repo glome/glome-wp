@@ -1,0 +1,89 @@
+msgid ""
+msgstr ""
+"Project-Id-Version: Glome plugin for Wordpress\n"
+"POT-Creation-Date: 2015-03-04 19:44+0200\n"
+"PO-Revision-Date: 2015-03-04 19:44+0200\n"
+"Last-Translator: Ferenc Székely <ferenc@glome.me>\n"
+"Language-Team: Glome Inc. <contact@glome.me>\n"
+"Language: en_US\n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+"X-Generator: Poedit 1.6.10\n"
+"X-Poedit-Basepath: ../\n"
+"Plural-Forms: nplurals=2; plural=(n != 1);\n"
+"X-Poedit-KeywordsList: __;_e\n"
+"X-Poedit-SearchPath-0: includes\n"
+"X-Poedit-SearchPath-1: templates\n"
+
+#: includes/gnb_widget.php:13
+msgid "GNB widget description"
+msgstr "GNB widget description"
+
+#: includes/key_widget.php:13
+msgid "Allow your visitors to login with Glome Key."
+msgstr "Allow your visitors to login with Glome Key."
+
+#: includes/key_widget.php:60 includes/key_widget.php:67
+msgid "Key Widget Title"
+msgstr "Key Widget Title"
+
+#: includes/key_widget.php:72
+msgid "Tick to hide key widget for logged-in users"
+msgstr "Tick to hide key widget for logged-in users"
+
+#: includes/one_time_login_widget.php:13
+msgid "Allow your visitors to login with Glome."
+msgstr "Allow your visitors to login with Glome."
+
+#: includes/one_time_login_widget.php:59 includes/one_time_login_widget.php:66
+msgid "One-time Login Widget Title"
+msgstr "One-time Login Widget Title"
+
+#: includes/one_time_login_widget.php:71
+msgid "Tick to hide one-time login widget for logged-in users"
+msgstr "Tick to hide one-time login widget for logged-in users"
+
+#: includes/pair_widget.php:13
+msgid "Pair widget description"
+msgstr "Pair widget description"
+
+#: templates/glome_api_access.php:3
+msgid "Glome API Access"
+msgstr "Glome API Access"
+
+#: templates/glome_api_access.php:6
+msgid "API request info"
+msgstr "API request info"
+
+#: templates/glome_api_access.php:17 templates/settings.php:10
+msgid "API base path"
+msgstr "API base path"
+
+#: templates/glome_api_access.php:27 templates/settings.php:20
+msgid "API UID"
+msgstr "API UID"
+
+#: templates/glome_api_access.php:37 templates/settings.php:30
+msgid "API Key"
+msgstr "API Key"
+
+#: templates/glome_api_access.php:48 templates/settings.php:41
+msgid "Save Changes"
+msgstr "Save Changes"
+
+#: templates/glome_api_access.php:49
+msgid "Request New API Key"
+msgstr "Request New API Key"
+
+#~ msgid "Glome Key Login"
+#~ msgstr "Glome Key Login"
+
+#~ msgid "Glome One-time Login"
+#~ msgstr "Glome One-time Login"
+
+#~ msgid "Glome pair widget"
+#~ msgstr "Glome pair widget"
+
+#~ msgid "Title"
+#~ msgstr "Title"

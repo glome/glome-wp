@@ -10,7 +10,7 @@ class glome_key_widget extends WP_Widget
   public function __construct()
   {
     parent::WP_Widget('glome_key', 'Glome Key Login', array(
-      'description' => __ ('Allow your visitors to login with Glome Key.', 'glome_key_widget')
+      'description' => __('Allow your visitors to login with Glome Key.', 'glome_plugin')
     ));
   }
 
@@ -57,19 +57,19 @@ class glome_key_widget extends WP_Widget
   {
     //Default settings
     $default_settings = array(
-      'widget_title' => __ ('Glome Key Login', 'glome_key_widget'),
+      'widget_title' => __('Key Widget Title', 'glome_plugin'),
       'widget_hide_for_logged_in_users' => '1'
     );
 
     $instance = wp_parse_args ((array) $instance, $default_settings);
     ?>
       <p>
-        <label for="<?php echo $this->get_field_id ('widget_title'); ?>"><?php _e ('Title', 'glome_key_widget'); ?>:</label>
-        <input class="widefat" id="<?php echo $this->get_field_id ('widget_title'); ?>" name="<?php echo $this->get_field_name ('widget_title'); ?>" type="text" value="<?php echo $instance ['widget_title']; ?>" />
+        <label for="<?php echo $this->get_field_id ('widget_title'); ?>"><?php _e('Key Widget Title', 'glome_plugin'); ?>:</label>
+        <input class="widefat" id="<?php echo $this->get_field_id ('widget_title'); ?>" name="<?php echo $this->get_field_name('widget_title'); ?>" type="text" value="<?php echo $instance ['widget_title']; ?>" />
       </p>
       <p>
-        <input type="checkbox" id="<?php echo $this->get_field_id ('widget_hide_for_logged_in_users', 'glome_key_widget'); ?>" name="<?php echo $this->get_field_name ('widget_hide_for_logged_in_users'); ?>" type="text" value="1" <?php echo (!empty ($instance ['widget_hide_for_logged_in_users']) ? 'checked="checked"' : ''); ?> />
-        <label for="<?php echo $this->get_field_id ('widget_hide_for_logged_in_users'); ?>"><?php _e ('Tick to hide widget for logged-in users', 'glome_key_widget'); ?></label>
+        <input type="checkbox" id="<?php echo $this->get_field_id ('widget_hide_for_logged_in_users', 'glome_key_widget'); ?>" name="<?php echo $this->get_field_name('widget_hide_for_logged_in_users'); ?>" type="text" value="1" <?php echo (!empty ($instance ['widget_hide_for_logged_in_users']) ? 'checked="checked"' : ''); ?> />
+        <label for="<?php echo $this->get_field_id ('widget_hide_for_logged_in_users'); ?>"><?php _e('Tick to hide key widget for logged-in users', 'glome_plugin'); ?></label>
       </p>
     <?php
   }

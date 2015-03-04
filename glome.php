@@ -14,11 +14,20 @@ Author: http://glome.me/
 include __DIR__ . '/includes/wp_bindings.php';
 include __DIR__ . '/includes/glome_api.php';
 
-function glome_plugin_activate ()
+function load_locales()
+{
+  $domain = 'glome_plugin';
+  $locale = apply_filters('plugin_locale', get_locale(), $domain);
+  // e.g. wp-content/plugins/plugin-name/languages/glome_plugin-en_US.mo
+  load_plugin_textdomain( $domain, FALSE, basename( dirname( __FILE__ ) ) . '/languages/');
+}
+add_action('init', 'load_locales');
+
+function glome_plugin_activate()
 {
   if (! function_exists ('register_post_status'))
   {
-    deactivate_plugins (basename (dirname (__FILE__)) . '/' . basename (__FILE__));
+    deactivate_plugins (basename(dirname(__FILE__)) . '/' . basename(__FILE__));
     exit;
   }
   update_option ('glome_plugin_activation_message', 0);
@@ -31,12 +40,12 @@ function glome_plugin_add_setup_link ($links, $file)
 
   if (is_null ($glome_plugin_plugin))
   {
-    $glome_plugin_plugin = plugin_basename (__FILE__);
+    $glome_plugin_plugin = plugin_basename(__FILE__);
   }
 
   if ($file == $glome_plugin_plugin)
   {
-    $settings_link = '<a href="users.php?page=glome-settings">' . __ ('Setup', 'glome_plugin') . '</a>';
+    $settings_link = '<a href="users.php?page=glome-settings">' . __('Setup', 'glome_plugin') . '</a>';
     array_unshift ($links, $settings_link);
   }
   return $links;
@@ -63,17 +72,17 @@ function glome_settings()
     'api_key' => get_option('glome_api_key'),
   );
 
-  include __DIR__ . '/templates/settings.php';
+  include __DIR__ . '/templates/glome_api_access.php';
 }
 
 function glome_plugin_admin_menu ()
 {
   add_submenu_page(
-    'users.php',
+    'plugins.php',
     'Glome settings',
     'Glome settings',
     'manage_options',
-    'glome-settings',
+    'glome_settings',
     'glome_settings'
   );
 }
@@ -145,10 +154,14 @@ function glome_start()
 
   if (is_user_logged_in() and $ret == null)
   {
-    //logout from Wordpress
-    wp_logout();
-    header('Location: /');
-    exit;
+    $current_user = wp_get_current_user();
+    if (! is_super_admin($current_user->ID))
+    {
+      //logout from Wordpress
+      wp_logout();
+      header('Location: /');
+      exit;
+    }
   }
 
   glome_track_activity($_SERVER["SERVER_NAME"] . $_SERVER["REQUEST_URI"]);

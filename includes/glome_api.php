@@ -63,7 +63,7 @@ function glome_get_key()
     $prev = $_SESSION['glome']['key'];
   }
 
-  if ($prev)
+  if ($prev and isset($prev['expires_at']))
   {
     // check validity
     $now = new DateTime();
@@ -83,13 +83,16 @@ function glome_get_key()
     $data = json_decode($json, true);
   }
 
-  if (is_array($data) and ! array_key_exists('expires_at_friendly', $data))
+  if (is_array($data) and isset($data['expires_at']) and ! array_key_exists('expires_at_friendly', $data))
   {
     $expires_at = new DateTime($data['expires_at']);
     $data['expires_at_friendly'] = $expires_at->format('Y-m-d H:i:s');
   }
 
-  $_SESSION['glome']['key'] = $data;
+  if ($data)
+  {
+    $_SESSION['glome']['key'] = $data;
+  }
   return $data;
 }
 

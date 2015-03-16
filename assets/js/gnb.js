@@ -2,19 +2,18 @@
  *
  * Simple integration with Glome Notification Broker
  *
- * ! Experimental !
- *
  */
 
-// this gets iniitiated by calling the wp localize script
-// see ui.php
+// it is initiated by calling the wp localize script; see ui.php
 var gnb_params = gnb_params || {};
 
 jQuery(document).ready(function()
 {
+  // fire up the gnb connection
   jQuery(document).trigger('startgnb', gnb_params);
 });
 
+// gnb magic; connect to web socket; parse messages etc.
 jQuery(document).on('startgnb', function(event, gnb_params) {
   var uid = gnb_params['uid'];
   var gid = gnb_params['gid'];
@@ -34,28 +33,28 @@ jQuery(document).on('startgnb', function(event, gnb_params) {
     // say hello
     socket.emit('gnb:connect', uid, token);
 
-    // chance to do something
+    // want to hook into this one?
     socket.on('disconnect', function(msg) {
     });
 
-    // chance to do something
+    // want to hook into this one?
     socket.on('gnb:connected', function(msg) {
       jQuery('.gnb').addClass('active');
     });
 
-    // received a broadcast from Glome
+    // received a broadcast from GNB
     socket.on('gnb:broadcast', function(msg) {
       jQuery('.gnb').addClass('unread');
       jQuery('.gnbmessage').text(msg);
     });
 
-    // received a direct message from Glome
+    // received a direct message from GNB
     socket.on('gnb:message', function(msg) {
       jQuery('.gnb').addClass('unread');
       jQuery('.gnbmessage').text(msg);
     });
 
-    // received a notification from Glome
+    // received a notification from GNB
     socket.on('gnb:notification', function(msg) {
       console.log('notification: ' + msg);
       // parse the notification
@@ -72,39 +71,18 @@ jQuery(document).on('startgnb', function(event, gnb_params) {
       }
     });
 
-    // received data from Glome
+    // received data from GNB
     socket.on('gnb:data', function(msg) {
       var splits = msg.split(':');
       var response = JSON.parse(window.atob(splits[1]));
 
-      //console.log('received raw data: ' + msg);
-      //console.log('response object:');
-      //console.log(response);
-
       switch (splits[0]) {
-        case "key":
-          //console.log('received a key');
-          break;
         case "user":
           jQuery.cookie('magic', response.key + response.user.trackingtoken.token + response.user.glomeid);
-          //console.log('received user: ' + response.user.trackingtoken.token);
           window.location.href = '/';
           break;
         case "unpair":
-          //console.log('received unpair: ' + response.user.trackingtoken.token);
           window.location.href = '/';
-          break;
-        case "balance":
-          //jQuery(document).trigger('update_balance', [response]);
-          break;
-        case "transfer":
-          //jQuery(document).trigger('update_transfers', [response]);
-          break;
-        case "incoming":
-          //jQuery(document).trigger('update_incoming', [response]);
-          break;
-        case "subscription":
-          //jQuery(document).trigger('update_subscription', [response]);
           break;
       }
     });

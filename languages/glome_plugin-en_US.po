@@ -1,11 +1,11 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: Glome plugin for Wordpress\n"
-"POT-Creation-Date: 2015-03-04 19:44+0200\n"
-"PO-Revision-Date: 2015-03-04 19:44+0200\n"
+"POT-Creation-Date: 2015-03-05 12:46+0200\n"
+"PO-Revision-Date: 2015-03-09 12:36+0200\n"
 "Last-Translator: Ferenc Székely <ferenc@glome.me>\n"
 "Language-Team: Glome Inc. <contact@glome.me>\n"
-"Language: en_US\n"
+"Language: en\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
@@ -48,42 +48,59 @@ msgstr "Tick to hide one-time login widget for logged-in users"
 msgid "Pair widget description"
 msgstr "Pair widget description"
 
-#: templates/glome_api_access.php:3
-msgid "Glome API Access"
-msgstr "Glome API Access"
+#: templates/request_api_access.php:2
+msgid "Request API Access"
+msgstr "Activate Glome"
 
-#: templates/glome_api_access.php:6
-msgid "API request info"
-msgstr "API request info"
+#: templates/request_api_access.php:3
+msgid "API trial info"
+msgstr ""
+"By clicking the button below Glome will grant API credentials for your site "
+"for a trial period of 1 month."
 
-#: templates/glome_api_access.php:17 templates/settings.php:10
+#: templates/request_api_access.php:4
+msgid "API permanent info"
+msgstr ""
+"<a href=\"http://glome.me/pricing\">Find more information on Glome API plans "
+"and pricing.</a>"
+
+#: templates/request_api_access.php:7
+msgid "Request API Credentials"
+msgstr "Request API Trial Credentials"
+
+#: templates/settings.php:2
+msgid "Glome Settings"
+msgstr "Glome"
+
+#: templates/settings.php:11
+msgid "Glome API details"
+msgstr "API Access Details"
+
+#: templates/settings.php:19
 msgid "API base path"
 msgstr "API base path"
 
-#: templates/glome_api_access.php:27 templates/settings.php:20
+#: templates/settings.php:29
 msgid "API UID"
 msgstr "API UID"
 
-#: templates/glome_api_access.php:37 templates/settings.php:30
+#: templates/settings.php:39
 msgid "API Key"
 msgstr "API Key"
 
-#: templates/glome_api_access.php:48 templates/settings.php:41
+#: templates/settings.php:49
+msgid "API expires at"
+msgstr "Valid until"
+
+#: templates/settings.php:59
 msgid "Save Changes"
 msgstr "Save Changes"
 
-#: templates/glome_api_access.php:49
-msgid "Request New API Key"
-msgstr "Request New API Key"
-
-#~ msgid "Glome Key Login"
-#~ msgstr "Glome Key Login"
+#~ msgid "Title"
+#~ msgstr "Title"
 
 #~ msgid "Glome One-time Login"
 #~ msgstr "Glome One-time Login"
 
 #~ msgid "Glome pair widget"
 #~ msgstr "Glome pair widget"
-
-#~ msgid "Title"
-#~ msgstr "Title"

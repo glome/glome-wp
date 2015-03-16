@@ -53,10 +53,25 @@ function glome_post($query, $params = [])
   return $response;
 }
 
+function glome_check_app()
+{
+  $ret = false;
+  $query = '/applications/check/' . base64_encode(get_option('glome_api_uid')) . '.json';
+  $response = glome_get($query);
+  $json = $response['body'];
+  $data = json_decode($json, true);
+
+  if ($data and array_key_exists('code', $data))
+  {
+    $ret = ($data['code'] == 200);
+  }
+
+  return $ret;
+}
+
 function glome_get_key()
 {
-  $data = null;
-  $prev = null;
+  $data = $prev = $now = $expires = null;
 
   if (array_key_exists('key', $_SESSION['glome']))
   {
@@ -85,14 +100,18 @@ function glome_get_key()
 
   if (is_array($data) and isset($data['expires_at']) and ! array_key_exists('expires_at_friendly', $data))
   {
-    $expires_at = new DateTime($data['expires_at']);
-    $data['expires_at_friendly'] = $expires_at->format('Y-m-d H:i:s');
+    $now = new DateTime('now');
+    $expires = new DateTime($data['expires_at']);
+    $data['expires_at_friendly'] = $expires->format('Y-m-d H:i:s');
   }
 
-  if ($data)
+  ($data and array_key_exists('expires_at', $data)) ? $_SESSION['glome']['key'] = $data : $data = null;
+
+  if ($now and $expires)
   {
-    $_SESSION['glome']['key'] = $data;
+    $data['countdown'] = $expires->getTimeStamp() - $now->getTimeStamp();
   }
+
   return $data;
 }
 

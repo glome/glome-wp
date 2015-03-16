@@ -19,6 +19,12 @@ class glome_one_time_login_widget extends WP_Widget
    */
   public function widget($args, $instance)
   {
+    // check api access
+    if (glome_check_app() == false)
+    {
+      return;
+    }
+
     // request Glome key
     if (isset($_SESSION['glome']) === false)
     {
@@ -30,22 +36,22 @@ class glome_one_time_login_widget extends WP_Widget
     }
 
     //Hide the widget for logged in users?
-    if (empty ($instance ['widget_hide_for_logged_in_users']) OR ! is_user_logged_in ())
+    if (empty($instance['widget_hide_for_logged_in_users']) OR ! is_user_logged_in())
     {
       //Before Widget
-      echo $args ['before_widget'];
+      echo $args['before_widget'];
 
       //Title
-      if (! empty ($instance ['widget_title']))
+      if (! empty($instance ['widget_title']))
       {
-        echo $args ['before_title'] . apply_filters ('widget_title', $instance ['widget_title']) . $args ['after_title'];
+        echo $args['before_title'] . apply_filters('widget_title', $instance ['widget_title']) . $args ['after_title'];
       }
 
       //Content
       echo render_one_time_login('widget', $instance);
 
       //After Widget
-      echo $args ['after_widget'];
+      echo $args['after_widget'];
     }
   }
 
@@ -60,7 +66,7 @@ class glome_one_time_login_widget extends WP_Widget
       'widget_hide_for_logged_in_users' => '1'
     );
 
-    $instance = wp_parse_args ((array) $instance, $default_settings);
+    $instance = wp_parse_args((array) $instance, $default_settings);
     ?>
       <p>
         <label for="<?php echo $this->get_field_id ('widget_title'); ?>"><?php _e('One-time Login Widget Title', 'glome_plugin'); ?>:</label>
@@ -79,9 +85,9 @@ class glome_one_time_login_widget extends WP_Widget
   public function update($new_instance, $old_instance)
   {
     $instance = $old_instance;
-    $instance ['widget_title'] = trim (strip_tags ($new_instance ['widget_title']));
-    $instance ['widget_hide_for_logged_in_users'] = (empty ($new_instance ['widget_hide_for_logged_in_users']) ? 0 : 1);
+    $instance ['widget_title'] = trim (strip_tags($new_instance['widget_title']));
+    $instance ['widget_hide_for_logged_in_users'] = (empty($new_instance ['widget_hide_for_logged_in_users']) ? 0 : 1);
     return $instance;
   }
 }
-add_action ('widgets_init', create_function ('', 'return register_widget( "glome_one_time_login_widget" );'));
+add_action ('widgets_init', create_function('', 'return register_widget( "glome_one_time_login_widget" );'));

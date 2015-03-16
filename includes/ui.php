@@ -23,20 +23,23 @@ function render_pair($source, $args = array ())
 function glome_add_styles()
 {
   $filepath = plugins_url('/glome-wp/assets/css/glome.css');
-  wp_enqueue_style('glome_styles', $filepath, false);
+  wp_enqueue_style('glome', $filepath, false);
+
+  $filepath = plugins_url('/glome-wp/assets/css/flipclock.css');
+  wp_enqueue_style('flipclock', $filepath, false);
 }
-add_action( 'wp_enqueue_scripts', 'glome_add_styles');
+add_action('init', 'glome_add_styles');
 
 function glome_add_scripts()
 {
+  $filepath = '/socket.io/socket.io.js';
+  wp_enqueue_script('socketio', $filepath, false);
+
   $filepath = plugins_url('/glome-wp/assets/js/jquery.qrcode.min.js');
   wp_enqueue_script('jquery-qrlib', $filepath, array('jquery'));
 
   $filepath = plugins_url('/glome-wp/assets/js/qr.js');
   wp_enqueue_script('qr', $filepath, false);
-
-  $filepath = '/socket.io/socket.io.js';
-  wp_enqueue_script('socketio', $filepath, false);
 
   $filepath = plugins_url('/glome-wp/assets/js/jquery.cookie.js');
   wp_enqueue_script('jquerycookie', $filepath, false);
@@ -44,19 +47,22 @@ function glome_add_scripts()
   $filepath = plugins_url('/glome-wp/assets/js/gnb.js');
   wp_enqueue_script('gnb', $filepath, false);
 
+  $filepath = plugins_url('/glome-wp/assets/js/flipclock.min.js');
+  wp_enqueue_script('flipclock', $filepath, false);
+
   $token = false;
   if (is_user_logged_in())
   {
     $current_user = wp_get_current_user();
     $token = $current_user->user_login;
   }
-  wp_localize_script( 'gnb', 'gnb_params', array(
+  wp_localize_script('gnb', 'gnb_params', array(
     'uid' => get_option('glome_api_uid'),
     'gid' => session_id(),
     'token' => $token
   ));
 }
-add_action( 'wp_enqueue_scripts', 'glome_add_scripts');
+add_action('wp_enqueue_scripts', 'glome_add_scripts');
 
 function glome_ajax_challenge()
 {
@@ -77,16 +83,8 @@ add_action( 'wp_ajax_challenge', 'glome_ajax_challenge' );
 function glome_ajax_verify()
 {
   $code = glome_is_session_paired();
-
-  if ($code === true)
-  {
-    echo 1;
-  }
-  else
-  {
-    echo 0;
-  }
-
+  ($code === true) ? $ret = 1 : $ret = 0;
+  echo $ret;
   exit;
 }
 add_action( 'wp_ajax_verify', 'glome_ajax_verify' );

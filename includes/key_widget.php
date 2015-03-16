@@ -19,6 +19,12 @@ class glome_key_widget extends WP_Widget
    */
   public function widget($args, $instance)
   {
+    // check api access
+    if (glome_check_app() == false)
+    {
+      return;
+    }
+
     // request Glome key
     if (isset($_SESSION['glome']) === false)
     {

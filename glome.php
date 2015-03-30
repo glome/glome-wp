@@ -148,13 +148,13 @@ function glome_start()
     }
     mywp_login_user($token, $glomeid);
 
-    setcookie('magic', '', time() - 3600);  /* expire in 1 hour */
+    setcookie('magic', '', time() - 3600);  /* delete */
     header('Location: /');
-    exit;
   }
 
   // check Glome session
-  $ret = glome_login_user(); //glome_get_user_profile();
+  $ret = glome_get_user_profile();
+
   if ($ret)
   {
     // is the Glome user locked?
@@ -188,7 +188,10 @@ function glome_start()
 add_action('init', 'glome_start');
 
 // called as soon as WP user is logged in
-add_action('set_current_user', 'glome_login_user');
+// TODO:
+// this could be used to check if the WP account has a corresponding Glome ID
+//
+//add_action('set_current_user', 'glome_get_user_profile');
 
 include __DIR__ . '/includes/ui.php';
 include __DIR__ . '/includes/one_time_login_widget.php';

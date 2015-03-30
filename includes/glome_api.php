@@ -187,28 +187,3 @@ function glome_track_activity($url)
 
   return $ret;
 }
-
-/**
- *
- * hooked to set_current_user action of Wordpress
- * see glome.php
- *
- */
-function glome_login_user()
-{
-  $ret = null;
-  $glomeid = mywp_current_glomeid();
-
-  if ($glomeid)
-  {
-    $query = '/users/login.json';
-    $response = glome_post($query, ['user[glomeid]' => $glomeid]);
-
-    $json = $response['body'];
-    $ret = json_decode($json, true);
-
-    $_SESSION['glome'] = $ret;
-  }
-
-  return $ret;
-}

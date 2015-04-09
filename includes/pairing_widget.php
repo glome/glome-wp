@@ -2,15 +2,15 @@
 /**
  * Glome Pairing Widget
  */
-class pairing_widget extends WP_Widget
+class glome_pairing_widget extends WP_Widget
 {
   /**
    * Constructor
    */
   public function __construct()
   {
-    parent::WP_Widget('pair', 'Glome Pairing Widget', array(
-      'description' => __('Share and pair up with other devices', 'glome_plugin')
+    parent::WP_Widget('pairing', 'Glome Pairing Widget', array(
+      'description' => __('Pair with other devices', 'glome_plugin')
     ));
   }
 
@@ -19,8 +19,23 @@ class pairing_widget extends WP_Widget
    */
   public function widget($args, $instance)
   {
+    // check api access
+    if (glome_check_app() == false or ! is_user_logged_in())
+    {
+      return;
+    }
+
+    //Before Widget
+    echo $args['before_widget'];
+
+    //Title
+    if (! empty($instance ['widget_title']))
+    {
+      echo $args['before_title'] . apply_filters('widget_title', $instance ['widget_title']) . $args ['after_title'];
+    }
+
     //Content
-    echo render_pair('widget', $instance);
+    echo render_pairing('widget', $instance);
   }
 
   /**

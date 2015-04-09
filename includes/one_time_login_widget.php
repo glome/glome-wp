@@ -1,6 +1,6 @@
 <?php
 /**
- * One-time Login Widget
+ * Glome One-time Login Widget
  */
 class glome_one_time_login_widget extends WP_Widget
 {

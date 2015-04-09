@@ -15,9 +15,9 @@ function render_key_login($source, $args = array ())
   include __DIR__ . '/../templates/key_login.php';
 }
 
-function render_pair($source, $args = array ())
+function render_pairing($source, $args = array ())
 {
-  include __DIR__ . '/../templates/pair.php';
+  include __DIR__ . '/../templates/pairing.php';
 }
 
 function glome_add_styles()
@@ -38,8 +38,18 @@ function glome_add_scripts()
   $filepath = plugins_url('/glome-wp/assets/js/jquery.qrcode.min.js');
   wp_enqueue_script('jquery-qrlib', $filepath, array('jquery'));
 
-  $filepath = plugins_url('/glome-wp/assets/js/qr.js');
-  wp_enqueue_script('qr', $filepath, false);
+  $filepath = plugins_url('/glome-wp/assets/js/qr_key.js');
+  wp_enqueue_script('qr_key', $filepath, false);
+  wp_localize_script('qr_key', 'key_params', array(
+    'hello' => 'key'
+  ));
+
+  $filepath = plugins_url('/glome-wp/assets/js/qr_pairing.js');
+  wp_enqueue_script('qr_pairing', $filepath, false);
+  wp_localize_script('qr_pairing', 'pairing_params', array(
+    'ajax_url' => admin_url('admin-ajax.php'),
+    'pairing_url' => plugins_url('/glome-wp')
+  ));
 
   $filepath = plugins_url('/glome-wp/assets/js/jquery.cookie.js');
   wp_enqueue_script('jquerycookie', $filepath, false);
@@ -64,30 +74,13 @@ function glome_add_scripts()
 }
 add_action('wp_enqueue_scripts', 'glome_add_scripts');
 
-function glome_ajax_challenge()
+// handler for creating pairing code from JS
+function glome_ajax_create_pairing_code()
 {
-  if (glome_is_session_paired())
-  {
-    $id = $_SESSION['glome']['id'];
-    glome_plugin_user($id);
-    echo 1;
-    exit;
-  }
-  $code = glome_get_pairing_code();
-  echo json_encode(str_split($code, 4));
-
+  echo glome_create_pairing_code($_POST['kind']);
   exit;
 }
-add_action( 'wp_ajax_challenge', 'glome_ajax_challenge' );
-
-function glome_ajax_verify()
-{
-  $code = glome_is_session_paired();
-  ($code === true) ? $ret = 1 : $ret = 0;
-  echo $ret;
-  exit;
-}
-add_action( 'wp_ajax_verify', 'glome_ajax_verify' );
+add_action( 'wp_ajax_create_pairing_code', 'glome_ajax_create_pairing_code' );
 
 function glome_logout()
 {

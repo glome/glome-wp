@@ -26,30 +26,7 @@ function glome_post($query, $params = [])
     ) + $params
   );
 
-  if (isset($_SESSION['glome']['csrf-token']))
-  {
-    $payload += array('headers' => array(
-      'X-CSRF-Token'  => $_SESSION['glome']['csrf-token']
-    ));
-  }
-
-  if (isset($_SESSION['glome']['cookies']))
-  {
-    $payload += array('cookies' => $_SESSION['glome']['cookies']);
-  }
-
   $response = wp_remote_post($url, $payload);
-
-  if (array_key_exists('cookies', $response))
-  {
-    $_SESSION['glome']['cookies'] = $response['cookies'];
-  }
-
-  if (array_key_exists('x-csrf-token', $response['headers']))
-  {
-    $_SESSION['glome']['csrf-token'] = $response['headers']['x-csrf-token'];
-  }
-
   return $response;
 }
 
@@ -124,7 +101,7 @@ function glome_create_user()
   return $ret;
 }
 
-function glome_get_pairing_code()
+function glome_create_pairing_code($type = 's')
 {
   $ret = null;
   $glomeid = mywp_current_glomeid();
@@ -132,11 +109,22 @@ function glome_get_pairing_code()
   if ($glomeid)
   {
     $query = '/users/' . $glomeid . '/sync.json';
-    $response = glome_post($query);
+    $response = glome_post($query, ['synchronization[kind]' => $type]);
     $json = $response['body'];
     $data = json_decode($json, true);
 
-    $ret = $data['code'];
+    if (is_array($data) and isset($data['expires_at']) and ! array_key_exists('expires_at_friendly', $data))
+    {
+      $now = new DateTime('now');
+      $expires = new DateTime($data['expires_at']);
+      $data['expires_at_friendly'] = $expires->format('Y-m-d H:i:s');
+    }
+
+    if ($now and $expires)
+    {
+      $data['countdown'] = $expires->getTimeStamp() - $now->getTimeStamp();
+      $ret = json_encode($data);
+    }
   }
 
   return $ret;

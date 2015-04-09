@@ -1,8 +1,8 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: Glome plugin for Wordpress\n"
-"POT-Creation-Date: 2015-03-05 12:38+0200\n"
-"PO-Revision-Date: 2015-03-09 12:36+0200\n"
+"POT-Creation-Date: 2015-04-09 22:52+0200\n"
+"PO-Revision-Date: 2015-04-09 22:52+0200\n"
 "Last-Translator: Ferenc Székely <ferenc@glome.me>\n"
 "Language-Team: Glome Inc. <contact@glome.me>\n"
 "Language: en\n"
@@ -18,17 +18,17 @@ msgstr ""
 
 #: includes/gnb_widget.php:13
 msgid "GNB widget description"
-msgstr "GNB widget description"
+msgstr "GNB widget handles communication with the Glome API via websockets."
 
 #: includes/key_widget.php:13
 msgid "Allow your visitors to login with Glome Key."
 msgstr "Allow your visitors to login with Glome Key."
 
-#: includes/key_widget.php:60 includes/key_widget.php:67
+#: includes/key_widget.php:66 includes/key_widget.php:73
 msgid "Key Widget Title"
 msgstr "Key Widget Title"
 
-#: includes/key_widget.php:72
+#: includes/key_widget.php:78
 msgid "Tick to hide key widget for logged-in users"
 msgstr "Tick to hide key widget for logged-in users"
 
@@ -36,17 +36,25 @@ msgstr "Tick to hide key widget for logged-in users"
 msgid "Allow your visitors to login with Glome."
 msgstr "Allow your visitors to login with Glome."
 
-#: includes/one_time_login_widget.php:59 includes/one_time_login_widget.php:66
+#: includes/one_time_login_widget.php:65 includes/one_time_login_widget.php:72
 msgid "One-time Login Widget Title"
 msgstr "One-time Login Widget Title"
 
-#: includes/one_time_login_widget.php:71
+#: includes/one_time_login_widget.php:77
 msgid "Tick to hide one-time login widget for logged-in users"
 msgstr "Tick to hide one-time login widget for logged-in users"
 
-#: includes/pair_widget.php:13
-msgid "Pair widget description"
-msgstr "Pair widget description"
+#: includes/pairing_widget.php:13
+msgid "Pair with other devices"
+msgstr "Pair with other devices"
+
+#: includes/pairing_widget.php:33 includes/pairing_widget.php:40
+msgid "Pairing Widget Title"
+msgstr "Pairing Widget Title"
+
+#: includes/pairing_widget.php:45
+msgid "Tick to hide pairing widget for logged-in users"
+msgstr "Tick to hide pairing widget for logged-in users"
 
 #: templates/request_api_access.php:2
 msgid "Request API Access"
@@ -87,8 +95,18 @@ msgid "API Key"
 msgstr "API Key"
 
 #: templates/settings.php:49
+msgid "API expires at"
+msgstr "API expires at"
+
+#: templates/settings.php:59
 msgid "Save Changes"
 msgstr "Save Changes"
+
+#~ msgid "Pair widget description"
+#~ msgstr "Pair widget description"
+
+#~ msgid "Pair Widget Title"
+#~ msgstr "Pairing Widget"
 
 #~ msgid "Title"
 #~ msgstr "Title"

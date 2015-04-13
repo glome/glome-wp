@@ -68,3 +68,13 @@
 {
   background-color: yellow;
 }
+
+.pairing .link input
+{
+  width: 90%;
+}
+
+.pairing .qr
+{
+  margin: 0 0 1em 0;
+}

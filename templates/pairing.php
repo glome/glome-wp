@@ -1,19 +1,22 @@
+  <h2>Glome Pairing</h2>
   <div class="pairing">
+    <h3>Pairing link and code</h3>
+
     <div class="code">
       <div class="link">
-        <div>Send this link to pair with an other device</div>
         <input class="url" type="text" readonly="readonly" class="text" value="..."/>
       </div>
 
-      <div>OR</div>
-
       <div class="qr">
-        <div>Scan this QR code with an other device</div>
         <div class="qrcode" data-code="..."></div>
-        <input class="qrtext" type="text" readonly="readonly" class="text" value="..."/>
-        <div class="clock" data-countdown="..." data-expires="...">until <span class="until">...</span> UTC</div>
+        <div class="wrapper">
+          <strong class="expires">Code expires in</strong>
+          <div class="clock" data-countdown="..." data-expires="...">until <span class="until">...</span> UTC</div>
+        </div>
       </div>
     </div>
+
+    <hr/>
 
     <div class="code scanner">
       <div>Scan QR code shown on an other device</div>

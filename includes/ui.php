@@ -15,11 +15,6 @@ function render_key_login($source, $args = array ())
   include __DIR__ . '/../templates/key_login.php';
 }
 
-function render_pairing($source, $args = array ())
-{
-  include __DIR__ . '/../templates/pairing.php';
-}
-
 function glome_add_styles()
 {
   $filepath = plugins_url('/glome-wp/assets/css/glome.css');
@@ -48,7 +43,7 @@ function glome_add_scripts()
   wp_enqueue_script('qr_pairing', $filepath, false);
   wp_localize_script('qr_pairing', 'pairing_params', array(
     'ajax_url' => admin_url('admin-ajax.php'),
-    'pairing_url' => plugins_url('/glome-wp')
+    'pairing_url' => admin_url('admin-post.php?action=pairing&code='),
   ));
 
   $filepath = plugins_url('/glome-wp/assets/js/jquery.cookie.js');
@@ -74,14 +69,6 @@ function glome_add_scripts()
 }
 add_action('wp_enqueue_scripts', 'glome_add_scripts');
 
-// handler for creating pairing code from JS
-function glome_ajax_create_pairing_code()
-{
-  echo glome_create_pairing_code($_POST['kind']);
-  exit;
-}
-add_action( 'wp_ajax_create_pairing_code', 'glome_ajax_create_pairing_code' );
-
 function glome_logout()
 {
   if (isset($_SESSION['glome']))
@@ -95,7 +82,7 @@ add_action('wp_logout', 'glome_logout');
 
 function custom_logout_url($default)
 {
-  $url = esc_html(site_url('logout/'.wp_create_nonce('log-out'), 'login'));
+  $url = esc_html(site_url('logout/' . wp_create_nonce('log-out'), 'login'));
   return $url;
 }
 add_filter( 'logout_url', 'custom_logout_url');

@@ -14,6 +14,9 @@ Author: http://glome.me/
 include __DIR__ . '/includes/wp_bindings.php';
 include __DIR__ . '/includes/glome_api.php';
 
+/**
+ *
+ */
 function load_locales()
 {
   $domain = 'glome_plugin';
@@ -23,6 +26,9 @@ function load_locales()
 }
 add_action('init', 'load_locales');
 
+/**
+ *
+ */
 function glome_plugin_activate()
 {
   if (! function_exists ('register_post_status'))
@@ -34,6 +40,9 @@ function glome_plugin_activate()
 }
 register_activation_hook (__FILE__, 'glome_plugin_activate');
 
+/**
+ *
+ */
 function glome_plugin_add_setup_link ($links, $file)
 {
   static $glome_plugin = null;
@@ -50,63 +59,14 @@ function glome_plugin_add_setup_link ($links, $file)
   }
   return $links;
 }
-add_filter ('plugin_action_links', 'glome_plugin_add_setup_link', 10, 2);
+add_filter('plugin_action_links', 'glome_plugin_add_setup_link', 10, 2);
 
-function glome_settings()
-{
-  $email = null;
-  $current_user = wp_get_current_user();
+include __DIR__ . '/includes/glome_plugin_admin_page.php';
+include __DIR__ . '/includes/glome_plugin_profile_page.php';
 
-  if (isset($_POST, $_POST['method']) and $_POST['method'] == "new")
-  {
-    if (is_super_admin($current_user->ID))
-    {
-      $application = array(
-        'username' => $current_user->user_login,
-        'email' => $current_user->user_email,
-        'servername' => $_SERVER['SERVER_NAME'],
-        'requester' => 'Wordpress Plugin'
-      );
-      var_dump($application);
-    }
-  }
-  else
-  {
-    if (isset($_POST, $_POST['glome_plugin_settings'],
-      $_POST['glome_plugin_settings']['api_uid'],
-      $_POST['glome_plugin_settings']['api_domain'],
-      $_POST['glome_plugin_settings']['api_key']))
-    {
-      update_option('glome_api_uid', $_POST['glome_plugin_settings']['api_uid']);
-      update_option('glome_api_key', $_POST['glome_plugin_settings']['api_key']);
-      update_option('glome_api_domain', $_POST['glome_plugin_settings']['api_domain']);
-    }
-
-    $domain = get_option('glome_api_domain');
-
-    $settings = array(
-      'api_domain' =>  empty($domain) ? 'https://api.glome.me/' : $domain ,
-      'api_uid' => get_option('glome_api_uid'),
-      'api_key' => get_option('glome_api_key'),
-    );
-
-    $email = $current_user->email;
-    include __DIR__ . '/templates/settings.php';
-  }
-}
-
-function glome_plugin_admin_menu ()
-{
-  add_options_page(
-    'Glome',
-    'Glome',
-    'manage_options',
-    'glome_settings',
-    'glome_settings'
-  );
-}
-add_action ('admin_menu', 'glome_plugin_admin_menu');
-
+/**
+ *
+ */
 function glome_start()
 {
   $token = $glomeid = false;

@@ -16,7 +16,7 @@ jQuery(document).on('initpairing', function(event, params) {
   console.log('init pairing');
   console.log(params);
 
-  jQuery('.pairing .code').toggleClass('loading');
+  jQuery('.pairing').toggleClass('loading');
   //jQuery('.pairing .qrcode').empty();
 
   // fetch pairing code via ajax
@@ -35,16 +35,17 @@ jQuery(document).on('initpairing', function(event, params) {
       console.log(data);
 
       var json = jQuery.parseJSON(data);
-      //~ console.log(json);
+      console.log(json);
+
       if (! json) return;
 
-      jQuery('.pairing .code').toggleClass('loading');
+      jQuery('.pairing').toggleClass('loading');
 
-      jQuery('.pairing .link .url').attr('value', params['pairing_url']);
+      jQuery('.pairing .link .url').attr('value', params['pairing_url'] + json.code);
 
       jQuery('.pairing .qrcode').attr('data-code', json.code);
       jQuery('.pairing .qrcode').qrcode({width: 120, height: 120, text: json.code});
-      jQuery('.pairing .qrtext').attr('value', json.expires_at_friendly);
+      //jQuery('.pairing .qrtext').attr('value', json.expires_at_friendly);
 
       jQuery('.pairing .clock').attr('data-countdown', json.countdown);
       jQuery('.pairing .clock').attr('data-expires', json.expires_at);

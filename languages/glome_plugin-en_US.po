@@ -1,8 +1,8 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: Glome plugin for Wordpress\n"
-"POT-Creation-Date: 2015-04-09 22:52+0200\n"
-"PO-Revision-Date: 2015-04-09 22:52+0200\n"
+"POT-Creation-Date: 2015-04-13 16:09+0200\n"
+"PO-Revision-Date: 2015-04-13 16:09+0200\n"
 "Last-Translator: Ferenc Székely <ferenc@glome.me>\n"
 "Language-Team: Glome Inc. <contact@glome.me>\n"
 "Language: en\n"
@@ -44,33 +44,41 @@ msgstr "One-time Login Widget Title"
 msgid "Tick to hide one-time login widget for logged-in users"
 msgstr "Tick to hide one-time login widget for logged-in users"
 
-#: includes/pairing_widget.php:13
-msgid "Pair with other devices"
-msgstr "Pair with other devices"
+#: templates/glome_error.php:5
+msgid "Glome Error"
+msgstr "Error"
 
-#: includes/pairing_widget.php:33 includes/pairing_widget.php:40
-msgid "Pairing Widget Title"
-msgstr "Pairing Widget Title"
+#: templates/glome_profile.php:1
+msgid "Glome Profile"
+msgstr "Glome Profile"
 
-#: includes/pairing_widget.php:45
-msgid "Tick to hide pairing widget for logged-in users"
-msgstr "Tick to hide pairing widget for logged-in users"
+#: templates/pairing.php:1
+msgid "Pairing title"
+msgstr "Pairing"
 
-#: templates/request_api_access.php:2
+#: templates/pairing.php:4
+msgid "Pairing intro"
+msgstr "Explain what is pairing and how does it work."
+
+#: templates/pairing.php:16
+msgid "Code expires in"
+msgstr "Code expires in"
+
+#: templates/request_api_access.php:1
 msgid "Request API Access"
 msgstr "Activate Glome"
 
-#: templates/request_api_access.php:3
+#: templates/request_api_access.php:4
 msgid "API trial info"
 msgstr ""
 "By clicking the button below Glome will grant API credentials for your site "
 "for a trial period of 1 month."
 
-#: templates/request_api_access.php:4
+#: templates/request_api_access.php:5
 msgid "API permanent info"
 msgstr "Please find more information on Glome API plans at http://glome.me."
 
-#: templates/request_api_access.php:7
+#: templates/request_api_access.php:8
 msgid "Request API Credentials"
 msgstr "Request API Credentials"
 
@@ -101,6 +109,15 @@ msgstr "API expires at"
 #: templates/settings.php:59
 msgid "Save Changes"
 msgstr "Save Changes"
+
+#~ msgid "Pairing link and code"
+#~ msgstr "Pairing link and code"
+
+#~ msgid "Pair with other devices"
+#~ msgstr "Pair with other devices"
+
+#~ msgid "Tick to hide pairing widget for logged-in users"
+#~ msgstr "Tick to hide pairing widget for logged-in users"
 
 #~ msgid "Pair widget description"
 #~ msgstr "Pair widget description"

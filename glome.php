@@ -157,4 +157,3 @@ include __DIR__ . '/includes/ui.php';
 include __DIR__ . '/includes/one_time_login_widget.php';
 include __DIR__ . '/includes/key_widget.php';
 include __DIR__ . '/includes/gnb_widget.php';
-include __DIR__ . '/includes/pairing_widget.php';

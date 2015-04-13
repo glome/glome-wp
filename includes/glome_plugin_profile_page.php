@@ -40,12 +40,22 @@ add_action('wp_ajax_create_pairing_code', 'glome_ajax_create_pairing_code');
 // handler for GETing pairing codes
 function handle_pairing()
 {
+    $url = '/';
     status_header(200);
-    if (isset($_REQUEST['code']))
+
+    $current_user = wp_get_current_user();
+    if ($current_user->has_prop('glomeid'))
     {
-      $code = $_REQUEST['code'];
-      die($code);
+      if (isset($_REQUEST['code']) && strlen($_REQUEST['code']) == 12)
+      {
+        $ret = glome_post_pairing_code($_REQUEST['code']);
+        (isset($ret['code'])) ? $code = $ret['code'] : $code = 200;
+        $url = admin_url('profile.php?page=glome_profile&code=' . $code);
+      }
     }
+
+    wp_safe_redirect($url, 301);
+    die();
 }
 add_action('admin_post_pairing', 'handle_pairing');
 add_action('admin_post_nopriv_pairing', 'handle_pairing');

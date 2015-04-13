@@ -1,5 +1,8 @@
 <?php
 
+/**
+ * Generic Glome API GET wrapper
+ */
 function glome_get($query, $params = [])
 {
   $domain = get_option('glome_api_domain');
@@ -13,6 +16,9 @@ function glome_get($query, $params = [])
   return $response;
 }
 
+/**
+ * Generic Glome API POST wrapper
+ */
 function glome_post($query, $params = [])
 {
   $domain = get_option('glome_api_domain');
@@ -30,6 +36,9 @@ function glome_post($query, $params = [])
   return $response;
 }
 
+/**
+ * Check if the API credentials are valid
+ */
 function glome_check_app()
 {
   $ret = false;
@@ -46,6 +55,41 @@ function glome_check_app()
   return $ret;
 }
 
+/**
+ * Create a new Glome ID
+ */
+function glome_create_user()
+{
+  $response = glome_post('/users.json');
+  $json = $response['body'];
+
+  $ret = json_decode($json, true);
+  return $ret;
+}
+
+/**
+ * Query a Glome ID
+ */
+function glome_get_user_profile()
+{
+  $ret = null;
+  $glomeid = mywp_current_glomeid();
+
+  if ($glomeid)
+  {
+    $query = '/users/' . $glomeid . '.json';
+    $response = glome_get($query);
+
+    $json = $response['body'];
+    $ret = json_decode($json, true);
+  }
+
+  return $ret;
+}
+
+/**
+ * Request a sync code for Glome key authentication
+ */
 function glome_get_key()
 {
   $data = $prev = $now = $expires = null;
@@ -92,16 +136,13 @@ function glome_get_key()
   return $data;
 }
 
-function glome_create_user()
-{
-  $response = glome_post('/users.json');
-  $json = $response['body'];
-
-  $ret = json_decode($json, true);
-  return $ret;
-}
-
-function glome_create_pairing_code($type = 's')
+/**
+ * Request a sync code for pairing
+ *
+ * @param kind the kind of the sync code
+ * @see https://api.glome.me/apidocs/SynchronizationsController.html#method-i-create
+ */
+function glome_create_pairing_code($kind = 'b')
 {
   $ret = null;
   $glomeid = mywp_current_glomeid();
@@ -109,7 +150,7 @@ function glome_create_pairing_code($type = 's')
   if ($glomeid)
   {
     $query = '/users/' . $glomeid . '/sync.json';
-    $response = glome_post($query, ['synchronization[kind]' => $type]);
+    $response = glome_post($query, ['synchronization[kind]' => $kind]);
     $json = $response['body'];
     $data = json_decode($json, true);
 
@@ -130,16 +171,27 @@ function glome_create_pairing_code($type = 's')
   return $ret;
 }
 
-function glome_get_user_profile()
+/**
+ * Post a sync code for pairing
+ */
+function glome_post_pairing_code($code)
 {
-  $ret = null;
+  $splits = $ret = null;
   $glomeid = mywp_current_glomeid();
 
-  if ($glomeid)
+  if ($code)
   {
-    $query = '/users/' . $glomeid . '.json';
-    $response = glome_get($query);
+    $splits = str_split($code, 4);
+  }
 
+  if ($glomeid && count($splits) == 3)
+  {
+    $query = '/users/' . $glomeid . '/sync/pair.json';
+    $response = glome_post($query, [
+      'pairing[code_1]' => $splits[0],
+      'pairing[code_2]' => $splits[1],
+      'pairing[code_3]' => $splits[2]
+    ]);
     $json = $response['body'];
     $ret = json_decode($json, true);
   }
@@ -147,6 +199,9 @@ function glome_get_user_profile()
   return $ret;
 }
 
+/**
+ * Check if the current Glome ID is paired to a wallet
+ */
 function glome_is_session_paired()
 {
   $ret = false;
@@ -160,6 +215,9 @@ function glome_is_session_paired()
   return $ret;
 }
 
+/**
+ *
+ */
 function glome_track_activity($url)
 {
   $ret = null;

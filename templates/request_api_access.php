@@ -1,5 +1,6 @@
+    <h3 class="title"><?php _e('Request API Access', 'glome_plugin'); ?></h3>
+
     <div class="wrap api_access">
-      <h3 class="title"><?php _e('Request API Access', 'glome_plugin'); ?></h3>
       <div class="info"><?php _e('API trial info', 'glome_plugin'); ?></div>
       <div class="info"><?php _e('API permanent info', 'glome_plugin'); ?></div>
       <form method="post" action="">

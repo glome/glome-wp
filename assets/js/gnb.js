@@ -66,7 +66,7 @@ jQuery(document).on('startgnb', function(event, gnb_params) {
         case "unlocked":
         case "unbrother":
         case "erased":
-          window.location.href = '/';
+          document.location.reload(true);
           break;
       }
     });

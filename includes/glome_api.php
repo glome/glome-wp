@@ -29,7 +29,8 @@ function glome_post($query, $params = [])
     'body' => array(
       'application[uid]' => $uid,
       'application[apikey]' => $key,
-    ) + $params
+    ) + $params,
+    'timeout' => 15
   );
 
   $response = wp_remote_post($url, $payload);
@@ -151,20 +152,24 @@ function glome_create_pairing_code($kind = 'b')
   {
     $query = '/users/' . $glomeid . '/sync.json';
     $response = glome_post($query, ['synchronization[kind]' => $kind]);
-    $json = $response['body'];
-    $data = json_decode($json, true);
 
-    if (is_array($data) and isset($data['expires_at']) and ! array_key_exists('expires_at_friendly', $data))
+    if (isset($response['body']))
     {
-      $now = new DateTime('now');
-      $expires = new DateTime($data['expires_at']);
-      $data['expires_at_friendly'] = $expires->format('Y-m-d H:i:s');
-    }
+      $json = $response['body'];
+      $data = json_decode($json, true);
 
-    if ($now and $expires)
-    {
-      $data['countdown'] = $expires->getTimeStamp() - $now->getTimeStamp();
-      $ret = json_encode($data);
+      if (is_array($data) and isset($data['expires_at']) and ! array_key_exists('expires_at_friendly', $data))
+      {
+        $now = new DateTime('now');
+        $expires = new DateTime($data['expires_at']);
+        $data['expires_at_friendly'] = $expires->format('Y-m-d H:i:s');
+      }
+
+      if ($now and $expires)
+      {
+        $data['countdown'] = $expires->getTimeStamp() - $now->getTimeStamp();
+        $ret = json_encode($data);
+      }
     }
   }
 
@@ -192,8 +197,13 @@ function glome_post_pairing_code($code)
       'pairing[code_2]' => $splits[1],
       'pairing[code_3]' => $splits[2]
     ]);
-    $json = $response['body'];
-    $ret = json_decode($json, true);
+    var_dump($response);
+
+    if (isset($response['body']))
+    {
+      $json = $response['body'];
+      $ret = json_decode($json, true);
+    }
   }
 
   return $ret;

@@ -1,13 +1,14 @@
-  <h3><?php _e('Pairing title', 'glome_plugin'); ?></h3>
-
-  <p>
-    <?php _e('Pairing intro', 'glome_plugin'); ?>
-  </p>
-
   <div class="pairing">
-    <div class="code">
+
+    <div class="give code">
+      <h3><?php _e('Glome give code title', 'glome_plugin'); ?></h3>
+
+      <p>
+        <?php _e('Glome give code intro', 'glome_plugin'); ?>
+      </p>
+
       <div class="link">
-        <input class="url" type="text" readonly="readonly" class="text" value="..."/>
+        <textarea class="url" readonly="readonly"  placeholder="..."></textarea>
       </div>
 
       <div class="qr">
@@ -19,15 +20,21 @@
       </div>
     </div>
 
-    <hr/>
+    <div class="receive code">
+      <h3><?php _e('Glome receive code title', 'glome_plugin'); ?></h3>
 
-    <div class="code scanner">
-      <div>Scan QR code shown on an other device</div>
-      <div>click scan</div>
-    </div>
+      <p>
+        <?php _e('Glome receive code intro', 'glome_plugin'); ?>
+      </p>
 
-    <div class="code input">
-      <div>Enter code shown on an other device</div>
-      <div>enter code</div>
+      <div class="scanner">
+        <div>Scan QR code shown on an other device</div>
+        <div>click scan</div>
+      </div>
+
+      <div class="input">
+        <div>Enter code shown on an other device</div>
+        <div>enter code</div>
+      </div>
     </div>
   </div>

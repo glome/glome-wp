@@ -69,12 +69,57 @@
   background-color: yellow;
 }
 
-.pairing .link input
+.pairing .give.code,
+.pairing .receive.code {
+  display: inline-block;
+  vertical-align: top;
+  width: 40%;
+}
+
+.pairing .link textarea
 {
-  width: 90%;
+  width: 95%;
+  height: 4em;
+  resize: none;
+  overflow: auto;
 }
 
 .pairing .qr
 {
   margin: 0 0 1em 0;
+}
+
+.devices
+{
+  width: 90%;
+  padding: 0.5em;
+  background-color: darkgray;
+}
+
+.devices .device {
+  padding: 0.5em 0 0.5em 0;
+  border-bottom: 1px solid lightgray;
+}
+
+.devices .device:last-child {
+  border: none;
+}
+
+.devices .device .info {
+  color: white;
+  display: inline-block;
+  margin: 0 1em 0.5em 0;
+}
+
+.devices .device button {
+  display: inline-block;
+  float: right;
+  width: 60px;
+  height: 2em;
+  border: 1px solid white;
+}
+
+.devices .device button:hover {
+  color: white;
+  background-color: darkgray;
 }

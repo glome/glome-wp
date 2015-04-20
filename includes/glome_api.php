@@ -10,7 +10,10 @@ function glome_get($query, $params = [])
   $key = get_option('glome_api_key');
   $url = $domain . $query;
   $url .= "?application[uid]={$uid}&application[apikey]={$key}";
-
+  foreach ($params as $key => $value)
+  {
+    $url .= '&' . $key . '=' . $value;
+  }
   $response = wp_remote_get($url);
 
   return $response;
@@ -45,12 +48,17 @@ function glome_check_app()
   $ret = false;
   $query = '/applications/check/' . base64_encode(get_option('glome_api_uid')) . '.json';
   $response = glome_get($query);
-  $json = $response['body'];
-  $data = json_decode($json, true);
 
-  if ($data and array_key_exists('code', $data))
+  if (isset($response['body']))
   {
-    $ret = ($data['code'] == 200);
+    $json = $response['body'];
+
+    $data = json_decode($json, true);
+
+    if ($data and array_key_exists('code', $data))
+    {
+      $ret = ($data['code'] == 200);
+    }
   }
 
   return $ret;
@@ -197,7 +205,6 @@ function glome_post_pairing_code($code)
       'pairing[code_2]' => $splits[1],
       'pairing[code_3]' => $splits[2]
     ]);
-    var_dump($response);
 
     if (isset($response['body']))
     {
@@ -208,6 +215,52 @@ function glome_post_pairing_code($code)
 
   return $ret;
 }
+
+/**
+ * Post a sync code for pairing
+ */
+function glome_post_unpair($id)
+{
+  $ret = null;
+  $glomeid = mywp_current_glomeid();
+
+  if ($glomeid && $id)
+  {
+    $query = '/users/' . $glomeid . '/sync/' . $id . '/toggle.json';
+    $response = glome_post($query);
+    var_dump($response);
+    die();
+
+    if (isset($response['body']))
+    {
+      $json = $response['body'];
+      $ret = json_decode($json, true);
+    }
+  }
+
+  return $ret;
+}
+
+/**
+ * Query all brothers of a Glome ID
+ */
+function glome_get_brothers()
+{
+  $ret = null;
+  $glomeid = mywp_current_glomeid();
+
+  if ($glomeid)
+  {
+    $query = '/users/' . $glomeid . '/sync.json';
+    $response = glome_get($query, ['status' => 'used', 'kind' => 'b']);
+
+    $json = $response['body'];
+    $ret = json_decode($json, true);
+  }
+
+  return $ret;
+}
+
 
 /**
  * Check if the current Glome ID is paired to a wallet

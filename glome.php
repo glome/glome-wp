@@ -137,11 +137,7 @@ function glome_start()
 
     setcookie('magic', '', time() - 3600);  /* delete */
 
-    // check if redirect is requested
-    (isset($_GET['redirect_to'])) ? $url = $_GET['redirect_to'] : $url = '/';
-    var_dump(admin_url($url));
-    wp_safe_redirect(admin_url($url), 301);
-    die();
+    redirect_if_needed();
   }
 
   // check Glome session
@@ -182,14 +178,39 @@ function glome_start()
   if ($current_user && $current_user->has_prop('glomeid'))
   {
     glome_track_activity($_SERVER["SERVER_NAME"] . $_SERVER["REQUEST_URI"]);
-
-    if (isset($_GET['redirect_to']))
-    {
-      //wp_safe_redirect($_GET['redirect_to'], 301);
-    }
+    redirect_if_needed();
   }
+  return;
 }
 add_action('init', 'glome_start');
+
+/**
+ *
+ */
+function redirect_if_needed()
+{
+  // check if redirect is requested
+  $url = '';
+
+  if (isset($_COOKIE['redirect']))
+  {
+    $url = $_COOKIE['redirect'];
+    setcookie('redirect', '', time() - 3600); /* delete */
+  }
+  else
+  {
+    if (isset($_GET['redirect_to']))
+    {
+      $url = $_GET['redirect_to'];
+    }
+  }
+
+  if (strlen($url) > 1)
+  {
+    wp_safe_redirect(admin_url($url), 301);
+    exit;
+  }
+}
 
 // called as soon as WP user is logged in
 // TODO:

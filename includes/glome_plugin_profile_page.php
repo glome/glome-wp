@@ -17,6 +17,8 @@ function glome_profile_page()
 
   function glome_profile_page_content()
   {
+    $current_user = wp_get_current_user();
+    $pairs = glome_get_brothers();
     include __DIR__ . '/../templates/glome_profile.php';
   }
   add_users_page(
@@ -36,6 +38,14 @@ function glome_ajax_create_pairing_code()
   die();
 }
 add_action('wp_ajax_create_pairing_code', 'glome_ajax_create_pairing_code');
+
+// handler for unpairing devices from JS
+function glome_ajax_unpair()
+{
+  echo glome_post_unpair($_POST['id']);
+  die();
+}
+add_action('wp_ajax_unpair', 'glome_ajax_unpair');
 
 // handler for GETing pairing codes
 function handle_pairing()
@@ -58,12 +68,14 @@ function handle_pairing()
         {
           $ret = glome_post_pairing_code($sync_code);
           (isset($ret['code'])) ? $code = $ret['code'] : $code = 200;
-          $url = admin_url('profile.php?page=glome_profile&code=' . $code);
+          $url = admin_url('profile.php?page=glome_profile&action=pairing&code=' . $code);
         }
       }
       else
       {
-        $url .= '?redirect_to=' . urlencode('admin-post.php?action=pairing&code=' . $sync_code);
+        $page = urlencode('admin-post.php?action=pairing&code=' . $sync_code);
+        $url .= '?redirect_to=' . $page;
+        setcookie('redirect', $page);
       }
     }
 

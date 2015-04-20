@@ -46,6 +46,12 @@ function glome_add_scripts()
     'pairing_url' => admin_url('admin-post.php?action=pairing&code='),
   ));
 
+  $filepath = plugins_url('/glome-wp/assets/js/unpairing.js');
+  wp_enqueue_script('unpairing', $filepath, false);
+  wp_localize_script('unpairing', 'unpairing_params', array(
+    'ajax_url' => admin_url('admin-ajax.php')
+  ));
+
   $filepath = plugins_url('/glome-wp/assets/js/jquery.cookie.js');
   wp_enqueue_script('jquerycookie', $filepath, false);
 

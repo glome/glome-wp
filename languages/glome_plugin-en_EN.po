@@ -1,8 +1,8 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: Glome plugin for Wordpress\n"
-"POT-Creation-Date: 2015-04-13 16:09+0200\n"
-"PO-Revision-Date: 2015-04-13 16:09+0200\n"
+"POT-Creation-Date: 2015-04-20 17:05+0200\n"
+"PO-Revision-Date: 2015-04-20 17:06+0200\n"
 "Last-Translator: Ferenc Székely <ferenc@glome.me>\n"
 "Language-Team: Glome Inc. <contact@glome.me>\n"
 "Language: en\n"
@@ -44,25 +44,64 @@ msgstr "One-time Login Widget Title"
 msgid "Tick to hide one-time login widget for logged-in users"
 msgstr "Tick to hide one-time login widget for logged-in users"
 
-#: templates/glome_error.php:5
-msgid "Glome Error"
-msgstr "Error"
+#: templates/glome_api_feedback.php:8
+msgid "Glome API Pairing OK"
+msgstr "Pairing succeeded."
+
+#: templates/glome_api_feedback.php:8
+msgid "Glome API Pairing Error"
+msgstr "Pairing failed."
 
 #: templates/glome_profile.php:1
 msgid "Glome Profile"
 msgstr "Glome Profile"
 
-#: templates/pairing.php:1
-msgid "Pairing title"
-msgstr "Pairing"
+#: templates/glome_profile.php:3
+msgid "Your Glome ID"
+msgstr "Your Glome ID"
+
+#: templates/paired_devices.php:1
+msgid "Paired devices title"
+msgstr "Your paired devices"
+
+#: templates/paired_devices.php:4
+msgid "Paired devices intro"
+msgstr ""
+"Listed below are the Glome ID(s) of other devices that are paired to this "
+"account. You can remove them one by one."
+
+#: templates/paired_devices.php:15
+msgid "Pair Info Glome ID"
+msgstr "Glome ID"
+
+#: templates/paired_devices.php:17
+msgid "Unpair"
+msgstr "Unpair"
 
 #: templates/pairing.php:4
-msgid "Pairing intro"
-msgstr "Explain what is pairing and how does it work."
+msgid "Glome give code title"
+msgstr "Give pairing code"
 
-#: templates/pairing.php:16
+#: templates/pairing.php:7
+msgid "Glome give code intro"
+msgstr ""
+"You can pair up multiple devices to this account. Open this site on any of "
+"your devices and scan this code, or just open the link. Yes, you can also "
+"give the code to someone else. There are no limits here!"
+
+#: templates/pairing.php:17
 msgid "Code expires in"
 msgstr "Code expires in"
+
+#: templates/pairing.php:24
+msgid "Glome receive code title"
+msgstr "Accept pairing code"
+
+#: templates/pairing.php:27
+msgid "Glome receive code intro"
+msgstr ""
+"This is the place where you can accept pairing codes. Open the code scanner "
+"or input the code manually."
 
 #: templates/request_api_access.php:1
 msgid "Request API Access"
@@ -109,6 +148,18 @@ msgstr "API expires at"
 #: templates/settings.php:59
 msgid "Save Changes"
 msgstr "Save Changes"
+
+#~ msgid "Pairing title"
+#~ msgstr "Give pairing code"
+
+#~ msgid "Pairing intro"
+#~ msgstr ""
+#~ "You can pair up multiple devices to this account. Open this site on any "
+#~ "of your devices and scan this code, or just open the link. Yes, you can "
+#~ "also give the code to someone else. There are no limits here!"
+
+#~ msgid "Pair Info Code"
+#~ msgstr "Sync code used"
 
 #~ msgid "Pairing link and code"
 #~ msgstr "Pairing link and code"

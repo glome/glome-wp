@@ -15,6 +15,8 @@ function glome_profile_page()
 
   function glome_user_page_content()
   {
+    $current_user = wp_get_current_user();
+    $pairs = glome_get_brothers();
     include __DIR__ . '/../templates/glome_profile.php';
   }
 

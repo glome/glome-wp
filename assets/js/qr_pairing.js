@@ -41,7 +41,7 @@ jQuery(document).on('initpairing', function(event, params) {
 
       jQuery('.pairing').toggleClass('loading');
 
-      jQuery('.pairing .link .url').attr('value', params['pairing_url'] + json.code);
+      jQuery('.pairing .link .url').text(params['pairing_url'] + json.code);
 
       jQuery('.pairing .qrcode').attr('data-code', json.code);
       jQuery('.pairing .qrcode').qrcode({width: 120, height: 120, text: json.code});

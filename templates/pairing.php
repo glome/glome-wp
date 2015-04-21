@@ -1,6 +1,6 @@
   <div class="pairing">
 
-    <div class="give code">
+    <div class="share">
       <h3><?php _e('Glome give code title', 'glome_plugin'); ?></h3>
 
       <p>
@@ -20,7 +20,7 @@
       </div>
     </div>
 
-    <div class="receive code">
+    <div class="receive">
       <h3><?php _e('Glome receive code title', 'glome_plugin'); ?></h3>
 
       <p>

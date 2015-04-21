@@ -7,7 +7,7 @@
 <?php
   include 'glome_api_feedback.php';
   include 'pairing.php';
-  if (count($pairs) > 0)
+  if (count($pairs) >= 0)
   {
     include 'paired_devices.php';
   }

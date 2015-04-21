@@ -69,14 +69,14 @@
   background-color: yellow;
 }
 
-.pairing .give.code,
-.pairing .receive.code {
+.pairing .share,
+.pairing .receive {
   display: inline-block;
   vertical-align: top;
   width: 40%;
 }
 
-.pairing .link textarea
+.pairing .share .link textarea
 {
   width: 95%;
   height: 4em;
@@ -84,42 +84,44 @@
   overflow: auto;
 }
 
-.pairing .qr
+.pairing .share .qr
 {
   margin: 0 0 1em 0;
 }
 
-.devices
+.devices .list
 {
   width: 90%;
   padding: 0.5em;
   background-color: darkgray;
 }
 
-.devices .device {
+.devices .list .device {
   padding: 0.5em 0 0.5em 0;
   border-bottom: 1px solid lightgray;
 }
 
-.devices .device:last-child {
+.devices .list .device:last-child {
   border: none;
 }
 
-.devices .device .info {
+.devices .list .device .info {
   color: white;
   display: inline-block;
   margin: 0 1em 0.5em 0;
 }
 
-.devices .device button {
+.devices .list .device button {
   display: inline-block;
   float: right;
   width: 60px;
   height: 2em;
   border: 1px solid white;
+  text-align: center;
+  vertical-align: middle;
 }
 
-.devices .device button:hover {
+.devices .list .device button:hover {
   color: white;
   background-color: darkgray;
 }

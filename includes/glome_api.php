@@ -49,6 +49,9 @@ function glome_check_app()
   $query = '/applications/check/' . base64_encode(get_option('glome_api_uid')) . '.json';
   $response = glome_get($query);
 
+  //~ var_dump($response);
+  //~ die();
+
   if (isset($response['body']))
   {
     $json = $response['body'];
@@ -228,13 +231,11 @@ function glome_post_unpair($id)
   {
     $query = '/users/' . $glomeid . '/sync/' . $id . '/toggle.json';
     $response = glome_post($query);
-    var_dump($response);
-    die();
 
     if (isset($response['body']))
     {
-      $json = $response['body'];
-      $ret = json_decode($json, true);
+      $ret = $response['body'];
+      //$ret = json_decode($json, true);
     }
   }
 

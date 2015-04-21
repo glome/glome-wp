@@ -13,11 +13,10 @@ jQuery(document).ready(function()
 });
 
 jQuery(document).on('initpairing', function(event, params) {
-  console.log('init pairing');
-  console.log(params);
+  //console.log('init pairing');
+  //console.log(params);
 
   jQuery('.pairing').toggleClass('loading');
-  //jQuery('.pairing .qrcode').empty();
 
   // fetch pairing code via ajax
   var data = {
@@ -31,11 +30,10 @@ jQuery(document).on('initpairing', function(event, params) {
     data: data,
     success: function(data)
     {
-      console.log('ajax data');
-      console.log(data);
-
+      //console.log('qr pairing ajax data');
+      //console.log(data);
       var json = jQuery.parseJSON(data);
-      console.log(json);
+      //console.log(json);
 
       if (! json) return;
 

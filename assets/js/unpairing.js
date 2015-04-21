@@ -13,13 +13,13 @@ jQuery(document).ready(function()
 });
 
 jQuery(document).on('initunpairing', function(event, params) {
-  console.log('init unpairing');
-  console.log(params);
+  //console.log('init unpairing');
+  //console.log(params);
 
   jQuery('button.unpair').on('click', function(e)
   {
-    console.log('unpair click');
-    console.log(jQuery(this).parent('.device').attr('data-sync-id'));
+    //console.log('unpair click');
+    //console.log(jQuery(this).parent('.device').attr('data-sync-id'));
 
     var data = {
       'action': 'unpair',
@@ -32,16 +32,22 @@ jQuery(document).on('initunpairing', function(event, params) {
       data: data,
       success: function(data)
       {
-        console.log('ajax data');
-        console.log(data);
-
+        //console.log('unpairing ajax data');
+        //console.log(data);
         var json = jQuery.parseJSON(data);
-        console.log(json);
-
+        //console.log(json);
         if (! json) return;
-
-        jQuery('.devices .device[data-sync-id=' + json.id + ']').remove;
-      },
+        jQuery(e.target).parent('.device').fadeOut('fast', function()
+        {
+          if (jQuery('.devices > .list').length == 1)
+          {
+            jQuery('.devices > .intro').toggleClass('hidden');
+            jQuery('.devices > .list').toggleClass('hidden');
+            jQuery('.devices > .none').toggleClass('hidden');
+          }
+          jQuery(e.target).parent('.device').remove();
+        });
+      }
     });
   });
 });

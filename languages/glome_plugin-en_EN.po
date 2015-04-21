@@ -1,8 +1,8 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: Glome plugin for Wordpress\n"
-"POT-Creation-Date: 2015-04-20 17:05+0200\n"
-"PO-Revision-Date: 2015-04-20 17:06+0200\n"
+"POT-Creation-Date: 2015-04-21 10:50+0200\n"
+"PO-Revision-Date: 2015-04-21 10:50+0200\n"
 "Last-Translator: Ferenc Székely <ferenc@glome.me>\n"
 "Language-Team: Glome Inc. <contact@glome.me>\n"
 "Language: en\n"
@@ -70,17 +70,21 @@ msgstr ""
 "Listed below are the Glome ID(s) of other devices that are paired to this "
 "account. You can remove them one by one."
 
-#: templates/paired_devices.php:15
+#: templates/paired_devices.php:8
+msgid "Paired devices none"
+msgstr "You have currently no paired devices."
+
+#: templates/paired_devices.php:19
 msgid "Pair Info Glome ID"
 msgstr "Glome ID"
 
-#: templates/paired_devices.php:17
+#: templates/paired_devices.php:21
 msgid "Unpair"
 msgstr "Unpair"
 
 #: templates/pairing.php:4
 msgid "Glome give code title"
-msgstr "Give pairing code"
+msgstr "Share pairing code"
 
 #: templates/pairing.php:7
 msgid "Glome give code intro"

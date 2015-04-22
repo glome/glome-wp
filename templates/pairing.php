@@ -14,8 +14,8 @@
       <div class="qr">
         <div class="qrcode" data-code="..."></div>
         <div class="wrapper">
-          <strong class="expires"><?php _e('Code expires in', 'glome_plugin'); ?></strong>
-          <div class="clock" data-countdown="..." data-expires="...">until <span class="until">...</span> UTC</div>
+          <strong class="expires"><?php _e('Code expires at', 'glome_plugin'); ?></strong>
+          <div class="clock" data-countdown="..." data-expires="..."><span class="until">...</span> UTC</div>
         </div>
       </div>
     </div>
@@ -23,18 +23,18 @@
     <div class="receive">
       <h3><?php _e('Glome receive code title', 'glome_plugin'); ?></h3>
 
-      <p>
+      <p class="intro">
         <?php _e('Glome receive code intro', 'glome_plugin'); ?>
       </p>
 
-      <div class="scanner">
-        <div>Scan QR code shown on an other device</div>
-        <div>click scan</div>
-      </div>
+      <button class="open"><?php _e('Open camera', 'glome_plugin'); ?></button>
+      <button class="close hidden"><?php _e('Close camera', 'glome_plugin'); ?></button>
+      <button class="capture hidden"><?php _e('Scan code', 'glome_plugin'); ?></button>
 
-      <div class="input">
-        <div>Enter code shown on an other device</div>
-        <div>enter code</div>
+      <div class="scanner hidden">
+        <video id="video"><?php _e('Video stream not available', 'glome_plugin'); ?></video>
+        <canvas id="canvas" />
       </div>
+      <div class="data hidden" data-placeholder="<?php _e('Glome scanning', 'glome_plugin'); ?>" data-code=""><?php _e('Glome scanning', 'glome_plugin'); ?></div>
     </div>
   </div>

@@ -1,8 +1,8 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: Glome plugin for Wordpress\n"
-"POT-Creation-Date: 2015-04-21 10:50+0200\n"
-"PO-Revision-Date: 2015-04-21 10:50+0200\n"
+"POT-Creation-Date: 2015-04-23 00:44+0200\n"
+"PO-Revision-Date: 2015-04-23 00:44+0200\n"
 "Last-Translator: Ferenc Székely <ferenc@glome.me>\n"
 "Language-Team: Glome Inc. <contact@glome.me>\n"
 "Language: en\n"
@@ -60,25 +60,25 @@ msgstr "Glome Profile"
 msgid "Your Glome ID"
 msgstr "Your Glome ID"
 
-#: templates/paired_devices.php:1
+#: templates/paired_devices.php:14
 msgid "Paired devices title"
 msgstr "Your paired devices"
 
-#: templates/paired_devices.php:4
+#: templates/paired_devices.php:17
 msgid "Paired devices intro"
 msgstr ""
 "Listed below are the Glome ID(s) of other devices that are paired to this "
 "account. You can remove them one by one."
 
-#: templates/paired_devices.php:8
+#: templates/paired_devices.php:21
 msgid "Paired devices none"
 msgstr "You have currently no paired devices."
 
-#: templates/paired_devices.php:19
+#: templates/paired_devices.php:32
 msgid "Pair Info Glome ID"
 msgstr "Glome ID"
 
-#: templates/paired_devices.php:21
+#: templates/paired_devices.php:34
 msgid "Unpair"
 msgstr "Unpair"
 
@@ -94,8 +94,8 @@ msgstr ""
 "give the code to someone else. There are no limits here!"
 
 #: templates/pairing.php:17
-msgid "Code expires in"
-msgstr "Code expires in"
+msgid "Code expires at"
+msgstr "Code expires at"
 
 #: templates/pairing.php:24
 msgid "Glome receive code title"
@@ -104,8 +104,28 @@ msgstr "Accept pairing code"
 #: templates/pairing.php:27
 msgid "Glome receive code intro"
 msgstr ""
-"This is the place where you can accept pairing codes. Open the code scanner "
-"or input the code manually."
+"This is the place where you can accept pairing codes. Click the button to "
+"scan the QR code shown on the other device."
+
+#: templates/pairing.php:30
+msgid "Open camera"
+msgstr "Open camera"
+
+#: templates/pairing.php:31
+msgid "Close camera"
+msgstr "Close camera"
+
+#: templates/pairing.php:32
+msgid "Scan code"
+msgstr "Scan code"
+
+#: templates/pairing.php:35
+msgid "Video stream not available"
+msgstr "Video stream not available."
+
+#: templates/pairing.php:36
+msgid "Glome scanning"
+msgstr "scanning..."
 
 #: templates/request_api_access.php:1
 msgid "Request API Access"
@@ -152,6 +172,12 @@ msgstr "API expires at"
 #: templates/settings.php:59
 msgid "Save Changes"
 msgstr "Save Changes"
+
+#~ msgid "Take picture"
+#~ msgstr "Scan code"
+
+#~ msgid "Click to scan"
+#~ msgstr "Open Scanner"
 
 #~ msgid "Pairing title"
 #~ msgstr "Give pairing code"

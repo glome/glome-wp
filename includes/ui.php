@@ -39,9 +39,15 @@ function glome_add_scripts()
     'hello' => 'key'
   ));
 
-  $filepath = plugins_url('/glome-wp/assets/js/qr_pairing.js');
-  wp_enqueue_script('qr_pairing', $filepath, false);
-  wp_localize_script('qr_pairing', 'pairing_params', array(
+  $filepath = plugins_url('/glome-wp/assets/js/llqrcode.js');
+  wp_enqueue_script('jsqr', $filepath, false);
+
+  $filepath = plugins_url('/glome-wp/assets/js/capture.js');
+  wp_enqueue_script('capture', $filepath, false);
+
+  $filepath = plugins_url('/glome-wp/assets/js/pairing.js');
+  wp_enqueue_script('pairing', $filepath, false);
+  wp_localize_script('pairing', 'pairing_params', array(
     'ajax_url' => admin_url('admin-ajax.php'),
     'pairing_url' => admin_url('admin-post.php?action=pairing&code='),
   ));
@@ -58,8 +64,8 @@ function glome_add_scripts()
   $filepath = plugins_url('/glome-wp/assets/js/gnb.js');
   wp_enqueue_script('gnb', $filepath, false);
 
-  $filepath = plugins_url('/glome-wp/assets/js/flipclock.min.js');
-  wp_enqueue_script('flipclock', $filepath, false);
+  //~ $filepath = plugins_url('/glome-wp/assets/js/flipclock.min.js');
+  //~ wp_enqueue_script('flipclock', $filepath, false);
 
   $token = false;
   if (is_user_logged_in())

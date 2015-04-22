@@ -62,11 +62,12 @@ jQuery(document).on('startgnb', function(event, gnb_params) {
         case "paired":
         case "locked":
         case "brother":
-        case "unpaired":
         case "unlocked":
         case "unbrother":
         case "erased":
           document.location.reload(true);
+          break;
+        case "unpaired":
           break;
       }
     });

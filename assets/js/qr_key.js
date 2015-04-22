@@ -27,17 +27,17 @@ jQuery(document).on('initkey', function(event, params) {
 
   var countdown = jQuery('.key .clock').attr('data-countdown');
 
-  var clock = jQuery('.key .clock').FlipClock(countdown,
-  {
-    countdown: true,
-    clockFace: 'MinuteCounter',
-    callbacks:
-    {
-      stop: function()
-      {
-        // reload
-        window.location.href = '/';
-      }
-    }
-  });
+  //~ var clock = jQuery('.key .clock').FlipClock(countdown,
+  //~ {
+    //~ countdown: true,
+    //~ clockFace: 'MinuteCounter',
+    //~ callbacks:
+    //~ {
+      //~ stop: function()
+      //~ {
+        //~ // reload
+        //~ window.location.href = '/';
+      //~ }
+    //~ }
+  //~ });
 });

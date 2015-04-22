@@ -1,3 +1,4 @@
+
 .api_access
 {
   padding: 10px;
@@ -89,6 +90,63 @@
   margin: 0 0 1em 0;
 }
 
+.pairing button,
+.devices button
+{
+  display: inline-block;
+  float: right;
+  height: 2em;
+  border: 1px solid white;
+  text-align: center;
+  vertical-align: middle;
+}
+
+.pairing button.hidden,
+.devices button.hidden
+{
+  display: none;
+}
+
+.pairing button:hover,
+.devices button:hover
+{
+  color: white;
+  background-color: darkgray;
+}
+
+.pairing button:active,
+.devices button:active
+{
+  color: white;
+  background-color: lightred;
+}
+
+.pairing button {
+  width: 120px;
+  float: none;
+}
+
+.pairing .scanner
+{
+  padding: 1em 0 0 0;
+}
+
+.pairing .scanner video,
+.pairing .scanner canvas
+{
+  width: 250px;
+}
+
+.pairing .scanner video
+{
+  margin: 0 1em 0 0;
+}
+
+.pairing .scanner canvas
+{
+  display: none;
+}
+
 .devices .list
 {
   width: 90%;
@@ -106,22 +164,12 @@
 }
 
 .devices .list .device .info {
+  width: 90%;
   color: white;
   display: inline-block;
   margin: 0 1em 0.5em 0;
 }
 
 .devices .list .device button {
-  display: inline-block;
-  float: right;
   width: 60px;
-  height: 2em;
-  border: 1px solid white;
-  text-align: center;
-  vertical-align: middle;
-}
-
-.devices .list .device button:hover {
-  color: white;
-  background-color: darkgray;
 }

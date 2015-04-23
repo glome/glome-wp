@@ -18,99 +18,137 @@ jQuery(document).on('initpairing', function(event, params) {
   jQuery('.pairing').toggleClass('loading');
 
   var scanID = null;
-  scanner = new Scanner();
+  var stream = null;
 
-  /* */
-  function parseQrCode(result)
+  navigator.getMedia = ( navigator.getUserMedia ||
+                         navigator.webkitGetUserMedia ||
+                         navigator.mozGetUserMedia ||
+                         navigator.msGetUserMedia);
+
+  if (typeof navigator.getMedia === 'undefined')
   {
-    if (result.length == 12)
+    jQuery('.pairing .nok').toggleClass('hidden');
+  }
+  else
+  {
+    jQuery('.pairing .ok').toggleClass('hidden');
+
+    scanner = new Scanner();
+
+    /**
+     * callback that is called when something was succesfully scanned
+     */
+    function parseQrCode(result)
     {
-      jQuery('.pairing .receive .data').attr('data-code', result);
-      jQuery('.pairing .receive .data').text(result);
+      if (result.length == 12)
+      {
+        jQuery('.pairing .receive .data').attr('data-code', result);
+        jQuery('.pairing .receive .data').text(result);
+        scanner.stop();
+      }
+    }
+    qrcode.callback = parseQrCode;
+
+    /**
+     * callback when the stream starts
+     */
+    function stream_started()
+    {
+      // show scanner div
+      jQuery('.pairing .receive .scanner').toggleClass('hidden');
+      // show scanned code placeholder
+      var origtext = jQuery('.pairing .receive .data').attr('data-placeholder');
+      jQuery('.pairing .receive .data').text(origtext);
+      jQuery('.pairing .receive .data').attr('data-code', '...');
+      if (jQuery('.pairing .receive .data').hasClass('hidden'))
+      {
+        jQuery('.pairing .receive .data').toggleClass('hidden');
+      }
+      // hide open camera button
+      jQuery('.pairing .receive button.open').toggleClass('hidden');
+      // show close camera button
+      jQuery('.pairing .receive button.close').toggleClass('hidden');
+      // show scan code button
+      //jQuery('.pairing .receive button.capture').toggleClass('hidden');
+      scanID = setInterval(scan, 1000);
+
+      // assign an event listener that works in Chrome too
+      stream = scanner.getStream();
+      stream.getVideoTracks()[0].onended = stream_stopped;
+    }
+
+    /**
+     * callback that runs in every second or so
+     */
+    function scan()
+    {
+      scanner.takePicture();
+      if (scanner.getDataUrl())
+      {
+        try
+        {
+          qrcode.decode(scanner.getDataUrl());
+        }
+        catch (e)
+        {
+          //console.log('scanning: ' + e);
+        }
+      }
+    }
+
+    /**
+     * callback when the stream ends
+     */
+    function stream_stopped()
+    {
+      console.log('streaming ending');
+      if (! scanID) return;
+      clearInterval(scanID);
+
+      // hide close camera button
+      jQuery('.pairing .receive button.close').toggleClass('hidden');
+      // hide scanner
+      jQuery('.pairing .receive .scanner').toggleClass('hidden');
+      // show open camera button
+      jQuery('.pairing .receive button.open').toggleClass('hidden');
+
+      // hide scanned code placaholder if no code was found
+      if (jQuery('.pairing .receive .data').attr('data-code') == '...')
+      {
+        jQuery('.pairing .receive .data').toggleClass('hidden');
+      }
+
+      scanID = null;
+      console.log('streaming ended');
+    }
+
+    jQuery('.pairing .receive button.open').on('click', function(event)
+    {
+      if (scanID) return;
+      console.log('start');
+      scanner.start();
+    });
+
+    // handle even when streaming actually can start
+    jQuery('.pairing .receive .scanner video').on('canplay', function(event)
+    {
+      if (scanID) return;
+      stream_started();
+    });
+
+    // handle even when streaming ends (works in FF)
+    jQuery('.pairing .receive .scanner video').on('ended', function(e)
+    {
+      stream_stopped();
+    });
+
+    // handle close camera button click
+    jQuery('.pairing .receive button.close').on('click', function(event)
+    {
+      console.log('click close');
       scanner.stop();
-    }
+    })
   }
-  qrcode.callback = parseQrCode;
-
-  /* */
-  function scan()
-  {
-    scanner.takePicture();
-    if (scanner.getDataUrl())
-    {
-      try
-      {
-        qrcode.decode(scanner.getDataUrl());
-      }
-      catch (e)
-      {
-        //console.log('scanning: ' + e);
-      }
-    }
-  }
-
-  jQuery('.pairing .receive button.open').on('click', function(event)
-  {
-    if (scanID) return;
-    console.log('start');
-    scanner.start();
-  });
-
-  // handle even when streaming actually can start
-  jQuery('.pairing .receive .scanner video').on('canplay', function(event)
-  {
-    if (scanID) return;
-
-    console.log('streaming started');
-
-    // show scanner div
-    jQuery('.pairing .receive .scanner').toggleClass('hidden');
-    // show scanned code placeholder
-    var origtext = jQuery('.pairing .receive .data').attr('data-placeholder');
-    jQuery('.pairing .receive .data').text(origtext);
-    jQuery('.pairing .receive .data').attr('data-code', '');
-    if (jQuery('.pairing .receive .data').hasClass('hidden'))
-    {
-      jQuery('.pairing .receive .data').toggleClass('hidden');
-    }
-    // hide open camera button
-    jQuery('.pairing .receive button.open').toggleClass('hidden');
-    // show close camera button
-    jQuery('.pairing .receive button.close').toggleClass('hidden');
-    // show scan code button
-    //jQuery('.pairing .receive button.capture').toggleClass('hidden');
-    scanID = setInterval(scan, 1000);
-  });
-
-  // handle even when streaming ends
-  jQuery('.pairing .receive .scanner video').on('ended', function(e)
-  {
-    if (! scanID) return;
-
-    // hide close camera button
-    jQuery('.pairing .receive button.close').toggleClass('hidden');
-    // hide scanner
-    jQuery('.pairing .receive .scanner').toggleClass('hidden');
-    // show open camera button
-    jQuery('.pairing .receive button.open').toggleClass('hidden');
-
-    // hide scanned code placaholder if no code was found
-    if (jQuery('.pairing .receive .data').attr('data-code').length == 0)
-    {
-      jQuery('.pairing .receive .data').toggleClass('hidden');
-    }
-
-    scanID = null;
-    console.log('streaming ended');
-  });
-
-  // handle close camera button click
-  jQuery('.pairing .receive button.close').on('click', function(event)
-  {
-    console.log('click close');
-    scanner.stop();
-    clearInterval(scanID);
-  })
 
   // fetch pairing code via ajax
   var data = {

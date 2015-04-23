@@ -20,8 +20,8 @@ function glome_add_styles()
   $filepath = plugins_url('/glome-wp/assets/css/glome.css');
   wp_enqueue_style('glome', $filepath, false);
 
-  $filepath = plugins_url('/glome-wp/assets/css/flipclock.css');
-  wp_enqueue_style('flipclock', $filepath, false);
+  //~ $filepath = plugins_url('/glome-wp/assets/css/flipclock.css');
+  //~ wp_enqueue_style('flipclock', $filepath, false);
 }
 add_action('init', 'glome_add_styles');
 

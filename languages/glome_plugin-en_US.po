@@ -1,8 +1,8 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: Glome plugin for Wordpress\n"
-"POT-Creation-Date: 2015-04-23 00:44+0200\n"
-"PO-Revision-Date: 2015-04-23 00:44+0200\n"
+"POT-Creation-Date: 2015-04-23 17:56+0200\n"
+"PO-Revision-Date: 2015-04-23 17:56+0200\n"
 "Last-Translator: Ferenc Székely <ferenc@glome.me>\n"
 "Language-Team: Glome Inc. <contact@glome.me>\n"
 "Language: en\n"
@@ -102,28 +102,34 @@ msgid "Glome receive code title"
 msgstr "Accept pairing code"
 
 #: templates/pairing.php:27
+msgid "No video scanner"
+msgstr ""
+"Unfortunately your browser does not support our code scanner. Please enter "
+"the pairing code manually."
+
+#: templates/pairing.php:32
 msgid "Glome receive code intro"
 msgstr ""
 "This is the place where you can accept pairing codes. Click the button to "
 "scan the QR code shown on the other device."
 
-#: templates/pairing.php:30
+#: templates/pairing.php:35
 msgid "Open camera"
 msgstr "Open camera"
 
-#: templates/pairing.php:31
+#: templates/pairing.php:36
 msgid "Close camera"
 msgstr "Close camera"
 
-#: templates/pairing.php:32
+#: templates/pairing.php:37
 msgid "Scan code"
 msgstr "Scan code"
 
-#: templates/pairing.php:35
+#: templates/pairing.php:40
 msgid "Video stream not available"
 msgstr "Video stream not available."
 
-#: templates/pairing.php:36
+#: templates/pairing.php:43
 msgid "Glome scanning"
 msgstr "scanning..."
 

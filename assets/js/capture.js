@@ -38,10 +38,25 @@ function Scanner()
     canvas = document.getElementById('canvas');
     photo = document.getElementById('photo');
 
-    navigator.getMedia = ( navigator.getUserMedia ||
-                           navigator.webkitGetUserMedia ||
-                           navigator.mozGetUserMedia ||
-                           navigator.msGetUserMedia);
+    try
+    {
+      navigator.getMedia = ( navigator.getUserMedia ||
+                             navigator.webkitGetUserMedia ||
+                             navigator.mozGetUserMedia ||
+                             navigator.msGetUserMedia);
+
+      console.log('navi getM: ' + navigator.getMedia);
+
+      if (typeof navigator.getMedia === 'undefined')
+      {
+        this.stop();
+        return false;
+      }
+    }
+    catch (e)
+    {
+      console.log('no getMedia: ' + e);
+    }
 
     navigator.getMedia(
     {
@@ -103,6 +118,7 @@ function Scanner()
     {
       video.pause();
       video.src= '';
+
       stream.stop();
 
       video.setAttribute('width', 0);
@@ -114,6 +130,7 @@ function Scanner()
       streaming = false;
       console.log('stopped');
     }
+    return true;
   }
 
   /**
@@ -169,6 +186,14 @@ function Scanner()
   this.getDataUrl = function()
   {
     return dataUrl;
+  }
+
+  /**
+   * returns the stream
+   */
+  this.getStream = function()
+  {
+    return stream;
   }
 
   return this;

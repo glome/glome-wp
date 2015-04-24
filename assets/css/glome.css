@@ -3,6 +3,12 @@
   display: none !important;
 }
 
+h4.glomeid
+{
+  width: 85%;
+  word-wrap: break-word;
+}
+
 .api_access
 {
   padding: 10px;
@@ -81,6 +87,7 @@
   width: 40%;
 }
 
+#widget-area .share,
 #widget-area .receive
 {
   width: 85%;
@@ -206,10 +213,11 @@
 }
 
 .devices .list .device .info {
-  width: 90%;
+  width: 80%;
   color: white;
   display: inline-block;
   margin: 0 1em 0.5em 0;
+  word-wrap: break-word;
 }
 
 .devices .list .device button {

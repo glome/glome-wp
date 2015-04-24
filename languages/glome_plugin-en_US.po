@@ -1,8 +1,8 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: Glome plugin for Wordpress\n"
-"POT-Creation-Date: 2015-04-24 13:57+0200\n"
-"PO-Revision-Date: 2015-04-24 13:58+0200\n"
+"POT-Creation-Date: 2015-04-24 17:30+0200\n"
+"PO-Revision-Date: 2015-04-24 17:30+0200\n"
 "Last-Translator: Ferenc Székely <ferenc@glome.me>\n"
 "Language-Team: Glome Inc. <contact@glome.me>\n"
 "Language: en\n"
@@ -44,6 +44,28 @@ msgstr "One-time Login Widget Title"
 msgid "Tick to hide one-time login widget for logged-in users"
 msgstr "Tick to hide one-time login widget for logged-in users"
 
+#: includes/qr_for_pairing_widget.php:13 includes/show_qr_widget.php:13
+msgid "Show a QR code for pairing."
+msgstr "Show a QR code for pairing."
+
+#: includes/qr_for_pairing_widget.php:53 includes/qr_for_pairing_widget.php:60
+#: includes/show_qr_widget.php:53 includes/show_qr_widget.php:60
+msgid "Show QR Widget Title"
+msgstr "Show QR Widget Title"
+
+#: includes/qr_for_pairing_widget.php:65 includes/scanner_widget.php:65
+#: includes/show_qr_widget.php:65
+msgid "Tick to hide the widget for logged-in users"
+msgstr "Tick to hide key widget for logged-in users."
+
+#: includes/scanner_widget.php:13
+msgid "Allow your users to pair up using QR code and a scanner."
+msgstr "Allow your users to pair up using QR code and a scanner."
+
+#: includes/scanner_widget.php:53 includes/scanner_widget.php:60
+msgid "Scanner Widget Title"
+msgstr "Scanner Widget Title"
+
 #: templates/glome_api_feedback.php:8
 msgid "Glome API Pairing OK"
 msgstr "Pairing succeeded."
@@ -67,6 +89,10 @@ msgstr "Pairing code"
 #: templates/key_login.php:8
 msgid "pairing code valid until"
 msgstr "Valid until"
+
+#: templates/one_time_login.php:3
+msgid "one-time access"
+msgstr "One-Time Access"
 
 #: templates/paired_devices.php:14
 msgid "Paired devices title"
@@ -101,7 +127,7 @@ msgstr ""
 "an other device. Yes, you can share the link with someone else too. There "
 "are no limits here!"
 
-#: templates/pairing.php:9 templates/pairing.php:19
+#: templates/pairing.php:9 templates/pairing.php:19 templates/show_qr.php:4
 msgid "code expires at"
 msgstr "Code expires at"
 
@@ -119,7 +145,7 @@ msgstr ""
 msgid "scan code title"
 msgstr "Scan QR code"
 
-#: templates/pairing.php:27
+#: templates/pairing.php:27 templates/scanner.php:3
 msgid "no video scanner"
 msgstr ""
 "Unfortunately your browser does not support our code scanner. Please enter "
@@ -129,25 +155,21 @@ msgstr ""
 msgid "scan code intro"
 msgstr "You can pair up by scanning the QR code shown on an other device."
 
-#: templates/pairing.php:31
+#: templates/pairing.php:31 templates/scanner.php:6
 msgid "open camera"
 msgstr "Open camera"
 
-#: templates/pairing.php:32
+#: templates/pairing.php:32 templates/scanner.php:7
 msgid "close camera"
 msgstr "Close camera"
 
-#: templates/pairing.php:33
+#: templates/pairing.php:33 templates/scanner.php:8
 msgid "scan code"
 msgstr "Scan QR code"
 
-#: templates/pairing.php:35
+#: templates/pairing.php:35 templates/scanner.php:10
 msgid "video stream not available"
 msgstr "Video stream not available."
-
-#: templates/pairing.php:38
-msgid "scanning"
-msgstr "scanning..."
 
 #: templates/request_api_access.php:1
 msgid "Request API Access"
@@ -166,6 +188,10 @@ msgstr "Please find more information on Glome API plans at http://glome.me."
 #: templates/request_api_access.php:8
 msgid "Request API Credentials"
 msgstr "Request API Credentials"
+
+#: templates/scanner.php:13
+msgid "scanning"
+msgstr "scanning..."
 
 #: templates/settings.php:2
 msgid "Glome Settings"
@@ -242,9 +268,6 @@ msgstr "Save Changes"
 
 #~ msgid "Pair widget description"
 #~ msgstr "Pair widget description"
-
-#~ msgid "Pair Widget Title"
-#~ msgstr "Pairing Widget"
 
 #~ msgid "Title"
 #~ msgstr "Title"

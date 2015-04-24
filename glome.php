@@ -225,4 +225,5 @@ include __DIR__ . '/includes/ui.php';
 include __DIR__ . '/includes/one_time_login_widget.php';
 include __DIR__ . '/includes/key_widget.php';
 include __DIR__ . '/includes/scanner_widget.php';
+include __DIR__ . '/includes/show_qr_widget.php';
 include __DIR__ . '/includes/gnb_widget.php';

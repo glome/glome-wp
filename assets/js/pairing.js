@@ -17,6 +17,24 @@ jQuery(document).on('initpairing', function(event, params)
   var scanID = null;
   var stream = null;
 
+  /**
+   * Show info when clicking the QR code in the widget area
+   */
+  jQuery('.widget .share .qrcode').on('click', function(e)
+  {
+    jQuery('.widget .share .qrcode').toggleClass('hidden');
+    jQuery('.widget .share .info').toggleClass('hidden');
+  });
+  /**
+   * Show QR when clicking the info in the widget area
+   */
+  jQuery('.widget .share .info').on('click', function(e)
+  {
+    jQuery('.widget .share .info').toggleClass('hidden');
+    jQuery('.widget .share .qrcode').toggleClass('hidden');
+  });
+
+  /* check browser compatibility */
   navigator.getMedia = ( navigator.getUserMedia ||
                          navigator.webkitGetUserMedia ||
                          navigator.mozGetUserMedia ||
@@ -28,9 +46,9 @@ jQuery(document).on('initpairing', function(event, params)
   }
   else
   {
-    jQuery('.receive .ok').toggleClass('hidden');
-
     scanner = new Scanner();
+
+    jQuery('.receive .ok').toggleClass('hidden');
 
     /**
      * callback that is called when something was succesfully scanned
@@ -40,8 +58,11 @@ jQuery(document).on('initpairing', function(event, params)
       if (result.length == 12)
       {
         jQuery('.receive .data').attr('data-code', result);
-        jQuery('.receive .data').text(result);
+        console.log('pairing URL: ' + params['pairing_url'] + result);
+        //jQuery('.receive .data').text(params['pairing_url'] + result);
         scanner.stop();
+        // redirect to handle pairing request
+        window.location.href = params['pairing_url'] + result;
       }
     }
     qrcode.callback = parseQrCode;
@@ -180,15 +201,15 @@ jQuery(document).on('initpairing', function(event, params)
 
       jQuery('.loading').toggleClass('hidden');
       jQuery('.pairing').toggleClass('hidden');
-      jQuery('.pairing .link .url').text(params['pairing_url'] + json.code);
+      jQuery('.share.link .url').text(params['pairing_url'] + json.code);
 
-      jQuery('.pairing .qrcode').attr('data-code', json.code);
-      jQuery('.pairing .qrcode').qrcode({width: 120, height: 120, text: json.code});
+      jQuery('.share .qrcode').attr('data-code', json.code);
+      jQuery('.share .qrcode').qrcode({width: 120, height: 120, text: json.code});
       //jQuery('.pairing .qrtext').attr('value', json.expires_at_friendly);
 
-      jQuery('.pairing .clock').attr('data-countdown', json.countdown);
-      jQuery('.pairing .clock').attr('data-expires', json.expires_at);
-      jQuery('.pairing .clock .until').text(json.expires_at_friendly);
+      jQuery('.share .clock').attr('data-countdown', json.countdown);
+      jQuery('.share .clock').attr('data-expires', json.expires_at);
+      jQuery('.share .clock .until').text(json.expires_at_friendly);
     },
   });
 });

@@ -20,6 +20,11 @@ function render_scanner($source, $args = array ())
   include __DIR__ . '/../templates/scanner.php';
 }
 
+function render_show_qr($source, $args = array ())
+{
+  include __DIR__ . '/../templates/show_qr.php';
+}
+
 function glome_add_styles()
 {
   $filepath = plugins_url('/glome-wp/assets/css/glome.css');

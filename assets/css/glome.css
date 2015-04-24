@@ -1,3 +1,7 @@
+.hidden
+{
+  display: none !important;
+}
 
 .api_access
 {
@@ -21,11 +25,6 @@
   background-position: -3px -2px;
 }
 
-.loading > *
-{
-  display: none;
-}
-
 .key,
 .pairing
 {
@@ -43,11 +42,15 @@
 
 .qrcode
 {
-  width: 130px;
-  height: 130px;
-  padding: 5px;
+  width: 128px;
+  height: 128px;
   margin: 0.5em 0 0.5em 0;
   background-color: white;
+}
+
+.qrcode canvas
+{
+  padding: 4px;
 }
 
 .gnb
@@ -70,79 +73,118 @@
   background-color: yellow;
 }
 
-.pairing .share,
-.pairing .receive {
+.share,
+.receive
+{
   display: inline-block;
   vertical-align: top;
   width: 40%;
 }
 
-.pairing .share .link textarea
+#widget-area .receive
 {
-  width: 95%;
-  height: 4em;
-  resize: none;
-  overflow: auto;
+  width: 85%;
 }
 
-.pairing .share .qr
+.share.link
+{
+  margin: 0 1em 0 0;
+}
+
+.share.link textarea
+{
+  width: 95%;
+  color: black;
+  overflow: hidden;
+  font-size: 11px;
+  background-color: white;
+  border: 0;
+  text-align: center;
+  resize: none;
+  padding: 2px;
+  margin: 0 auto 1em auto;
+}
+
+@media (min-width: 1280px) {
+  .share.link textarea
+  {
+    height: 2em;
+  }
+}
+@media (max-width: 660px) {
+  .share.link textarea
+  {
+    height: 5em;
+  }
+}
+@media (max-width: 500px) {
+  .share.link textarea
+  {
+    height: 7.5em;
+  }
+}
+@media (max-width: 330px) {
+  .share.link textarea
+  {
+    height: 9em;
+  }
+}
+
+.share .qr
 {
   margin: 0 0 1em 0;
 }
 
-.pairing button,
+.receive button,
 .devices button
 {
   display: inline-block;
   float: right;
-  height: 2em;
   border: 1px solid white;
   text-align: center;
   vertical-align: middle;
 }
-
-.pairing button.hidden,
-.devices button.hidden
+.devices button
 {
-  display: none;
+  height: 2em;
 }
 
-.pairing button:hover,
+.receive button:hover,
 .devices button:hover
 {
   color: white;
   background-color: darkgray;
 }
 
-.pairing button:active,
+.receive button:active,
 .devices button:active
 {
   color: white;
   background-color: lightred;
 }
 
-.pairing button {
+.receive button {
   width: 120px;
   float: none;
 }
 
-.pairing .scanner
+.receive .scanner
 {
   padding: 1em 0 0 0;
 }
 
-.pairing .scanner video,
-.pairing .scanner canvas
+.receive .scanner video,
+.receive .scanner canvas
 {
   width: 250px;
 }
 
-.pairing .scanner video
+.receive .scanner video
 {
   margin: 0 1em 0 0;
 }
 
-.pairing .scanner canvas
+.receive .scanner canvas
 {
   display: none;
 }

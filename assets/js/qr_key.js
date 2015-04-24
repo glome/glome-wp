@@ -13,8 +13,8 @@ jQuery(document).ready(function()
 });
 
 jQuery(document).on('initkey', function(event, params) {
-  console.log('init key');
-  console.log(params);
+  //console.log('init key');
+  //console.log(params);
 
   jQuery('.key .qrcode').empty();
 
@@ -25,19 +25,19 @@ jQuery(document).on('initkey', function(event, params) {
   }
   jQuery('.key .qrcode').qrcode({width: 120, height: 120, text: code});
 
-  var countdown = jQuery('.key .clock').attr('data-countdown');
+  jQuery('.key canvas').on('click', function(e)
+  {
+    jQuery('.key .qrcode').toggleClass('hidden');
+    jQuery('.key .info').toggleClass('hidden');
+    console.log('hide canvas');
+  });
 
-  //~ var clock = jQuery('.key .clock').FlipClock(countdown,
-  //~ {
-    //~ countdown: true,
-    //~ clockFace: 'MinuteCounter',
-    //~ callbacks:
-    //~ {
-      //~ stop: function()
-      //~ {
-        //~ // reload
-        //~ window.location.href = '/';
-      //~ }
-    //~ }
-  //~ });
+  jQuery('.key .info').on('click', function(e)
+  {
+    jQuery('.key .info').toggleClass('hidden');
+    jQuery('.key .qrcode').toggleClass('hidden');
+    console.log('hide info');
+  });
+
+  var countdown = jQuery('.key .clock').attr('data-countdown');
 });

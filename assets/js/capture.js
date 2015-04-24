@@ -130,7 +130,6 @@ function Scanner()
       streaming = false;
       console.log('stopped');
     }
-    return true;
   }
 
   /**

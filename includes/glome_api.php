@@ -287,7 +287,7 @@ function glome_track_activity($url)
   $ret = null;
   $glomeid = mywp_current_glomeid();
 
-  if ($glomeid)
+  if ($glomeid && get_option('glome_activity_tracking'))
   {
     $query = '/users/' . $glomeid . '/data.json';
     $response = glome_post($query, ['userdata[content]' => 'visit: ' . $url]);

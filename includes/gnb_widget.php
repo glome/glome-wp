@@ -23,4 +23,4 @@ class gnb_widget extends WP_Widget
     echo render_gnb('widget', $instance);
   }
 }
-add_action ('widgets_init', create_function ('', 'return register_widget( "gnb_widget" );'));
+add_action('widgets_init', create_function ('', 'return register_widget("gnb_widget");'));

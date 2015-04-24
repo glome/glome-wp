@@ -1,8 +1,8 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: Glome plugin for Wordpress\n"
-"POT-Creation-Date: 2015-04-23 17:56+0200\n"
-"PO-Revision-Date: 2015-04-23 17:56+0200\n"
+"POT-Creation-Date: 2015-04-24 13:57+0200\n"
+"PO-Revision-Date: 2015-04-24 13:58+0200\n"
 "Last-Translator: Ferenc Székely <ferenc@glome.me>\n"
 "Language-Team: Glome Inc. <contact@glome.me>\n"
 "Language: en\n"
@@ -60,6 +60,14 @@ msgstr "Glome Profile"
 msgid "Your Glome ID"
 msgstr "Your Glome ID"
 
+#: templates/key_login.php:5
+msgid "pairing code title"
+msgstr "Pairing code"
+
+#: templates/key_login.php:8
+msgid "pairing code valid until"
+msgstr "Valid until"
+
 #: templates/paired_devices.php:14
 msgid "Paired devices title"
 msgstr "Your paired devices"
@@ -82,55 +90,63 @@ msgstr "Glome ID"
 msgid "Unpair"
 msgstr "Unpair"
 
-#: templates/pairing.php:4
-msgid "Glome give code title"
-msgstr "Share pairing code"
+#: templates/pairing.php:5
+msgid "share link title"
+msgstr "Pair with a link"
 
-#: templates/pairing.php:7
-msgid "Glome give code intro"
+#: templates/pairing.php:6
+msgid "share link itro"
 msgstr ""
-"You can pair up multiple devices to this account. Open this site on any of "
-"your devices and scan this code, or just open the link. Yes, you can also "
-"give the code to someone else. There are no limits here!"
+"You can pair up multiple devices to this account. Simply open this link on "
+"an other device. Yes, you can share the link with someone else too. There "
+"are no limits here!"
 
-#: templates/pairing.php:17
-msgid "Code expires at"
+#: templates/pairing.php:9 templates/pairing.php:19
+msgid "code expires at"
 msgstr "Code expires at"
 
-#: templates/pairing.php:24
-msgid "Glome receive code title"
-msgstr "Accept pairing code"
+#: templates/pairing.php:15
+msgid "share qr title"
+msgstr "Pair with QR code"
+
+#: templates/pairing.php:16
+msgid "share qr intro"
+msgstr ""
+"You can also pair an other device by scanning this QR code. For this you "
+"need a suitable device that has a camera."
+
+#: templates/pairing.php:25
+msgid "scan code title"
+msgstr "Scan QR code"
 
 #: templates/pairing.php:27
-msgid "No video scanner"
+msgid "no video scanner"
 msgstr ""
 "Unfortunately your browser does not support our code scanner. Please enter "
 "the pairing code manually."
 
-#: templates/pairing.php:32
-msgid "Glome receive code intro"
-msgstr ""
-"This is the place where you can accept pairing codes. Click the button to "
-"scan the QR code shown on the other device."
+#: templates/pairing.php:30
+msgid "scan code intro"
+msgstr "You can pair up by scanning the QR code shown on an other device."
 
-#: templates/pairing.php:35
-msgid "Open camera"
+#: templates/pairing.php:31
+msgid "open camera"
 msgstr "Open camera"
 
-#: templates/pairing.php:36
-msgid "Close camera"
+#: templates/pairing.php:32
+msgid "close camera"
 msgstr "Close camera"
 
-#: templates/pairing.php:37
-msgid "Scan code"
-msgstr "Scan code"
+#: templates/pairing.php:33
+msgid "scan code"
+msgstr "Scan QR code"
 
-#: templates/pairing.php:40
-msgid "Video stream not available"
+#: templates/pairing.php:35
+msgid "video stream not available"
 msgstr "Video stream not available."
 
-#: templates/pairing.php:43
-msgid "Glome scanning"
+#: templates/pairing.php:38
+msgid "scanning"
 msgstr "scanning..."
 
 #: templates/request_api_access.php:1
@@ -161,7 +177,7 @@ msgstr "API Access Details"
 
 #: templates/settings.php:19
 msgid "API base path"
-msgstr "API base path"
+msgstr "API Base Path"
 
 #: templates/settings.php:29
 msgid "API UID"
@@ -173,20 +189,38 @@ msgstr "API Key"
 
 #: templates/settings.php:49
 msgid "API expires at"
-msgstr "API expires at"
+msgstr "Valid until"
 
 #: templates/settings.php:59
+msgid "Activity tracking"
+msgstr "Activity Tracking"
+
+#: templates/settings.php:74
 msgid "Save Changes"
 msgstr "Save Changes"
+
+#~ msgid "Glome give code title"
+#~ msgstr "Share pairing code"
+
+#~ msgid "Glome give code intro"
+#~ msgstr ""
+#~ "You can pair up multiple devices to this account. Open this site on any "
+#~ "of your devices and scan this code, or just open the link. Yes, you can "
+#~ "also give the code to someone else. There are no limits here!"
+
+#~ msgid "Glome receive code title"
+#~ msgstr "Accept pairing code"
+
+#~ msgid "Glome receive code intro"
+#~ msgstr ""
+#~ "This is the place where you can accept pairing codes. Click the button to "
+#~ "scan the QR code shown on the other device."
 
 #~ msgid "Take picture"
 #~ msgstr "Scan code"
 
 #~ msgid "Click to scan"
 #~ msgstr "Open Scanner"
-
-#~ msgid "Pairing title"
-#~ msgstr "Give pairing code"
 
 #~ msgid "Pairing intro"
 #~ msgstr ""

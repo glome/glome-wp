@@ -86,9 +86,9 @@ class glome_key_widget extends WP_Widget
   public function update($new_instance, $old_instance)
   {
     $instance = $old_instance;
-    $instance ['widget_title'] = trim (strip_tags ($new_instance ['widget_title']));
-    $instance ['widget_hide_for_logged_in_users'] = (empty ($new_instance ['widget_hide_for_logged_in_users']) ? 0 : 1);
+    $instance ['widget_title'] = trim(strip_tags($new_instance['widget_title']));
+    $instance ['widget_hide_for_logged_in_users'] = (empty ($new_instance['widget_hide_for_logged_in_users']) ? 0 : 1);
     return $instance;
   }
 }
-add_action ('widgets_init', create_function ('', 'return register_widget( "glome_key_widget" );'));
+add_action ('widgets_init', create_function('', 'return register_widget("glome_key_widget");'));

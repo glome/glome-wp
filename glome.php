@@ -175,10 +175,13 @@ function glome_start()
     }
   }
 
-  if ($current_user && $current_user->has_prop('glomeid'))
+  if (get_option('glome_activity_tracking'))
   {
-    glome_track_activity($_SERVER["SERVER_NAME"] . $_SERVER["REQUEST_URI"]);
-    redirect_if_needed();
+    if ($current_user && $current_user->has_prop('glomeid'))
+    {
+      glome_track_activity($_SERVER["SERVER_NAME"] . $_SERVER["REQUEST_URI"]);
+      redirect_if_needed();
+    }
   }
   return;
 }
@@ -221,4 +224,5 @@ function redirect_if_needed()
 include __DIR__ . '/includes/ui.php';
 include __DIR__ . '/includes/one_time_login_widget.php';
 include __DIR__ . '/includes/key_widget.php';
+include __DIR__ . '/includes/scanner_widget.php';
 include __DIR__ . '/includes/gnb_widget.php';

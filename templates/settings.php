@@ -46,12 +46,27 @@
                     </tr>
                     <tr class="row_odd">
                         <td style="width:120px">
-                            <label for="glome_plugin_settings_api_key"><?php _e('API expires at', 'glome_plugin'); ?>:</label>
+                            <label for="glome_plugin_settings_api_expires_at"><?php _e('API expires at', 'glome_plugin'); ?>:</label>
                         </td>
                         <td>
                           <span class="expires_at">
                             <?php echo (isset ($settings ['api_expires_at']) ? htmlspecialchars ($settings ['api_expires_at']) : ''); ?>
                           </span>
+                        </td>
+                    </tr>
+                    <tr class="row_odd">
+                        <td style="width:120px">
+                            <label for="glome_plugin_settings_activity_tracking"><?php _e('Activity tracking', 'glome_plugin'); ?>:</label>
+                        </td>
+                        <td>
+                            <?php
+                                $checkbox = 'unchecked';
+                                if (isset ($settings['activity_tracking']) &&  $settings['activity_tracking'] == 1)
+                                {
+                                  $checkbox = 'checked';
+                                }
+                            ?>
+                            <input type="checkbox" id="glome_plugin_settings_activity_tracking" name="glome_plugin_settings[activity_tracking]" <?php echo $checkbox;?> />
                         </td>
                     </tr>
                 </table>

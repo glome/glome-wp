@@ -42,9 +42,9 @@ class glome_one_time_login_widget extends WP_Widget
       echo $args['before_widget'];
 
       //Title
-      if (! empty($instance ['widget_title']))
+      if (! empty($instance['widget_title']))
       {
-        echo $args['before_title'] . apply_filters('widget_title', $instance ['widget_title']) . $args ['after_title'];
+        echo $args['before_title'] . apply_filters('widget_title', $instance['widget_title']) . $args['after_title'];
       }
 
       //Content
@@ -85,9 +85,9 @@ class glome_one_time_login_widget extends WP_Widget
   public function update($new_instance, $old_instance)
   {
     $instance = $old_instance;
-    $instance ['widget_title'] = trim (strip_tags($new_instance['widget_title']));
+    $instance ['widget_title'] = trim(strip_tags($new_instance['widget_title']));
     $instance ['widget_hide_for_logged_in_users'] = (empty($new_instance ['widget_hide_for_logged_in_users']) ? 0 : 1);
     return $instance;
   }
 }
-add_action ('widgets_init', create_function('', 'return register_widget( "glome_one_time_login_widget" );'));
+add_action('widgets_init', create_function('', 'return register_widget("glome_one_time_login_widget");'));

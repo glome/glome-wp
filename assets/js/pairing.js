@@ -8,15 +8,12 @@ var pairing_params = pairing_params || {};
 
 jQuery(document).ready(function()
 {
-  var visible = jQuery('.pairing .qrcode:visible').length > 0;
-  if (visible) jQuery(document).trigger('initpairing', pairing_params);
+  jQuery(document).trigger('initpairing', pairing_params);
 });
 
-jQuery(document).on('initpairing', function(event, params) {
-  //console.log('init pairing');
-  //console.log(params);
-  jQuery('.pairing').toggleClass('loading');
-
+jQuery(document).on('initpairing', function(event, params)
+{
+  var cnt = 0;
   var scanID = null;
   var stream = null;
 
@@ -27,11 +24,11 @@ jQuery(document).on('initpairing', function(event, params) {
 
   if (typeof navigator.getMedia === 'undefined')
   {
-    jQuery('.pairing .nok').toggleClass('hidden');
+    jQuery('.receive .nok, .widget_glome_scanner').toggleClass('hidden');
   }
   else
   {
-    jQuery('.pairing .ok').toggleClass('hidden');
+    jQuery('.receive .ok').toggleClass('hidden');
 
     scanner = new Scanner();
 
@@ -42,8 +39,8 @@ jQuery(document).on('initpairing', function(event, params) {
     {
       if (result.length == 12)
       {
-        jQuery('.pairing .receive .data').attr('data-code', result);
-        jQuery('.pairing .receive .data').text(result);
+        jQuery('.receive .data').attr('data-code', result);
+        jQuery('.receive .data').text(result);
         scanner.stop();
       }
     }
@@ -55,26 +52,28 @@ jQuery(document).on('initpairing', function(event, params) {
     function stream_started()
     {
       // show scanner div
-      jQuery('.pairing .receive .scanner').toggleClass('hidden');
+      jQuery('.receive .scanner').toggleClass('hidden');
       // show scanned code placeholder
-      var origtext = jQuery('.pairing .receive .data').attr('data-placeholder');
-      jQuery('.pairing .receive .data').text(origtext);
-      jQuery('.pairing .receive .data').attr('data-code', '...');
-      if (jQuery('.pairing .receive .data').hasClass('hidden'))
+      var origtext = jQuery('.receive .data').attr('data-placeholder');
+      jQuery('.receive .data').text(origtext);
+      jQuery('.receive .data').attr('data-code', '...');
+      if (jQuery('.receive .data').hasClass('hidden'))
       {
-        jQuery('.pairing .receive .data').toggleClass('hidden');
+        jQuery('.receive .data').toggleClass('hidden');
       }
       // hide open camera button
-      jQuery('.pairing .receive button.open').toggleClass('hidden');
+      jQuery('.receive button.open').toggleClass('hidden');
       // show close camera button
-      jQuery('.pairing .receive button.close').toggleClass('hidden');
+      jQuery('.receive button.close').toggleClass('hidden');
       // show scan code button
-      //jQuery('.pairing .receive button.capture').toggleClass('hidden');
-      scanID = setInterval(scan, 1000);
+      //jQuery('.receive button.capture').toggleClass('hidden');
 
       // assign an event listener that works in Chrome too
       stream = scanner.getStream();
       stream.getVideoTracks()[0].onended = stream_stopped;
+
+      scanID = setInterval(scan, 1000);
+      console.log('started');
     }
 
     /**
@@ -82,16 +81,26 @@ jQuery(document).on('initpairing', function(event, params) {
      */
     function scan()
     {
-      scanner.takePicture();
-      if (scanner.getDataUrl())
+      try
       {
-        try
+        scanner.takePicture();
+        if (scanner.getDataUrl())
         {
           qrcode.decode(scanner.getDataUrl());
         }
-        catch (e)
+      }
+      catch (e)
+      {
+        cnt += 1;
+        if (cnt == 3)
         {
-          //console.log('scanning: ' + e);
+          scanner.stop();
+          stream_stopped();
+          console.log('Scanning error: ' + e);
+        }
+        else
+        {
+          console.log('retrying..');
         }
       }
     }
@@ -106,23 +115,23 @@ jQuery(document).on('initpairing', function(event, params) {
       clearInterval(scanID);
 
       // hide close camera button
-      jQuery('.pairing .receive button.close').toggleClass('hidden');
+      jQuery('.receive button.close').toggleClass('hidden');
       // hide scanner
-      jQuery('.pairing .receive .scanner').toggleClass('hidden');
+      jQuery('.receive .scanner').toggleClass('hidden');
       // show open camera button
-      jQuery('.pairing .receive button.open').toggleClass('hidden');
+      jQuery('.receive button.open').toggleClass('hidden');
 
       // hide scanned code placaholder if no code was found
-      if (jQuery('.pairing .receive .data').attr('data-code') == '...')
+      if (jQuery('.receive .data').attr('data-code') == '...')
       {
-        jQuery('.pairing .receive .data').toggleClass('hidden');
+        jQuery('.receive .data').toggleClass('hidden');
       }
 
       scanID = null;
       console.log('streaming ended');
     }
 
-    jQuery('.pairing .receive button.open').on('click', function(event)
+    jQuery('.receive button.open').on('click', function(event)
     {
       if (scanID) return;
       console.log('start');
@@ -130,20 +139,20 @@ jQuery(document).on('initpairing', function(event, params) {
     });
 
     // handle even when streaming actually can start
-    jQuery('.pairing .receive .scanner video').on('canplay', function(event)
+    jQuery('.receive .scanner video').on('canplay', function(event)
     {
       if (scanID) return;
       stream_started();
     });
 
     // handle even when streaming ends (works in FF)
-    jQuery('.pairing .receive .scanner video').on('ended', function(e)
+    jQuery('.receive .scanner video').on('ended', function(e)
     {
       stream_stopped();
     });
 
     // handle close camera button click
-    jQuery('.pairing .receive button.close').on('click', function(event)
+    jQuery('.receive button.close').on('click', function(event)
     {
       console.log('click close');
       scanner.stop();
@@ -169,8 +178,8 @@ jQuery(document).on('initpairing', function(event, params) {
 
       if (! json) return;
 
-      jQuery('.pairing').toggleClass('loading');
-
+      jQuery('.loading').toggleClass('hidden');
+      jQuery('.pairing').toggleClass('hidden');
       jQuery('.pairing .link .url').text(params['pairing_url'] + json.code);
 
       jQuery('.pairing .qrcode').attr('data-code', json.code);
@@ -180,20 +189,6 @@ jQuery(document).on('initpairing', function(event, params) {
       jQuery('.pairing .clock').attr('data-countdown', json.countdown);
       jQuery('.pairing .clock').attr('data-expires', json.expires_at);
       jQuery('.pairing .clock .until').text(json.expires_at_friendly);
-
-      //~ var clock = jQuery('.pairing .clock').FlipClock(json.countdown,
-      //~ {
-        //~ countdown: true,
-        //~ clockFace: 'MinuteCounter',
-        //~ callbacks:
-        //~ {
-          //~ stop: function()
-          //~ {
-            //~ // reload
-            //~ window.location.href = '/';
-          //~ }
-        //~ }
-      //~ });
     },
   });
 });

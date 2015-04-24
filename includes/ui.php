@@ -15,13 +15,15 @@ function render_key_login($source, $args = array ())
   include __DIR__ . '/../templates/key_login.php';
 }
 
+function render_scanner($source, $args = array ())
+{
+  include __DIR__ . '/../templates/scanner.php';
+}
+
 function glome_add_styles()
 {
   $filepath = plugins_url('/glome-wp/assets/css/glome.css');
   wp_enqueue_style('glome', $filepath, false);
-
-  //~ $filepath = plugins_url('/glome-wp/assets/css/flipclock.css');
-  //~ wp_enqueue_style('flipclock', $filepath, false);
 }
 add_action('init', 'glome_add_styles');
 
@@ -63,9 +65,6 @@ function glome_add_scripts()
 
   $filepath = plugins_url('/glome-wp/assets/js/gnb.js');
   wp_enqueue_script('gnb', $filepath, false);
-
-  //~ $filepath = plugins_url('/glome-wp/assets/js/flipclock.min.js');
-  //~ wp_enqueue_script('flipclock', $filepath, false);
 
   $token = false;
   if (is_user_logged_in())

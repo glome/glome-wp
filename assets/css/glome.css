@@ -31,6 +31,26 @@ h4.glomeid
   background-position: -3px -2px;
 }
 
+.feedback
+{
+  display: inline-block;
+  background-color: white;
+  padding: 0.5em 0.5em 0.5em 1em;
+  color: black;
+}
+.feedback h4
+{
+  margin: 0;
+}
+.feedback.ok
+{
+  border-left: 3px solid green;
+}
+.feedback.nok
+{
+  border-left: 3px solid red;
+}
+
 .key,
 .pairing
 {

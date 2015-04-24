@@ -1,8 +1,8 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: Glome plugin for Wordpress\n"
-"POT-Creation-Date: 2015-04-24 17:30+0200\n"
-"PO-Revision-Date: 2015-04-24 17:30+0200\n"
+"POT-Creation-Date: 2015-04-24 18:27+0200\n"
+"PO-Revision-Date: 2015-04-24 18:28+0200\n"
 "Last-Translator: Ferenc Székely <ferenc@glome.me>\n"
 "Language-Team: Glome Inc. <contact@glome.me>\n"
 "Language: en\n"
@@ -44,20 +44,6 @@ msgstr "One-time Login Widget Title"
 msgid "Tick to hide one-time login widget for logged-in users"
 msgstr "Tick to hide one-time login widget for logged-in users"
 
-#: includes/qr_for_pairing_widget.php:13 includes/show_qr_widget.php:13
-msgid "Show a QR code for pairing."
-msgstr "Show a QR code for pairing."
-
-#: includes/qr_for_pairing_widget.php:53 includes/qr_for_pairing_widget.php:60
-#: includes/show_qr_widget.php:53 includes/show_qr_widget.php:60
-msgid "Show QR Widget Title"
-msgstr "Show QR Widget Title"
-
-#: includes/qr_for_pairing_widget.php:65 includes/scanner_widget.php:65
-#: includes/show_qr_widget.php:65
-msgid "Tick to hide the widget for logged-in users"
-msgstr "Tick to hide key widget for logged-in users."
-
 #: includes/scanner_widget.php:13
 msgid "Allow your users to pair up using QR code and a scanner."
 msgstr "Allow your users to pair up using QR code and a scanner."
@@ -66,13 +52,37 @@ msgstr "Allow your users to pair up using QR code and a scanner."
 msgid "Scanner Widget Title"
 msgstr "Scanner Widget Title"
 
-#: templates/glome_api_feedback.php:8
-msgid "Glome API Pairing OK"
+#: includes/scanner_widget.php:65 includes/show_qr_widget.php:65
+msgid "Tick to hide the widget for logged-in users"
+msgstr "Tick to hide key widget for logged-in users."
+
+#: includes/show_qr_widget.php:13
+msgid "Show a QR code for pairing."
+msgstr "Show a QR code for pairing."
+
+#: includes/show_qr_widget.php:53 includes/show_qr_widget.php:60
+msgid "Show QR Widget Title"
+msgstr "Show QR Widget Title"
+
+#: templates/glome_api_feedback.php:13
+msgid "api ok"
+msgstr "Request Completed"
+
+#: templates/glome_api_feedback.php:14
+msgid "api pairing ok"
 msgstr "Pairing succeeded."
 
-#: templates/glome_api_feedback.php:8
-msgid "Glome API Pairing Error"
+#: templates/glome_api_feedback.php:18
+msgid "api error"
+msgstr "Request Failed"
+
+#: templates/glome_api_feedback.php:19
+msgid "api pairing failed"
 msgstr "Pairing failed."
+
+#: templates/glome_api_feedback.php:20
+msgid "api error code"
+msgstr "Error code"
 
 #: templates/glome_profile.php:1
 msgid "Glome Profile"
@@ -225,6 +235,12 @@ msgstr "Activity Tracking"
 msgid "Save Changes"
 msgstr "Save Changes"
 
+#~ msgid "Glome API OK"
+#~ msgstr "Glome Action Completed"
+
+#~ msgid "Glome API Error"
+#~ msgstr "Glome Action Failed"
+
 #~ msgid "Glome give code title"
 #~ msgstr "Share pairing code"
 
@@ -247,12 +263,6 @@ msgstr "Save Changes"
 
 #~ msgid "Click to scan"
 #~ msgstr "Open Scanner"
-
-#~ msgid "Pairing intro"
-#~ msgstr ""
-#~ "You can pair up multiple devices to this account. Open this site on any "
-#~ "of your devices and scan this code, or just open the link. Yes, you can "
-#~ "also give the code to someone else. There are no limits here!"
 
 #~ msgid "Pair Info Code"
 #~ msgstr "Sync code used"

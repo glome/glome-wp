@@ -1,24 +1,28 @@
 <?php
+
 if (isset($_REQUEST['code']) && isset($_REQUEST['action']))
 {
   $style = $title = false;
+  ($_REQUEST['code'] == 200) ? $style = 'ok' : $style = 'nok';
+
   switch ($_REQUEST['action'])
   {
     case 'pairing':
-      ($_REQUEST['code'] == 200) ? $title = _e('Glome API Pairing OK', 'glome_plugin') : $title = _e('Glome API Pairing Error', 'glome_plugin');
+      if ($_REQUEST['code'] == '200')
+      {
+        $message = __('api pairing ok', 'glome_plugin');
+      }
+      else
+      {
+        $message = __('api pairing failed', 'glome_plugin');
+//        $message .= ' ' . __('api error code', 'glome_plugin') . ': ';
+      }
       break;
   }
-  ($_REQUEST['code'] == 200) ? $style = 'ok' : $style = 'error';
-
-  if ($title && $style)
-  {
 ?>
-
-  <h3 class="title"><?php echo $title ?></h3>
-  <div class="<?php echo $style ?> message"></div>
-
+  <div class="feedback <?php echo $style; ?>">
+    <h4><?php echo $message; ?></h4>
+  </div>
 <?php
-  }
 }
 ?>
-

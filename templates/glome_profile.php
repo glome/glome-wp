@@ -12,5 +12,5 @@
     include 'paired_devices.php';
   }
 
-  //include 'pairing.php';
+  include 'pairing.php';
 ?>

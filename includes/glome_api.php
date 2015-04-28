@@ -49,16 +49,13 @@ function glome_check_app()
   $query = '/applications/check/' . base64_encode(get_option('glome_api_uid')) . '.json';
   $response = glome_get($query);
 
-  //~ var_dump($response);
-  //~ die();
-
-  if (isset($response['body']))
+  if (is_array($response) && isset($response['body']))
   {
     $json = $response['body'];
 
     $data = json_decode($json, true);
 
-    if ($data and array_key_exists('code', $data))
+    if ($data && array_key_exists('code', $data))
     {
       $ret = ($data['code'] == 200);
     }
@@ -111,7 +108,7 @@ function glome_get_key()
     $prev = $_SESSION['glome']['key'];
   }
 
-  if ($prev and isset($prev['expires_at']))
+  if ($prev && isset($prev['expires_at']))
   {
     // check validity
     $now = new DateTime();
@@ -131,16 +128,16 @@ function glome_get_key()
     $data = json_decode($json, true);
   }
 
-  if (is_array($data) and isset($data['expires_at']) and ! array_key_exists('expires_at_friendly', $data))
+  if (is_array($data) && isset($data['expires_at']) && ! array_key_exists('expires_at_friendly', $data))
   {
     $now = new DateTime('now');
     $expires = new DateTime($data['expires_at']);
     $data['expires_at_friendly'] = $expires->format('Y-m-d H:i:s');
   }
 
-  ($data and array_key_exists('expires_at', $data)) ? $_SESSION['glome']['key'] = $data : $data = null;
+  ($data && array_key_exists('expires_at', $data)) ? $_SESSION['glome']['key'] = $data : $data = null;
 
-  if ($now and $expires)
+  if ($now && $expires)
   {
     $data['countdown'] = $expires->getTimeStamp() - $now->getTimeStamp();
   }
@@ -164,19 +161,19 @@ function glome_create_pairing_code($kind = 'b')
     $query = '/users/' . $glomeid . '/sync.json';
     $response = glome_post($query, ['synchronization[kind]' => $kind]);
 
-    if (isset($response['body']))
+    if (is_array($response) && isset($response['body']))
     {
       $json = $response['body'];
       $data = json_decode($json, true);
 
-      if (is_array($data) and isset($data['expires_at']) and ! array_key_exists('expires_at_friendly', $data))
+      if (is_array($data) && isset($data['expires_at']) && ! array_key_exists('expires_at_friendly', $data))
       {
         $now = new DateTime('now');
         $expires = new DateTime($data['expires_at']);
         $data['expires_at_friendly'] = $expires->format('Y-m-d H:i:s');
       }
 
-      if ($now and $expires)
+      if ($now && $expires)
       {
         $data['countdown'] = $expires->getTimeStamp() - $now->getTimeStamp();
         $ret = json_encode($data);
@@ -253,7 +250,7 @@ function glome_get_brothers()
   if ($glomeid)
   {
     $query = '/users/' . $glomeid . '/sync.json';
-    $response = glome_get($query, ['status' => 'used', 'kind' => 'b']);
+    $response = glome_get($query, ['status' => 'brothers']);
 
     $json = $response['body'];
     $ret = json_decode($json, true);

@@ -40,6 +40,9 @@ function glome_add_scripts()
   $filepath = plugins_url('/glome-wp/assets/js/jquery.qrcode.min.js');
   wp_enqueue_script('jquery-qrlib', $filepath, array('jquery'));
 
+  $filepath = plugins_url('/glome-wp/assets/js/jquery.mobile.custom.min.js');
+  wp_enqueue_script('jquery-mob', $filepath, false);
+
   $filepath = plugins_url('/glome-wp/assets/js/qr_key.js');
   wp_enqueue_script('qr_key', $filepath, false);
   wp_localize_script('qr_key', 'key_params', array(

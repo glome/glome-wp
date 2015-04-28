@@ -12,7 +12,7 @@ function glome_plugin_admin_page()
     $email = null;
     $current_user = wp_get_current_user();
 
-    if (isset($_POST, $_POST['method']) and $_POST['method'] == "new")
+    if (isset($_POST, $_POST['method']) && $_POST['method'] == "new")
     {
       if (is_super_admin($current_user->ID))
       {
@@ -61,5 +61,5 @@ function glome_plugin_admin_page()
     'glome_settings'
   );
 }
-add_action ('admin_menu', 'glome_plugin_admin_page');
+add_action('admin_menu', 'glome_plugin_admin_page');
 ?>

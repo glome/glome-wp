@@ -36,7 +36,7 @@ class glome_one_time_login_widget extends WP_Widget
     }
 
     //Hide the widget for logged in users?
-    if (empty($instance['widget_hide_for_logged_in_users']) OR ! is_user_logged_in())
+    if (empty($instance['widget_hide_for_logged_in_users']) || ! is_user_logged_in())
     {
       //Before Widget
       echo $args['before_widget'];
@@ -74,7 +74,7 @@ class glome_one_time_login_widget extends WP_Widget
       </p>
       <p>
         <input type="checkbox" id="<?php echo $this->get_field_id('widget_hide_for_logged_in_users', 'glome_one_time_login_widget'); ?>" name="<?php echo $this->get_field_name('widget_hide_for_logged_in_users'); ?>" type="text" value="1" <?php echo (!empty ($instance ['widget_hide_for_logged_in_users']) ? 'checked="checked"' : ''); ?> />
-        <label for="<?php echo $this->get_field_id ('widget_hide_for_logged_in_users'); ?>"><?php _e('Tick to hide one-time login widget for logged-in users', 'glome_plugin'); ?></label>
+        <label for="<?php echo $this->get_field_id('widget_hide_for_logged_in_users'); ?>"><?php _e('Tick to hide the widget for logged-in users', 'glome_plugin'); ?></label>
       </p>
     <?php
   }
@@ -85,8 +85,8 @@ class glome_one_time_login_widget extends WP_Widget
   public function update($new_instance, $old_instance)
   {
     $instance = $old_instance;
-    $instance ['widget_title'] = trim(strip_tags($new_instance['widget_title']));
-    $instance ['widget_hide_for_logged_in_users'] = (empty($new_instance ['widget_hide_for_logged_in_users']) ? 0 : 1);
+    $instance['widget_title'] = trim(strip_tags($new_instance['widget_title']));
+    $instance['widget_hide_for_logged_in_users'] = (empty($new_instance ['widget_hide_for_logged_in_users']) ? 0 : 1);
     return $instance;
   }
 }

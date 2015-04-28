@@ -25,14 +25,14 @@ jQuery(document).on('initkey', function(event, params) {
   }
   jQuery('.key .qrcode').qrcode({width: 120, height: 120, text: code});
 
-  jQuery('.key canvas').on('click', function(e)
+  jQuery('.key canvas').on('dblclick swipe', function(e)
   {
     jQuery('.key .qrcode').toggleClass('hidden');
     jQuery('.key .info').toggleClass('hidden');
     console.log('hide canvas');
   });
 
-  jQuery('.key .info').on('click', function(e)
+  jQuery('.key .info').on('dblclick swipe', function(e)
   {
     jQuery('.key .info').toggleClass('hidden');
     jQuery('.key .qrcode').toggleClass('hidden');

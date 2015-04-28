@@ -3,7 +3,7 @@
 if (isset($_REQUEST['code']) && isset($_REQUEST['action']))
 {
   $style = $title = false;
-  ($_REQUEST['code'] == 200) ? $style = 'ok' : $style = 'nok';
+  ($_REQUEST['code'] == 200) ? $style = 'notice-success' : $style = 'notice-error';
 
   switch ($_REQUEST['action'])
   {
@@ -20,7 +20,7 @@ if (isset($_REQUEST['code']) && isset($_REQUEST['action']))
       break;
   }
 ?>
-  <div class="feedback <?php echo $style; ?>">
+  <div class="notice <?php echo $style; ?>">
     <h4><?php echo $message; ?></h4>
   </div>
 <?php

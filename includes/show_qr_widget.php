@@ -19,7 +19,7 @@ class glome_show_qr_widget extends WP_Widget
    */
   public function widget($args, $instance)
   {
-    if (! is_user_logged_in ()) return;
+    if (! is_user_logged_in()) return;
 
     // check api access
     if (glome_check_app() == false)
@@ -57,7 +57,7 @@ class glome_show_qr_widget extends WP_Widget
     $instance = wp_parse_args((array) $instance, $default_settings);
     ?>
       <p>
-        <label for="<?php echo $this->get_field_id ('widget_title'); ?>"><?php _e('Show QR Widget Title', 'glome_plugin'); ?>:</label>
+        <label for="<?php echo $this->get_field_id('widget_title'); ?>"><?php _e('Show QR Widget Title', 'glome_plugin'); ?>:</label>
         <input class="widefat" id="<?php echo $this->get_field_id('widget_title'); ?>" name="<?php echo $this->get_field_name('widget_title'); ?>" type="text" value="<?php echo $instance ['widget_title']; ?>" />
       </p>
       <p>
@@ -73,8 +73,8 @@ class glome_show_qr_widget extends WP_Widget
   public function update($new_instance, $old_instance)
   {
     $instance = $old_instance;
-    $instance ['widget_title'] = trim(strip_tags($new_instance ['widget_title']));
-    $instance ['widget_hide_for_logged_in_users'] = (empty ($new_instance['widget_hide_for_logged_in_users']) ? 0 : 1);
+    $instance['widget_title'] = trim(strip_tags($new_instance['widget_title']));
+    $instance['widget_hide_for_logged_in_users'] = (empty($new_instance['widget_hide_for_logged_in_users']) ? 0 : 1);
     return $instance;
   }
 }

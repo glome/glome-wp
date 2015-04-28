@@ -20,7 +20,7 @@ jQuery(document).on('initpairing', function(event, params)
   /**
    * Show info when clicking the QR code in the widget area
    */
-  jQuery('.widget .share .qrcode').on('click', function(e)
+  jQuery('.widget .share .qrcode').on('dblclick swipe', function(e)
   {
     jQuery('.widget .share .qrcode').toggleClass('hidden');
     jQuery('.widget .share .info').toggleClass('hidden');
@@ -28,7 +28,7 @@ jQuery(document).on('initpairing', function(event, params)
   /**
    * Show QR when clicking the info in the widget area
    */
-  jQuery('.widget .share .info').on('click', function(e)
+  jQuery('.widget .share .info').on('dblclick swipe', function(e)
   {
     jQuery('.widget .share .info').toggleClass('hidden');
     jQuery('.widget .share .qrcode').toggleClass('hidden');
@@ -192,16 +192,25 @@ jQuery(document).on('initpairing', function(event, params)
     data: data,
     success: function(data)
     {
-      //console.log('qr pairing ajax data');
+      //console.log('create_pairing_code data');
       //console.log(data);
-      var json = jQuery.parseJSON(data);
+      if (data == '0') return;
+
+      try
+      {
+        var json = jQuery.parseJSON(data);
+      }
+      catch (e)
+      {
+        return;
+      }
       //console.log(json);
 
       if (! json) return;
 
       jQuery('.loading').toggleClass('hidden');
       jQuery('.pairing').toggleClass('hidden');
-      jQuery('.share.link .url').text(params['pairing_url'] + json.code);
+      jQuery('.share .url').text(params['pairing_url'] + json.code);
 
       jQuery('.share .qrcode').attr('data-code', json.code);
       jQuery('.share .qrcode').qrcode({width: 120, height: 120, text: json.code});

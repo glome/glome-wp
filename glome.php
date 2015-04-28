@@ -222,6 +222,7 @@ function redirect_if_needed()
 //add_action('set_current_user', 'glome_get_user_profile');
 
 include __DIR__ . '/includes/ui.php';
+include __DIR__ . '/includes/pairing_common.php';
 include __DIR__ . '/includes/one_time_login_widget.php';
 include __DIR__ . '/includes/key_widget.php';
 include __DIR__ . '/includes/scanner_widget.php';

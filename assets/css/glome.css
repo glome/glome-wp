@@ -3,6 +3,12 @@
   display: none !important;
 }
 
+.hint
+{
+  font-size: 9px;
+  font-style: italic;
+}
+
 h4.glomeid
 {
   width: 85%;
@@ -118,7 +124,7 @@ h4.glomeid
   margin: 0 1em 0 0;
 }
 
-.share.link textarea
+.share .url
 {
   width: 95%;
   color: black;
@@ -133,28 +139,33 @@ h4.glomeid
 }
 
 @media (min-width: 1280px) {
-  .share.link textarea
+  .share .url
   {
     height: 2em;
   }
 }
 @media (max-width: 660px) {
-  .share.link textarea
+  .share .url
   {
     height: 5em;
   }
 }
 @media (max-width: 500px) {
-  .share.link textarea
+  .share .url
   {
     height: 7.5em;
   }
 }
 @media (max-width: 330px) {
-  .share.link textarea
+  .share .url
   {
     height: 9em;
   }
+}
+
+#widget-area .share .url
+{
+  height: 5em;
 }
 
 .share .qr

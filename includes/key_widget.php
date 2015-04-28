@@ -67,15 +67,15 @@ class glome_key_widget extends WP_Widget
       'widget_hide_for_logged_in_users' => '1'
     );
 
-    $instance = wp_parse_args ((array) $instance, $default_settings);
+    $instance = wp_parse_args((array) $instance, $default_settings);
     ?>
       <p>
-        <label for="<?php echo $this->get_field_id ('widget_title'); ?>"><?php _e('Key Widget Title', 'glome_plugin'); ?>:</label>
-        <input class="widefat" id="<?php echo $this->get_field_id ('widget_title'); ?>" name="<?php echo $this->get_field_name('widget_title'); ?>" type="text" value="<?php echo $instance ['widget_title']; ?>" />
+        <label for="<?php echo $this->get_field_id('widget_title'); ?>"><?php _e('Key Widget Title', 'glome_plugin'); ?>:</label>
+        <input class="widefat" id="<?php echo $this->get_field_id('widget_title'); ?>" name="<?php echo $this->get_field_name('widget_title'); ?>" type="text" value="<?php echo $instance ['widget_title']; ?>" />
       </p>
       <p>
-        <input type="checkbox" id="<?php echo $this->get_field_id ('widget_hide_for_logged_in_users', 'glome_key_widget'); ?>" name="<?php echo $this->get_field_name('widget_hide_for_logged_in_users'); ?>" type="text" value="1" <?php echo (!empty ($instance ['widget_hide_for_logged_in_users']) ? 'checked="checked"' : ''); ?> />
-        <label for="<?php echo $this->get_field_id ('widget_hide_for_logged_in_users'); ?>"><?php _e('Tick to hide key widget for logged-in users', 'glome_plugin'); ?></label>
+        <input type="checkbox" id="<?php echo $this->get_field_id('widget_hide_for_logged_in_users', 'glome_key_widget'); ?>" name="<?php echo $this->get_field_name('widget_hide_for_logged_in_users'); ?>" type="text" value="1" <?php echo (!empty ($instance ['widget_hide_for_logged_in_users']) ? 'checked="checked"' : ''); ?> />
+        <label for="<?php echo $this->get_field_id('widget_hide_for_logged_in_users'); ?>"><?php _e('Tick to hide the widget for logged-in users', 'glome_plugin'); ?></label>
       </p>
     <?php
   }
@@ -86,8 +86,8 @@ class glome_key_widget extends WP_Widget
   public function update($new_instance, $old_instance)
   {
     $instance = $old_instance;
-    $instance ['widget_title'] = trim(strip_tags($new_instance['widget_title']));
-    $instance ['widget_hide_for_logged_in_users'] = (empty ($new_instance['widget_hide_for_logged_in_users']) ? 0 : 1);
+    $instance['widget_title'] = trim(strip_tags($new_instance['widget_title']));
+    $instance['widget_hide_for_logged_in_users'] = (empty($new_instance['widget_hide_for_logged_in_users']) ? 0 : 1);
     return $instance;
   }
 }

@@ -50,7 +50,7 @@
                         </td>
                         <td>
                           <span class="expires_at">
-                            <?php echo (isset ($settings ['api_expires_at']) ? htmlspecialchars ($settings ['api_expires_at']) : ''); ?>
+                            <?php echo (isset ($settings['api_expires_at']) ? htmlspecialchars($settings ['api_expires_at']) : 'TODO'); ?>
                           </span>
                         </td>
                     </tr>
@@ -67,6 +67,21 @@
                                 }
                             ?>
                             <input type="checkbox" id="glome_plugin_settings_activity_tracking" name="glome_plugin_settings[activity_tracking]" <?php echo $checkbox;?> />
+                        </td>
+                    </tr>
+                    <tr class="row_odd">
+                        <td style="width:120px">
+                            <label for="glome_plugin_settings_clone_name"><?php _e('Clone name', 'glome_plugin'); ?>:</label>
+                        </td>
+                        <td>
+                            <?php
+                                $checkbox = 'unchecked';
+                                if (isset ($settings['clone_name']) &&  $settings['clone_name'] == 1)
+                                {
+                                  $checkbox = 'checked';
+                                }
+                            ?>
+                            <input type="checkbox" id="glome_plugin_settings_clone_name" name="glome_plugin_settings[clone_name]" <?php echo $checkbox;?> />
                         </td>
                     </tr>
                 </table>

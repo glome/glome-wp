@@ -35,8 +35,12 @@ function glome_plugin_admin_page()
         update_option('glome_api_uid', $_POST['glome_plugin_settings']['api_uid']);
         update_option('glome_api_key', $_POST['glome_plugin_settings']['api_key']);
         update_option('glome_api_domain', $_POST['glome_plugin_settings']['api_domain']);
+
         $checkbox = (int)(isset($_POST['glome_plugin_settings']['activity_tracking']));
         update_option('glome_activity_tracking', $checkbox);
+
+        $checkbox = (int)(isset($_POST['glome_plugin_settings']['clone_name']));
+        update_option('glome_clone_name', $checkbox);
       }
 
       $domain = get_option('glome_api_domain');
@@ -45,7 +49,8 @@ function glome_plugin_admin_page()
         'api_domain' =>  empty($domain) ? 'https://api.glome.me/' : $domain ,
         'api_uid' => get_option('glome_api_uid'),
         'api_key' => get_option('glome_api_key'),
-        'activity_tracking' => get_option('glome_activity_tracking')
+        'activity_tracking' => get_option('glome_activity_tracking'),
+        'clone_name' => get_option('glome_clone_name')
       );
 
       $email = $current_user->email;

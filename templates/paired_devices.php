@@ -24,14 +24,21 @@
     <div class="list <?php echo $list; ?>">
       <?php
         // loop through all paired devices
-        foreach($pairs as $key => $value)
+        foreach($pairs as $key => $pair)
         {
       ?>
-          <div class="device" data-sync-id="<?php echo $value['id']; ?>">
+          <div class="device" data-sync-id="<?php echo $pair['id']; ?>">
             <div class="info">
-              <?php _e('Pair Info Glome ID', 'glome_plugin'); ?>: <?php echo $value['pair']['glomeid']; ?>
+              <?php _e('Pair Info Glome ID', 'glome_plugin'); ?>: <?php echo $pair['glomeid'] ?>
             </div>
+            <?php
+              if ($pair['can_unpair'])
+              {
+            ?>
             <button class="unpair"><?php _e('Unpair', 'glome_plugin'); ?></button>
+            <?php
+              }
+            ?>
           </div>
       <?php
         }

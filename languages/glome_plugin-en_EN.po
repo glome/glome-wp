@@ -1,15 +1,15 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: Glome plugin for Wordpress\n"
-"POT-Creation-Date: 2015-04-28 15:34+0200\n"
-"PO-Revision-Date: 2015-04-28 15:35+0200\n"
+"POT-Creation-Date: 2015-05-11 10:08+0200\n"
+"PO-Revision-Date: 2015-05-11 14:07+0200\n"
 "Last-Translator: Ferenc Székely <ferenc@glome.me>\n"
 "Language-Team: Glome Inc. <contact@glome.me>\n"
 "Language: en\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
-"X-Generator: Poedit 1.6.10\n"
+"X-Generator: Poedit 1.7.6\n"
 "X-Poedit-Basepath: ../\n"
 "Plural-Forms: nplurals=2; plural=(n != 1);\n"
 "X-Poedit-KeywordsList: __;_e\n"
@@ -28,9 +28,10 @@ msgstr "Allow your visitors to login with Glome Key."
 msgid "Key Widget Title"
 msgstr "Key Widget Title"
 
-#: includes/key_widget.php:78
-msgid "Tick to hide key widget for logged-in users"
-msgstr "Tick to hide key widget for logged-in users"
+#: includes/key_widget.php:78 includes/one_time_login_widget.php:77
+#: includes/scanner_widget.php:67 includes/show_qr_widget.php:65
+msgid "Tick to hide the widget for logged-in users"
+msgstr "Tick to hide key widget for logged-in users."
 
 #: includes/one_time_login_widget.php:13
 msgid "Allow your visitors to login with Glome."
@@ -39,11 +40,6 @@ msgstr "Allow your visitors to login with Glome."
 #: includes/one_time_login_widget.php:65 includes/one_time_login_widget.php:72
 msgid "One-time Login Widget Title"
 msgstr "One-time Login Widget Title"
-
-#: includes/one_time_login_widget.php:77 includes/scanner_widget.php:67
-#: includes/show_qr_widget.php:65
-msgid "Tick to hide the widget for logged-in users"
-msgstr "Tick to hide key widget for logged-in users."
 
 #: includes/scanner_widget.php:13
 msgid "Allow your users to pair up using QR code and a scanner."
@@ -89,6 +85,10 @@ msgstr "Pairing code"
 msgid "pairing code valid until"
 msgstr "Valid until"
 
+#: templates/key_login.php:7 templates/show_qr.php:9
+msgid "share qr hint"
+msgstr "Swipe or double click the code."
+
 #: templates/one_time_login.php:3
 msgid "one-time access"
 msgstr "One-Time Access"
@@ -101,7 +101,9 @@ msgstr "Your paired devices"
 msgid "Paired devices intro"
 msgstr ""
 "Listed below are the Glome ID(s) of other devices that are paired to this "
-"account. You can remove them one by one."
+"account. You can remove the ones that you have a direct connection to. Other "
+"devices are linked via some of your other devices. Those you can remove if "
+"you access the site with those devices."
 
 #: templates/paired_devices.php:21
 msgid "Paired devices none"
@@ -115,7 +117,7 @@ msgstr "Glome ID"
 msgid "Unpair"
 msgstr "Unpair"
 
-#: templates/pairing.php:5 templates/show_qr.php:5
+#: templates/pairing.php:5 templates/show_qr.php:4
 msgid "share link title"
 msgstr "Pair with a link"
 
@@ -126,7 +128,7 @@ msgstr ""
 "an other device. Yes, you can share the link with someone else too. There "
 "are no limits here!"
 
-#: templates/pairing.php:9 templates/pairing.php:19 templates/show_qr.php:7
+#: templates/pairing.php:9 templates/pairing.php:19 templates/show_qr.php:6
 msgid "code expires at"
 msgstr "Code expires at"
 
@@ -221,12 +223,18 @@ msgid "Activity tracking"
 msgstr "Activity Tracking"
 
 #: templates/settings.php:74
+msgid "Clone name"
+msgstr "Clone Name"
+
+#: templates/settings.php:89
 msgid "Save Changes"
 msgstr "Save Changes"
 
-#: templates/show_qr.php:3
-msgid "share qr hint"
-msgstr "Swipe or double click the code."
+#~ msgid "Clone displayed name"
+#~ msgstr "Clone Name"
+
+#~ msgid "Tick to hide key widget for logged-in users"
+#~ msgstr "Tick to hide key widget for logged-in users"
 
 #~ msgid "Tick to hide one-time login widget for logged-in users"
 #~ msgstr "Tick to hide one-time login widget for logged-in users"

@@ -253,7 +253,29 @@ function glome_get_brothers()
     $response = glome_get($query, ['status' => 'brothers']);
 
     $json = $response['body'];
-    $ret = json_decode($json, true);
+    $data = json_decode($json, true);
+
+    // process the original Glome response and take only what we need
+    $pair = [];
+    foreach($data as $key => $value)
+    {
+
+      $pair['id'] = $value['id'];
+
+      $pair['glomeid'] = $value['pair']['glomeid'];
+      if ($value['pair']['glomeid'] == $glomeid)
+      {
+        $pair['glomeid'] = $value['user']['glomeid'];
+      }
+
+      $pair['can_unpair'] = 0;
+      if ($glomeid == $value['user']['glomeid'] or $glomeid == $value['pair']['glomeid'])
+      {
+        $pair['can_unpair'] = 1;
+      }
+
+      $ret[] = $pair;
+    }
   }
 
   return $ret;

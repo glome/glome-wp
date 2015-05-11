@@ -36,6 +36,35 @@ function handle_pairing()
         {
           $ret = glome_post_pairing_code($sync_code);
           (isset($ret['code'])) ? $code = $ret['code'] : $code = 200;
+
+          if ($code == 200 and get_option('glome_clone_name'))
+          {
+            // pairing was OK so lookup WP user based on paired Glome ID
+            $wp_source = get_users(array(
+              'meta_key' => 'glomeid',
+              'meta_value' => $ret['pair']['glomeid'],
+              'number' => 1,
+              'count_total' => false
+            ));
+
+            if (count($wp_source))
+            {
+              $user_info = get_userdata($wp_source[0]->ID);
+
+              if ($user_info->display_name != "Anonymous")
+              {
+                // clone stuff
+                $data = [
+                  'ID' => $current_user->ID,
+                  'first_name' => $user_info->first_name,
+                  'last_name' => $user_info->last_name,
+                  'display_name' => $user_info->display_name
+                ];
+                wp_update_user($data);
+              }
+            }
+          }
+
           $url = admin_url('profile.php?page=glome_profile&action=pairing&code=' . $code);
         }
       }
@@ -46,7 +75,6 @@ function handle_pairing()
         setcookie('redirect', $page);
       }
     }
-
     wp_safe_redirect($url, 301);
 }
 add_action('admin_post_pairing', 'handle_pairing');

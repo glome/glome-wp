@@ -50,18 +50,22 @@ credentials are granted. Navigate to "Appearance -> Widgets" in the
 Wordpress admin pages and drag and drop the following widgets from the
 "Available Widgets" list to the "Widget Area":
 
-- Glome One-time Login
+* Glome One-time Login
+
 Enable the one click anonymous Wordpress account creation and login.
 
-- Glome QR For Pairing
+* Glome QR For Pairing
+
 Display a QR code for linking anonymous accounts on multiple devices.
 
-- Glome Scanner Pairing
+* Glome Scanner Pairing
+
 Enable a web based QR scanner. This feature will only work on browsers
 that support WebRTC. Please see [http://caniuse.com/#feat=rtcpeerconnection]
 for further details.
 
-- Glome Notification Broker
+* Glome Notification Broker
+
 Enable a websocket based notification channel between the Glome API and
 the Wordpress website. Websockets support can be checked at
 [http://caniuse.com/#feat=websockets].
@@ -103,7 +107,7 @@ Please send an email to contact at glome dot me.
 ## License
 
 The "Glome plugin for Wordpress" is licensed under the MIT License.
-A copy of the license from can be downloaded from [here].
+A copy of the license from can be downloaded from [https://github.com/glome/glome-wp/raw/master/LICENSE].
 
 ## Kudos
 

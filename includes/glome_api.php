@@ -281,6 +281,38 @@ function glome_get_brothers()
   return $ret;
 }
 
+/**
+ * Request an API access
+ */
+function glome_request_api_access($details)
+{
+  $ret = null;
+
+  if (! is_array($details) ||
+      ! array_key_exists('servername', $details) ||
+      ! array_key_exists('requester', $details) ||
+      ! array_key_exists('username', $details) ||
+      ! array_key_exists('email', $details) ||
+      $details['requester'] != 'Glome Plugin for Wordpress')
+  {
+    return $ret;
+  }
+
+  $query = '/applications/trial.json';
+  $response = glome_post($query, [
+    'application[servername]' => $details['servername'],
+    'application[requester]' => $details['requester'],
+    'application[username]' => $details['username'],
+    'application[email]' => $details['email'],
+  ]);
+
+  if (isset($response['body']))
+  {
+    $ret = $response['body'];
+  }
+
+  return $ret;
+}
 
 /**
  * Check if the current Glome ID is paired to a wallet
@@ -306,7 +338,8 @@ function glome_track_activity($url)
   $ret = null;
   $glomeid = mywp_current_glomeid();
 
-  if ($glomeid && get_option('glome_activity_tracking'))
+  if ($glomeid
+    && get_option('glome_activity_tracking'))
   {
     $query = '/users/' . $glomeid . '/data.json';
     $response = glome_post($query, ['userdata[content]' => 'visit: ' . $url]);

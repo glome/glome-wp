@@ -131,7 +131,7 @@ jQuery(document).on('initpairing', function(event, params)
      */
     function stream_stopped()
     {
-      console.log('streaming ending');
+      //console.log('streaming ending');
       if (! scanID) return;
       clearInterval(scanID);
 
@@ -149,13 +149,13 @@ jQuery(document).on('initpairing', function(event, params)
       }
 
       scanID = null;
-      console.log('streaming ended');
+      //console.log('streaming ended');
     }
 
     jQuery('.receive button.open').on('click', function(event)
     {
       if (scanID) return;
-      console.log('start');
+      //console.log('start');
       scanner.start();
     });
 
@@ -175,7 +175,7 @@ jQuery(document).on('initpairing', function(event, params)
     // handle close camera button click
     jQuery('.receive button.close').on('click', function(event)
     {
-      console.log('click close');
+      //console.log('click close');
       scanner.stop();
     })
   }
@@ -192,8 +192,6 @@ jQuery(document).on('initpairing', function(event, params)
     data: data,
     success: function(data)
     {
-      //console.log('create_pairing_code data');
-      //console.log(data);
       if (data == '0') return;
 
       try
@@ -202,9 +200,9 @@ jQuery(document).on('initpairing', function(event, params)
       }
       catch (e)
       {
+        console.log(e);
         return;
       }
-      //console.log(json);
 
       if (! json) return;
 

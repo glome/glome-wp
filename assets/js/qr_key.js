@@ -12,10 +12,8 @@ jQuery(document).ready(function()
   if (visible) jQuery(document).trigger('initkey', key_params);
 });
 
-jQuery(document).on('initkey', function(event, params) {
-  //console.log('init key');
-  //console.log(params);
-
+jQuery(document).on('initkey', function(event, params)
+{
   jQuery('.key .qrcode').empty();
 
   var code = jQuery('.key .qrcode').attr('data-code');
@@ -29,14 +27,12 @@ jQuery(document).on('initkey', function(event, params) {
   {
     jQuery('.key .qrcode').toggleClass('hidden');
     jQuery('.key .info').toggleClass('hidden');
-    console.log('hide canvas');
   });
 
   jQuery('.key .info').on('dblclick swipe', function(e)
   {
     jQuery('.key .info').toggleClass('hidden');
     jQuery('.key .qrcode').toggleClass('hidden');
-    console.log('hide info');
   });
 
   var countdown = jQuery('.key .clock').attr('data-countdown');

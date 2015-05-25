@@ -6,13 +6,16 @@
               {
                 include __DIR__ . '/request_api_access.php';
               }
+              else
+              {
             ?>
-
-            <h3><?php _e('Glome API details', 'glome_plugin'); ?></h3>
 
             <form method="post" action="">
                 <input type="hidden" name="page" value="glome" />
                 <input type="hidden" name="method" value="existing"/>
+
+                <h3><?php _e('Glome API details', 'glome_plugin'); ?></h3>
+
                 <table class="form-table">
                     <tr class="row_odd">
                         <td style="width:120px">
@@ -44,16 +47,11 @@
                             ?>" />
                         </td>
                     </tr>
-                    <tr class="row_odd">
-                        <td style="width:120px">
-                            <label for="glome_plugin_settings_api_expires_at"><?php _e('API expires at', 'glome_plugin'); ?>:</label>
-                        </td>
-                        <td>
-                          <span class="expires_at">
-                            <?php echo (isset ($settings['api_expires_at']) ? htmlspecialchars($settings ['api_expires_at']) : 'TODO'); ?>
-                          </span>
-                        </td>
-                    </tr>
+                </table>
+
+                <h3><?php _e('Plugin config', 'glome_plugin'); ?></h3>
+
+                <table class="form-table">
                     <tr class="row_odd">
                         <td style="width:120px">
                             <label for="glome_plugin_settings_activity_tracking"><?php _e('Activity tracking', 'glome_plugin'); ?>:</label>
@@ -85,8 +83,14 @@
                         </td>
                     </tr>
                 </table>
+
                 <p class="submit">
                     <input type="submit" class="button-primary" value="<?php _e('Save Changes', 'glome_plugin') ?>" />
                 </p>
+
             </form>
+
+            <?php
+              }
+            ?>
         </div>

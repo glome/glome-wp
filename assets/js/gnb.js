@@ -14,7 +14,8 @@ jQuery(document).ready(function()
 });
 
 // gnb magic; connect to web socket; parse messages etc.
-jQuery(document).on('startgnb', function(event, gnb_params) {
+jQuery(document).on('startgnb', function(event, gnb_params)
+{
   var uid = gnb_params['uid'];
   var gid = gnb_params['gid'];
   var token = gnb_params['token'];
@@ -34,22 +35,25 @@ jQuery(document).on('startgnb', function(event, gnb_params) {
     socket.emit('gnb:connect', uid, token);
 
     // want to hook into this one?
-    socket.on('disconnect', function(msg) {
-    });
+    socket.on('disconnect', function(msg)
+    {});
 
     // want to hook into this one?
-    socket.on('gnb:connected', function(msg) {
+    socket.on('gnb:connected', function(msg)
+    {
       jQuery('.gnb').addClass('active');
     });
 
     // received a broadcast from GNB
-    socket.on('gnb:broadcast', function(msg) {
+    socket.on('gnb:broadcast', function(msg)
+    {
       jQuery('.gnb').addClass('unread');
       jQuery('.gnbmessage').text(msg);
     });
 
     // received a direct message from GNB
-    socket.on('gnb:message', function(msg) {
+    socket.on('gnb:message', function(msg)
+    {
       jQuery('.gnb').addClass('unread');
       jQuery('.gnbmessage').text(msg);
     });

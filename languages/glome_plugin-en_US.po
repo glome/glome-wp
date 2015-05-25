@@ -1,8 +1,8 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: Glome plugin for Wordpress\n"
-"POT-Creation-Date: 2015-05-11 10:08+0200\n"
-"PO-Revision-Date: 2015-05-11 14:07+0200\n"
+"POT-Creation-Date: 2015-05-20 15:20+0200\n"
+"PO-Revision-Date: 2015-05-20 15:22+0200\n"
 "Last-Translator: Ferenc Székely <ferenc@glome.me>\n"
 "Language-Team: Glome Inc. <contact@glome.me>\n"
 "Language: en\n"
@@ -113,7 +113,7 @@ msgstr "You have currently no paired devices."
 msgid "Pair Info Glome ID"
 msgstr "Glome ID"
 
-#: templates/paired_devices.php:34
+#: templates/paired_devices.php:38
 msgid "Unpair"
 msgstr "Unpair"
 
@@ -177,13 +177,13 @@ msgid "Request API Access"
 msgstr "Activate Glome"
 
 #: templates/request_api_access.php:4
-msgid "API trial info"
+msgid "API info 1"
 msgstr ""
-"By clicking the button below Glome will grant API credentials for your site "
-"for a trial period of 1 month."
+"By clicking the button below Glome will grant API credentials for your site. "
+"Your site will be able to use basic Glome features."
 
 #: templates/request_api_access.php:5
-msgid "API permanent info"
+msgid "API info 2"
 msgstr "Please find more information on Glome API plans at http://glome.me."
 
 #: templates/request_api_access.php:8
@@ -198,37 +198,59 @@ msgstr "scanning..."
 msgid "Glome Settings"
 msgstr "Glome"
 
-#: templates/settings.php:11
+#: templates/settings.php:17
 msgid "Glome API details"
 msgstr "API Access Details"
 
-#: templates/settings.php:19
+#: templates/settings.php:22
 msgid "API base path"
-msgstr "API Base Path"
+msgstr "API base path"
 
-#: templates/settings.php:29
+#: templates/settings.php:32
 msgid "API UID"
 msgstr "API UID"
 
-#: templates/settings.php:39
+#: templates/settings.php:42
 msgid "API Key"
 msgstr "API Key"
 
-#: templates/settings.php:49
-msgid "API expires at"
-msgstr "Valid until"
+#: templates/settings.php:52
+msgid "Plugin config"
+msgstr "Configuration"
 
-#: templates/settings.php:59
+#: templates/settings.php:57
 msgid "Activity tracking"
-msgstr "Activity Tracking"
+msgstr "Enable activity tracking to Glome"
 
-#: templates/settings.php:74
+#: templates/settings.php:72
 msgid "Clone name"
-msgstr "Clone Name"
+msgstr "Clone display name upon pairing"
 
-#: templates/settings.php:89
+#: templates/settings.php:88 templates/user_preferences.php:22
 msgid "Save Changes"
 msgstr "Save Changes"
+
+#: templates/user_preferences.php:3
+msgid "User preferences"
+msgstr "Glome preferences"
+
+#: templates/user_preferences.php:11
+msgid "Allow tracking me"
+msgstr "Allow tracking me on this site"
+
+#~ msgid "API trial info"
+#~ msgstr ""
+#~ "By clicking the button below Glome will grant API credentials for your "
+#~ "site. Your site will be able to use basic Glome features."
+
+#~ msgid "API permanent info"
+#~ msgstr "Please find more information on Glome API plans at http://glome.me."
+
+#~ msgid "Glome settings"
+#~ msgstr "Glome Settings"
+
+#~ msgid "API expires at"
+#~ msgstr "Valid until"
 
 #~ msgid "Clone displayed name"
 #~ msgstr "Clone Name"

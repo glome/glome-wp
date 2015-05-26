@@ -1,14 +1,14 @@
 <?php
 /**
- * @package Glome plugin for Wordpress
- * @version 0.3
+ * @package Glome Plugin for Wordpress
+ * @version 1.0
  */
 /*
 Plugin Name: Glome
 Plugin URI: http://wordpress.org/plugins/glome/
-Description: Glome plugin for Wordpress
-Version: 0.3
-Author: http://glome.me/
+Description: Glome Plugin for Wordpress
+Version: 1.0
+Author: Glome Oy - http://glome.me
 */
 
 include __DIR__ . '/includes/wp_bindings.php';
@@ -215,11 +215,8 @@ function redirect_if_needed()
   }
 }
 
-// called as soon as WP user is logged in
-// TODO:
 // this could be used to check if the WP account has a corresponding Glome ID
-//
-//add_action('set_current_user', 'glome_get_user_profile');
+// add_action('set_current_user', 'glome_get_user_profile');
 
 include __DIR__ . '/includes/ui.php';
 include __DIR__ . '/includes/pairing_common.php';

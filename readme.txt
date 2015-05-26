@@ -32,10 +32,14 @@ functional Wordpress accounts as mentioned above.
 
 Two widgets will let these newly created anonymous, "soft accounts" to
 be linked with other anonymous accounts. The same Wordpress site
-accessed by the same person on multiple devices can be personalized
-without ever asking for usernames, email addresses or passwords.
+accessed by the same person on multiple devices can be personalised
+without ever asking for user names, email addresses or passwords.
 
 This will make the Wordpress site stand out from the rest.
+
+== Demo ==
+
+Working demo can be found at [http://wp.glome.me].
 
 == Installation ==
 
@@ -79,7 +83,7 @@ Enable a websocket based notification channel between the Glome API and
 the Wordpress website. Websockets support can be checked at
 [http://caniuse.com/#feat=websockets].
 
-The title of these widgets can be customized.
+The title of these widgets can be customised.
 
 == Glome specific settings ==
 
@@ -87,7 +91,7 @@ The Glome settings page displays the following:
 
 * API Base Path: address of the Glome API server.
 
-* API UID: UID for this particualr Wordpress site.
+* API UID: UID for this particular Wordpress site.
 
 * API Key: API key for this particular Wordpress site.
 
@@ -103,7 +107,7 @@ option is enabled. By default this option is disabled.
 
 == Glome API access ==
 
-The Wordpress site is granted exclusive, non transferrable, basic access
+The Wordpress site is granted exclusive, non transferable, basic access
 rights to the Glome API. For more details on API plans please visit
 http://glome.me.
 
@@ -113,35 +117,7 @@ Please send an email to contact at glome dot me.
 
 == Frequently Asked Questions ==
 
-= A question that someone might have =
-
-An answer to that question.
-
-= What about foo bar? =
-
-Answer to foo bar dilemma.
-
-== Screenshots ==
-
-1. This screen shot description corresponds to screenshot-1.(png|jpg|jpeg|gif). Note that the screenshot is taken from
-the /assets directory or the directory that contains the stable readme.txt (tags or trunk). Screenshots in the /assets
-directory take precedence. For example, `/assets/screenshot-1.png` would win over `/tags/4.3/screenshot-1.png`
-(or jpg, jpeg, gif).
-2. This is the second screen shot
-
 == Changelog ==
 
 = 1.0 =
-* A change since the previous version.
-* Another change.
-
-= 0.5 =
-* List versions from most recent at top to oldest at bottom.
-
-== Upgrade Notice ==
-
-= 1.0 =
-Upgrade notices describe the reason a user should upgrade.  No more than 300 characters.
-
-= 0.5 =
-This version fixes a security related bug.  Upgrade immediately.
+* Initial version for Plugin Directory at wordpress.org

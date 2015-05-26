@@ -117,6 +117,10 @@ Please send an email to contact at glome dot me.
 
 == Frequently Asked Questions ==
 
+== Kudos ==
+
+* LazarSoft for the amazing JS QR scanner [http://www.webqr.com/]
+
 == Changelog ==
 
 = 1.0 =

@@ -89,7 +89,6 @@ function glome_ajax_request_api_access()
       // save the API credentials to the local WP instance
       update_option('glome_api_uid', $json->uid);
       update_option('glome_api_key', $json->apikey);
-      update_option('glome_api_domain', 'https://api.glome.me/');
     }
 
     echo $ret;

@@ -33,17 +33,24 @@ function glome_plugin_activate()
 {
   if (! function_exists ('register_post_status'))
   {
-    deactivate_plugins (basename(dirname(__FILE__)) . '/' . basename(__FILE__));
+    deactivate_plugins(basename(dirname(__FILE__)) . '/' . basename(__FILE__));
     exit;
   }
-  update_option ('glome_plugin_activation_message', 0);
+  update_option('glome_plugin_activation_message', 0);
+
+  // set the default Glome API domain
+  $api_domain = get_option('glome_api_domain');
+  if (! $api_domain || trim($api_domain) == '')
+  {
+    update_option('glome_api_domain', 'https://api.glome.me/');
+  }
 }
 register_activation_hook (__FILE__, 'glome_plugin_activate');
 
 /**
  *
  */
-function glome_plugin_add_setup_link ($links, $file)
+function glome_plugin_add_setup_link($links, $file)
 {
   static $glome_plugin = null;
 

@@ -43,18 +43,20 @@ Working demo can be found at [http://wp.glome.me].
 
 == Installation ==
 
-Download and unpack the plugin to the plugin directory of the Wordpress
-server.
+Download and unpack the plugin to a directory called 'glome-wp' inside
+the Wordpress server's plugin directory.
 
 Find the installed Glome plugin in the Plugins menu and enable it. This
 can be done by logging in to Wordpress as an administrator.
 
-== Configuration ==
+After activating the pliugin please go to the Glome settings page under
+the Settings menu while being logged in to Wordpress as an
+administrator.
 
-Go to the Glome settings page under the Settings menu while being logged
-in to Wordpress as an administrator. Click the "Request API Credentials"
-button and wait until the page displays the acquired Glome API
-credentials.
+Click the "Request API Credentials" button and wait until the page
+displays the acquired Glome API credentials.
+
+Once the API credentials are shown you are ready to add the widgets.
 
 == How to add widgets? ==
 

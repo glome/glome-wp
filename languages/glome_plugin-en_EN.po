@@ -2,7 +2,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: Glome plugin for Wordpress\n"
 "POT-Creation-Date: 2015-05-24 20:06+0200\n"
-"PO-Revision-Date: 2015-05-24 20:06+0200\n"
+"PO-Revision-Date: 2015-05-26 12:37+0200\n"
 "Last-Translator: Ferenc Székely <ferenc@glome.me>\n"
 "Language-Team: Glome Inc. <contact@glome.me>\n"
 "Language: en\n"
@@ -204,7 +204,7 @@ msgstr "API Access Details"
 
 #: templates/settings.php:22
 msgid "API base path"
-msgstr "API base path"
+msgstr "API Base Path"
 
 #: templates/settings.php:32
 msgid "API UID"

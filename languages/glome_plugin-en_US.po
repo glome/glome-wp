@@ -1,8 +1,8 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: Glome plugin for Wordpress\n"
-"POT-Creation-Date: 2015-05-20 15:20+0200\n"
-"PO-Revision-Date: 2015-05-20 15:22+0200\n"
+"POT-Creation-Date: 2015-05-24 20:06+0200\n"
+"PO-Revision-Date: 2015-05-26 12:37+0200\n"
 "Last-Translator: Ferenc Székely <ferenc@glome.me>\n"
 "Language-Team: Glome Inc. <contact@glome.me>\n"
 "Language: en\n"
@@ -186,7 +186,7 @@ msgstr ""
 msgid "API info 2"
 msgstr "Please find more information on Glome API plans at http://glome.me."
 
-#: templates/request_api_access.php:8
+#: templates/request_api_access.php:7
 msgid "Request API Credentials"
 msgstr "Request API Credentials"
 
@@ -204,7 +204,7 @@ msgstr "API Access Details"
 
 #: templates/settings.php:22
 msgid "API base path"
-msgstr "API base path"
+msgstr "API Base Path"
 
 #: templates/settings.php:32
 msgid "API UID"

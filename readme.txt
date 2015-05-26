@@ -60,7 +60,7 @@ Once the API credentials are shown you are ready to add the widgets.
 
 == How to add widgets? ==
 
-The widgets of the plugin can be added to the Widget area once the
+The widgets of the plugin can be added to the Widget area once the API
 credentials are granted. Navigate to "Appearance -> Widgets" in the
 Wordpress admin pages and drag and drop the following widgets from the
 "Available Widgets" list to the "Widget Area":
@@ -85,7 +85,7 @@ Enable a websocket based notification channel between the Glome API and
 the Wordpress website. Websockets support can be checked at
 [http://caniuse.com/#feat=websockets].
 
-The title of these widgets can be customised.
+Note! The title of these widgets can be customised.
 
 == Glome specific settings ==
 

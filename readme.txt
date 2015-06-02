@@ -37,10 +37,6 @@ without ever asking for user names, email addresses or passwords.
 
 This will make the Wordpress site stand out from the rest.
 
-== Demo ==
-
-Working demo can be found at [http://wp.glome.me].
-
 == Installation ==
 
 Download and unpack the plugin to a directory called 'glome-wp' inside
@@ -58,7 +54,26 @@ displays the acquired Glome API credentials.
 
 Once the API credentials are shown you are ready to add the widgets.
 
-== How to add widgets? ==
+== Frequently Asked Questions ==
+
+= Do you have a demo site? =
+
+Yes, we do. Please [click here for a working demo](http://wp.glome.me).
+
+= What does the Glome API access mean? =
+
+By clicking the button on the plugin's settings page Glome will grant
+exclusive, non transferable, basic API access rights to your
+Wordpress site.
+
+For more details on API plans please visit [Glome's website](http://glome.me).
+
+= What are the UI elements of this plugin? =
+
+The plugin has only widgets that can be added to your user interface.
+Please see the next question about adding the widgets.
+
+= How do I add widgets? =
 
 The widgets of the plugin can be added to the Widget area once the API
 credentials are granted. Navigate to "Appearance -> Widgets" in the
@@ -67,27 +82,27 @@ Wordpress admin pages and drag and drop the following widgets from the
 
 * Glome One-time Login
 
-Enable the one click anonymous Wordpress account creation and login.
+  Enable the one click anonymous Wordpress account creation and login.
 
 * Glome QR For Pairing
 
-Display a QR code for linking anonymous accounts on multiple devices.
+  Display a QR code for linking anonymous accounts on multiple devices.
 
 * Glome Scanner Pairing
 
-Enable a web based QR scanner. This feature will only work on browsers
-that support WebRTC. Please see [http://caniuse.com/#feat=rtcpeerconnection]
-for further details.
+  Enable a web based QR scanner. This feature will only work on browsers
+  that support WebRTC. Please see [this page](http://caniuse.com/#feat=rtcpeerconnection)
+  for further details.
 
 * Glome Notification Broker
 
-Enable a websocket based notification channel between the Glome API and
-the Wordpress website. Websockets support can be checked at
-[http://caniuse.com/#feat=websockets].
+  Enable a websocket based notification channel between the Glome API and
+  the Wordpress website. Websockets support can be checked at
+  [this website](http://caniuse.com/#feat=websockets).
 
 Note! The title of these widgets can be customised.
 
-== Glome specific settings ==
+= What are the Glome specific settings? =
 
 The Glome settings page displays the following:
 
@@ -99,31 +114,35 @@ The Glome settings page displays the following:
 
 * Activity Tracking: Glome registers the URLs the user has been
 visiting on this Wordpress site if this option is enabled. By default
-this option is disabled.
-
-Note! Individual users should also agree to submit data to Glome on
-their behalf!
+this option is disabled. Note! Individual users should also agree to
+submit data to Glome on their behalf!
 
 * Clone Name: paired accounts can have the same display name, if this
 option is enabled. By default this option is disabled.
 
-== Glome API access ==
+= Where did you get the JS QR scanner from? =
 
-The Wordpress site is granted exclusive, non transferable, basic access
-rights to the Glome API. For more details on API plans please visit
-http://glome.me.
+Kudos to LazarSoft for the amazing JS QR scanner [http://www.webqr.com/].
 
-== Feedback and contact ==
+Please be aware that only a few browsers support the API needed by the
+scanner.
 
-Please send an email to contact at glome dot me.
+= How can I get in touch with you? =
 
-== Frequently Asked Questions ==
+We would welcome all comments, questions, suggestions. Please send an
+email to contact at glome dot me.
 
-== Kudos ==
+== Upgrade Notice ==
 
-* LazarSoft for the amazing JS QR scanner [http://www.webqr.com/]
+This is the first release, hence this section is irrelevant for now.
+
+== Screenshots ==
+
+Coming as soon as the plugin is hosted in the subversion repository
+hosted by the Plugin Directory of [Wordpress](http://wordpress.org).
 
 == Changelog ==
 
 = 1.0 =
-* Initial version for Plugin Directory at wordpress.org
+* Initial version for the Plugin Directory of [Wordpress](http://wordpress.org)
+

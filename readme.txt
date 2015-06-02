@@ -1,4 +1,4 @@
-=== Plugin Name ===
+=== Glome ===
 
 Contributors: _ferenc
 Tags: anonymity, privacy, linking, personalization, Glome

@@ -39,18 +39,16 @@ This will make the Wordpress site stand out from the rest.
 
 == Installation ==
 
-Download and unpack the plugin to a directory called 'glome-wp' inside
-the Wordpress server's plugin directory.
+Download and unpack the plugin to the Wordpress server's plugin
+directory.
 
-Find the installed Glome plugin in the Plugins menu and enable it. This
-can be done by logging in to Wordpress as an administrator.
+Login to Wordpress as an administrator.
 
-After activating the pliugin please go to the Glome settings page under
-the Settings menu while being logged in to Wordpress as an
-administrator.
+Find the installed Glome plugin in the Plugins menu and enable it.
 
-Click the "Request API Credentials" button and wait until the page
-displays the acquired Glome API credentials.
+After activating the plugin please go to the Glome settings page under
+the Settings menu. Click the "Request API Credentials" button and wait
+until the page displays the acquired Glome API credentials.
 
 Once the API credentials are shown you are ready to add the widgets.
 
@@ -143,6 +141,10 @@ hosted by the Plugin Directory of [Wordpress](http://wordpress.org).
 
 == Changelog ==
 
+= 1.1 =
+* Fixing hard coded plugin path name. Proper input validation.
+
 = 1.0 =
 * Initial version for the Plugin Directory of [Wordpress](http://wordpress.org)
+
 

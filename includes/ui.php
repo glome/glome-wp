@@ -27,7 +27,7 @@ function render_show_qr($source, $args = array ())
 
 function glome_add_styles()
 {
-  $filepath = plugins_url('/glome-wp/assets/css/glome.css');
+  $filepath = plugins_url('../assets/css/glome.css', __FILE__);
   wp_enqueue_style('glome', $filepath, false);
 }
 add_action('init', 'glome_add_styles');
@@ -37,41 +37,41 @@ function glome_add_scripts()
   $filepath = '/socket.io/socket.io.js';
   wp_enqueue_script('socketio', $filepath, false);
 
-  $filepath = plugins_url('/glome-wp/assets/js/jquery.qrcode.min.js');
+  $filepath = plugins_url('../assets/js/jquery.qrcode.min.js', __FILE__);
   wp_enqueue_script('jquery-qrlib', $filepath, array('jquery'));
 
-  $filepath = plugins_url('/glome-wp/assets/js/jquery.mobile.custom.min.js');
+  $filepath = plugins_url('../assets/js/jquery.mobile.custom.min.js', __FILE__);
   wp_enqueue_script('jquery-mob', $filepath, false);
 
-  $filepath = plugins_url('/glome-wp/assets/js/qr_key.js');
+  $filepath = plugins_url('../assets/js/qr_key.js', __FILE__);
   wp_enqueue_script('qr_key', $filepath, false);
   wp_localize_script('qr_key', 'key_params', array(
     'hello' => 'key'
   ));
 
-  $filepath = plugins_url('/glome-wp/assets/js/llqrcode.js');
+  $filepath = plugins_url('../assets/js/llqrcode.js', __FILE__);
   wp_enqueue_script('jsqr', $filepath, false);
 
-  $filepath = plugins_url('/glome-wp/assets/js/capture.js');
+  $filepath = plugins_url('../assets/js/capture.js', __FILE__);
   wp_enqueue_script('capture', $filepath, false);
 
-  $filepath = plugins_url('/glome-wp/assets/js/pairing.js');
+  $filepath = plugins_url('../assets/js/pairing.js', __FILE__);
   wp_enqueue_script('pairing', $filepath, false);
   wp_localize_script('pairing', 'pairing_params', array(
     'ajax_url' => admin_url('admin-ajax.php'),
     'pairing_url' => admin_url('admin-post.php?action=pairing&code='),
   ));
 
-  $filepath = plugins_url('/glome-wp/assets/js/unpairing.js');
+  $filepath = plugins_url('../assets/js/unpairing.js', __FILE__);
   wp_enqueue_script('unpairing', $filepath, false);
   wp_localize_script('unpairing', 'unpairing_params', array(
     'ajax_url' => admin_url('admin-ajax.php')
   ));
 
-  $filepath = plugins_url('/glome-wp/assets/js/jquery.cookie.js');
+  $filepath = plugins_url('../assets/js/jquery.cookie.js', __FILE__);
   wp_enqueue_script('jquerycookie', $filepath, false);
 
-  $filepath = plugins_url('/glome-wp/assets/js/gnb.js');
+  $filepath = plugins_url('../assets/js/gnb.js', __FILE__);
   wp_enqueue_script('gnb', $filepath, false);
 
   $token = false;

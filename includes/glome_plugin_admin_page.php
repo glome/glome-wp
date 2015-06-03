@@ -6,7 +6,7 @@ function glome_plugin_admin_page()
 {
   function glome_add_admin_scripts()
   {
-    $filepath = plugins_url('/glome-wp/assets/js/request_api_access.js');
+    $filepath = plugins_url('../assets/js/request_api_access.js', __FILE__);
     wp_enqueue_script('apiaccess', $filepath, false);
     wp_localize_script('apiaccess', 'api_access_params', array(
       'ajax_url' => admin_url('admin-ajax.php') . '?action=request_api_access',

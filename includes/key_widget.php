@@ -37,22 +37,22 @@ class glome_key_widget extends WP_Widget
 
     //Hide the widget for logged in users?
     if (isset($instance['key']['code']) and
-        (empty ($instance ['widget_hide_for_logged_in_users']) or ! is_user_logged_in ()))
+        (empty($instance['widget_hide_for_logged_in_users']) or ! is_user_logged_in()))
     {
       //Before Widget
-      echo $args ['before_widget'];
+      echo $args['before_widget'];
 
       //Title
-      if (! empty ($instance ['widget_title']))
+      if (! empty($instance['widget_title']))
       {
-        echo $args ['before_title'] . apply_filters ('widget_title', $instance ['widget_title']) . $args ['after_title'];
+        echo $args['before_title'] . apply_filters('widget_title', $instance['widget_title']) . $args['after_title'];
       }
 
       //Content
       echo render_key_login('widget', $instance);
 
       //After Widget
-      echo $args ['after_widget'];
+      echo $args['after_widget'];
     }
   }
 

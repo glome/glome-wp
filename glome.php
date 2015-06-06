@@ -21,8 +21,7 @@ function load_locales()
 {
   $domain = 'glome_plugin';
   $locale = apply_filters('plugin_locale', get_locale(), $domain);
-  // e.g. wp-content/plugins/plugin-name/languages/glome_plugin-en_US.mo
-  load_plugin_textdomain( $domain, FALSE, basename( dirname( __FILE__ ) ) . '/languages/');
+  load_plugin_textdomain($domain, FALSE, plugin_basename(dirname(__FILE__)) . '/languages/');
 }
 add_action('init', 'load_locales');
 
@@ -87,7 +86,7 @@ function glome_login_redirect($to, $request, $user)
   {
     if (! $current_user->has_prop('glomeid'))
     {
-      // no glome users go to home
+      // no glome user -> go home
       $ret = home_url();
     }
   }
@@ -112,6 +111,7 @@ function glome_start()
     session_start();
   }
 
+  // we don't save this into DB or file, no need to sanitze further
   if (isset($_POST['one_time_access']))
   {
     $_SESSION['glome'] = glome_create_user();

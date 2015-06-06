@@ -44,7 +44,7 @@ directory.
 
 Login to Wordpress as an administrator.
 
-Find the installed Glome plugin in the Plugins menu and enable it.
+Find the installed Glome plugin in the Plugins menu and activate it.
 
 After activating the plugin please go to the Glome settings page under
 the Settings menu. Click the "Request API Credentials" button and wait

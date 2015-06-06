@@ -1,15 +1,15 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: Glome plugin for Wordpress\n"
-"POT-Creation-Date: 2015-05-24 20:06+0200\n"
-"PO-Revision-Date: 2015-05-26 12:37+0200\n"
+"POT-Creation-Date: 2015-06-05 18:33+0200\n"
+"PO-Revision-Date: 2015-06-05 18:34+0200\n"
 "Last-Translator: Ferenc Székely <ferenc@glome.me>\n"
 "Language-Team: Glome Inc. <contact@glome.me>\n"
 "Language: en\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
-"X-Generator: Poedit 1.7.6\n"
+"X-Generator: Poedit 1.7.7\n"
 "X-Poedit-Basepath: ../\n"
 "Plural-Forms: nplurals=2; plural=(n != 1);\n"
 "X-Poedit-KeywordsList: __;_e\n"
@@ -61,13 +61,13 @@ msgstr "Show a QR code for pairing."
 msgid "Show QR Widget Title"
 msgstr "Show QR Widget Title"
 
-#: templates/glome_api_feedback.php:13
-msgid "api pairing ok"
-msgstr "Pairing succeeded."
-
-#: templates/glome_api_feedback.php:17
+#: templates/glome_api_feedback.php:6
 msgid "api pairing failed"
 msgstr "Pairing failed."
+
+#: templates/glome_api_feedback.php:15
+msgid "api pairing ok"
+msgstr "Pairing succeeded."
 
 #: templates/glome_profile.php:1
 msgid "Glome Profile"
@@ -107,7 +107,7 @@ msgstr ""
 
 #: templates/paired_devices.php:21
 msgid "Paired devices none"
-msgstr "You have currently no paired devices."
+msgstr "You currently do not have any paired devices."
 
 #: templates/paired_devices.php:32
 msgid "Pair Info Glome ID"

@@ -29,13 +29,40 @@ function glome_plugin_admin_page()
       $_POST['glome_plugin_settings']['api_domain'],
       $_POST['glome_plugin_settings']['api_key']))
     {
-      update_option('glome_api_uid', $_POST['glome_plugin_settings']['api_uid']);
-      update_option('glome_api_key', $_POST['glome_plugin_settings']['api_key']);
-      update_option('glome_api_domain', $_POST['glome_plugin_settings']['api_domain']);
+      // validate api_uid
+      // 1. it's a string (a-zA-Z0-9.) chars allowed
+      // 2. max 255 bytes
+      if (preg_match('/^[a-zA-Z0-9.]+$/', $_POST['glome_plugin_settings']['api_uid']) &&
+          strlen($_POST['glome_plugin_settings']['api_uid']) <= 255)
+      {
+        update_option('glome_api_uid', $_POST['glome_plugin_settings']['api_uid']);
+      }
 
+      // validate api_key
+      // 1. only hex string
+      // 2. 32 bytes fixed length
+      if (ctype_xdigit($_POST['glome_plugin_settings']['api_key']) &&
+          strlen($_POST['glome_plugin_settings']['api_key']) == 32)
+      {
+        update_option('glome_api_key', $_POST['glome_plugin_settings']['api_key']);
+      }
+
+      // validate api_domain
+      // 1. it's a string (a-zA-Z0-9.:/) chars allowed
+      // 2. max 255 bytes
+      if (preg_match('/^[a-zA-Z0-9.:\/]+$/', $_POST['glome_plugin_settings']['api_domain']) &&
+          strlen($_POST['glome_plugin_settings']['api_domain']) <= 255)
+      {
+        update_option('glome_api_domain', $_POST['glome_plugin_settings']['api_domain']);
+      }
+
+      // validate activity_tracking
+      // can only be 0 or 1
       $checkbox = (int)(isset($_POST['glome_plugin_settings']['activity_tracking']));
       update_option('glome_activity_tracking', $checkbox);
 
+      // validate clone_name
+      // can only be 0 or 1
       $checkbox = (int)(isset($_POST['glome_plugin_settings']['clone_name']));
       update_option('glome_clone_name', $checkbox);
     }

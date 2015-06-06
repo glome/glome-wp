@@ -3,6 +3,8 @@
 if (isset($_REQUEST['code']) && isset($_REQUEST['action']))
 {
   $style = $title = false;
+  $message = __('api pairing failed', 'glome_plugin');
+
   ($_REQUEST['code'] == 200) ? $style = 'notice-success' : $style = 'notice-error';
 
   switch ($_REQUEST['action'])
@@ -11,11 +13,6 @@ if (isset($_REQUEST['code']) && isset($_REQUEST['action']))
       if ($_REQUEST['code'] == '200')
       {
         $message = __('api pairing ok', 'glome_plugin');
-      }
-      else
-      {
-        $message = __('api pairing failed', 'glome_plugin');
-//        $message .= ' ' . __('api error code', 'glome_plugin') . ': ';
       }
       break;
   }

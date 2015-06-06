@@ -2,7 +2,12 @@
 // handler for creating pairing code from JS
 function glome_ajax_create_pairing_code()
 {
-  echo glome_create_pairing_code($_POST['kind']);
+  // validate kind
+  // 1. allowed values: b
+  if ($_POST['kind'] == 'b')
+  {
+    echo glome_create_pairing_code($_POST['kind']);
+  }
   die();
 }
 add_action('wp_ajax_create_pairing_code', 'glome_ajax_create_pairing_code');
@@ -10,7 +15,12 @@ add_action('wp_ajax_create_pairing_code', 'glome_ajax_create_pairing_code');
 // handler for unpairing devices from JS
 function glome_ajax_unpair()
 {
-  echo glome_post_unpair($_POST['id']);
+  // validate the id
+  // 1. must be an integer > 0
+  if ((int)$_POST['id'] > 0)
+  {
+    echo glome_post_unpair($_POST['id']);
+  }
   die();
 }
 add_action('wp_ajax_unpair', 'glome_ajax_unpair');
@@ -22,7 +32,9 @@ function handle_pairing()
     $sync_code = false;
     status_header(200);
 
-    if (isset($_REQUEST['code']) && strlen($_REQUEST['code']) == 12)
+    // validate the code variable
+    if (isset($_REQUEST['code']) && strlen($_REQUEST['code']) == 12 &&
+        ctype_xdigit($_REQUEST['code']))
     {
       $sync_code = $_REQUEST['code'];
     }

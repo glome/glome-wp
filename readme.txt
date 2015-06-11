@@ -141,6 +141,9 @@ hosted by the Plugin Directory of [Wordpress](http://wordpress.org).
 
 == Changelog ==
 
+= 1.2 =
+* Improved POST sanitizations.
+
 = 1.1 =
 * Fixing hard coded plugin path name. Proper input validation.
 

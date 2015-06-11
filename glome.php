@@ -37,12 +37,9 @@ function glome_plugin_activate()
   }
   update_option('glome_plugin_activation_message', 0);
 
-  // set the default Glome API domain
-  $api_domain = get_option('glome_api_domain');
-  if (! $api_domain || trim($api_domain) == '')
-  {
-    update_option('glome_api_domain', 'https://api.glome.me/');
-  }
+  // check and set the Glome API domain
+  // the function will sanitize the value; see glome_api.php
+  $domain = get_api_domain();
 }
 register_activation_hook (__FILE__, 'glome_plugin_activate');
 

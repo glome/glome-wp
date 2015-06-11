@@ -22,6 +22,7 @@ function glome_plugin_admin_page()
   function glome_settings()
   {
     $email = null;
+    $domain = null;
     $current_user = wp_get_current_user();
 
     if (isset($_POST, $_POST['glome_plugin_settings'],
@@ -29,31 +30,40 @@ function glome_plugin_admin_page()
       $_POST['glome_plugin_settings']['api_domain'],
       $_POST['glome_plugin_settings']['api_key']))
     {
-      // validate api_uid
-      // 1. it's a string (a-zA-Z0-9.) chars allowed
-      // 2. max 255 bytes
-      if (preg_match('/^[a-zA-Z0-9.]+$/', $_POST['glome_plugin_settings']['api_uid']) &&
-          strlen($_POST['glome_plugin_settings']['api_uid']) <= 255)
+      // sanitize and validate api_domain
+      // 1. it must be a valid URL
+      // 2. length: max 255 bytes
+      $raw = esc_url_raw($_POST['glome_plugin_settings']['api_domain']);
+
+      $sanitized = filter_var($raw, FILTER_VALIDATE_URL, FILTER_FLAG_PATH_REQUIRED);
+      if ($sanitized !== FALSE && strlen($sanitized) <= 255)
       {
-        update_option('glome_api_uid', $_POST['glome_plugin_settings']['api_uid']);
+        $domain = $sanitized;
+        update_option('glome_api_domain', $sanitized);
+      }
+      else
+      {
+        $domain = get_api_domain();
       }
 
-      // validate api_key
+      // sanitize and validate api_uid
+      // 1. it's a string (a-zA-Z0-9.) chars allowed
+      // 2. length: max 255 bytes
+      $raw = $_POST['glome_plugin_settings']['api_uid'];
+      $sanitized = preg_replace('/[^a-zA-Z0-9.]/i', '', $raw);
+      if (strlen($sanitized) <= 255)
+      {
+        update_option('glome_api_uid', $sanitized);
+      }
+
+      // sanitize and validate api_key
       // 1. only hex string
       // 2. 32 bytes fixed length
-      if (ctype_xdigit($_POST['glome_plugin_settings']['api_key']) &&
-          strlen($_POST['glome_plugin_settings']['api_key']) == 32)
+      $raw = $_POST['glome_plugin_settings']['api_key'];
+      $sanitized = preg_replace( '/[^a-fA-F0-9]/i', '', $raw);
+      if (ctype_xdigit($sanitized) && strlen($sanitized) == 32)
       {
-        update_option('glome_api_key', $_POST['glome_plugin_settings']['api_key']);
-      }
-
-      // validate api_domain
-      // 1. it's a string (a-zA-Z0-9.:/) chars allowed
-      // 2. max 255 bytes
-      if (preg_match('/^[a-zA-Z0-9.:\/]+$/', $_POST['glome_plugin_settings']['api_domain']) &&
-          strlen($_POST['glome_plugin_settings']['api_domain']) <= 255)
-      {
-        update_option('glome_api_domain', $_POST['glome_plugin_settings']['api_domain']);
+        update_option('glome_api_key', $sanitized);
       }
 
       // validate activity_tracking
@@ -70,13 +80,12 @@ function glome_plugin_admin_page()
     $domain = get_option('glome_api_domain');
 
     $settings = array(
-      'api_domain' =>  empty($domain) ? 'https://api.glome.me/' : $domain ,
+      'api_domain' => empty($domain) ? get_api_domain() : $domain,
       'api_uid' => get_option('glome_api_uid'),
       'api_key' => get_option('glome_api_key'),
       'activity_tracking' => get_option('glome_activity_tracking'),
       'clone_name' => get_option('glome_clone_name')
     );
-
     $email = $current_user->email;
     include __DIR__ . '/../templates/settings.php';
   }

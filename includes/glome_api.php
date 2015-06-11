@@ -1,11 +1,28 @@
 <?php
 
 /**
+ * Sanitize Glome API domain
+ */
+function get_api_domain()
+{
+  $default_glome_api_server = 'https://api.glome.me/';
+  $domain = esc_url_raw(get_option('glome_api_domain'));
+
+  if (filter_var($domain, FILTER_VALIDATE_URL) === FALSE)
+  {
+    $domain = $default_glome_api_server;
+    update_option('glome_api_domain', $domain);
+  }
+
+  return $domain;
+}
+
+/**
  * Generic Glome API GET wrapper
  */
 function glome_get($query, $params = [])
 {
-  $domain = get_option('glome_api_domain');
+  $domain = get_api_domain();
   $uid = get_option('glome_api_uid');
   $key = get_option('glome_api_key');
   $url = $domain . $query;
@@ -24,7 +41,7 @@ function glome_get($query, $params = [])
  */
 function glome_post($query, $params = [])
 {
-  $domain = get_option('glome_api_domain');
+  $domain = get_api_domain();
   $uid = get_option('glome_api_uid');
   $key = get_option('glome_api_key');
   $url = $domain . $query;

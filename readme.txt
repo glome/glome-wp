@@ -136,8 +136,10 @@ This is the first release, hence this section is irrelevant for now.
 
 == Screenshots ==
 
-Coming as soon as the plugin is hosted in the subversion repository
-hosted by the Plugin Directory of [Wordpress](http://wordpress.org).
+1. The "One-Time Access" and the "Key for Glome Wallet" widgets are available to gain access to the Wordpress site.
+
+2. After gaining access one will be able to pair other devices. It can be done by scanning a QR code, or opening the corresponding URL.
+We also take advantage of modern browsers that can work with cameras directly (via WebRTC).
 
 == Changelog ==
 
@@ -149,5 +151,3 @@ hosted by the Plugin Directory of [Wordpress](http://wordpress.org).
 
 = 1.0 =
 * Initial version for the Plugin Directory of [Wordpress](http://wordpress.org)
-
-

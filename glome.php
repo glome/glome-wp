@@ -1,13 +1,13 @@
 <?php
 /**
  * @package Glome Plugin for Wordpress
- * @version 1.2
+ * @version 1.3
  */
 /*
 Plugin Name: Glome
 Plugin URI: http://wordpress.org/plugins/glome/
 Description: Glome Plugin for Wordpress
-Version: 1.2
+Version: 1.3
 Author: Glome Oy - http://glome.me
 */
 

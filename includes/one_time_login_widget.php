@@ -9,7 +9,7 @@ class glome_one_time_login_widget extends WP_Widget
    */
   public function __construct()
   {
-    parent::WP_Widget('glome_one_time_login', 'Glome One-time Login', array(
+    parent::__construct('glome_one_time_login', 'Glome One-time Login', array(
       'description' => __('Allow your visitors to login with Glome.', 'glome_plugin')
     ));
   }

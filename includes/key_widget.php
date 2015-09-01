@@ -9,7 +9,7 @@ class glome_key_widget extends WP_Widget
    */
   public function __construct()
   {
-    parent::WP_Widget('glome_key', 'Glome Key Login', array(
+    parent::__construct('glome_key', 'Glome Key Login', array(
       'description' => __('Allow your visitors to login with Glome Key.', 'glome_plugin')
     ));
   }

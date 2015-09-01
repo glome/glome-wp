@@ -9,7 +9,7 @@ class gnb_widget extends WP_Widget
    */
   public function __construct()
   {
-    parent::WP_Widget('gnb', 'Glome Notification Broker', array(
+    parent::__construct('gnb', 'Glome Notification Broker', array(
       'description' => __('GNB widget description', 'gnb_widget')
     ));
   }

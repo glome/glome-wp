@@ -9,7 +9,7 @@ class glome_scanner_widget extends WP_Widget
    */
   public function __construct()
   {
-    parent::WP_Widget('glome_scanner', 'Glome Scanner Pairing', array(
+    parent::__construct('glome_scanner', 'Glome Scanner Pairing', array(
       'description' => __('Allow your users to pair up using QR code and a scanner.', 'glome_plugin')
     ));
   }

@@ -9,7 +9,7 @@ class glome_show_qr_widget extends WP_Widget
    */
   public function __construct()
   {
-    parent::WP_Widget('glome_show_qr_widget', 'Glome QR For Pairing', array(
+    parent::__construct('glome_show_qr_widget', 'Glome QR For Pairing', array(
       'description' => __('Show a QR code for pairing.', 'glome_plugin')
     ));
   }

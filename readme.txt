@@ -3,8 +3,8 @@
 Contributors: _ferenc
 Tags: anonymity, privacy, linking, personalization, Glome
 Requires at least: 4.2
-Tested up to: 4.2.2
-Stable tag: 4.2
+Tested up to: 4.3
+Stable tag: 4.3
 License: Expat
 License URI: http://www.gnu.org/licenses/license-list.html#Expat
 
@@ -142,6 +142,9 @@ This is the first release, hence this section is irrelevant for now.
 We also take advantage of modern browsers that can work with cameras directly (via WebRTC).
 
 == Changelog ==
+= 1.3 =
+* Wordpress 4.3 compatibilty changes.
+* Improved Glome profile page.
 
 = 1.2 =
 * Improved POST sanitizations.

@@ -1,18 +1,19 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: Glome plugin for Wordpress\n"
-"POT-Creation-Date: 2015-06-05 18:33+0200\n"
-"PO-Revision-Date: 2015-06-05 18:34+0200\n"
+"POT-Creation-Date: 2015-09-01 12:03+0300\n"
+"PO-Revision-Date: 2015-09-01 12:03+0300\n"
 "Last-Translator: Ferenc Székely <ferenc@glome.me>\n"
 "Language-Team: Glome Inc. <contact@glome.me>\n"
 "Language: en\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
-"X-Generator: Poedit 1.7.7\n"
-"X-Poedit-Basepath: ../\n"
+"X-Generator: Poedit 1.8.4\n"
+"X-Poedit-Basepath: ..\n"
 "Plural-Forms: nplurals=2; plural=(n != 1);\n"
 "X-Poedit-KeywordsList: __;_e\n"
+"X-Poedit-SourceCharset: UTF-8\n"
 "X-Poedit-SearchPath-0: includes\n"
 "X-Poedit-SearchPath-1: templates\n"
 
@@ -226,17 +227,20 @@ msgstr "Enable activity tracking to Glome"
 msgid "Clone name"
 msgstr "Clone display name upon pairing"
 
-#: templates/settings.php:88 templates/user_preferences.php:22
+#: templates/settings.php:88 templates/user_preferences.php:27
 msgid "Save Changes"
 msgstr "Save Changes"
 
-#: templates/user_preferences.php:3
-msgid "User preferences"
-msgstr "Glome preferences"
+#: templates/user_preferences.php:6
+msgid "Personal tracking"
+msgstr "Tracking"
 
-#: templates/user_preferences.php:11
+#: templates/user_preferences.php:18
 msgid "Allow tracking me"
 msgstr "Allow tracking me on this site"
+
+#~ msgid "User preferences"
+#~ msgstr "Glome preferences"
 
 #~ msgid "API trial info"
 #~ msgstr ""

@@ -181,7 +181,7 @@ function glome_start()
 
   if (get_option('glome_activity_tracking'))
   {
-    if ($current_user && $current_user->has_prop('glomeid'))
+    if ($current_user && $current_user->has_prop('glomeid') && $current_user->get('allow_tracking_me') == 1)
     {
       glome_track_activity($_SERVER["SERVER_NAME"] . $_SERVER["REQUEST_URI"]);
       redirect_if_needed();

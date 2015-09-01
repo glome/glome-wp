@@ -12,6 +12,12 @@ function glome_profile_page()
     return;
   }
 
+  if (isset($_POST, $_POST['glome_plugin_settings']))
+  {
+    $checkbox = (int)(isset($_POST['glome_plugin_settings']['allow_tracking_me']));
+    update_user_meta($current_user->ID, 'allow_tracking_me', $checkbox);
+  }
+
   /* load the JS */
   add_action('admin_enqueue_scripts', 'glome_add_scripts');
 
@@ -19,6 +25,9 @@ function glome_profile_page()
   {
     $current_user = wp_get_current_user();
     $pairs = glome_get_brothers();
+    $settings = array(
+      'allow_tracking_me' => $current_user->get('allow_tracking_me')
+    );
     include __DIR__ . '/../templates/glome_profile.php';
   }
   add_users_page(

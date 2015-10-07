@@ -113,7 +113,7 @@ add_action('wp_logout', 'glome_logout');
 
 function custom_logout_url($default)
 {
-  $url = esc_html(site_url('logout/' . wp_create_nonce('log-out'), 'login'));
+  $url = esc_html(site_url('logout/' . wp_create_nonce('log-out'), 'logout'));
   return $url;
 }
 add_filter('logout_url', 'custom_logout_url');

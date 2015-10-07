@@ -19,8 +19,11 @@ class glome_enter_key_widget extends WP_Widget
    */
   public function widget($args, $instance)
   {
-    //Hide the widget for not logged in visitors?
-    if (! empty($instance['widget_hide_for_visitors'])) return;
+    //Hide the widget for not logged in visitors if configured so
+    if (! empty($instance['widget_hide_for_visitors']) && ! is_user_logged_in()) return;
+
+    //Hide the widget for logged in users if configured so
+    if (! empty($instance['widget_hide_for_logged_in_users']) && is_user_logged_in()) return;
 
     // check api access
     if (glome_check_app() == false)
@@ -59,15 +62,15 @@ class glome_enter_key_widget extends WP_Widget
     $instance = wp_parse_args((array) $instance, $default_settings);
     ?>
       <p>
-        <label for="<?php echo $this->get_field_id ('widget_title'); ?>"><?php _e('Scanner Widget Title', 'glome_plugin'); ?>:</label>
+        <label for="<?php echo $this->get_field_id ('widget_title'); ?>"><?php _e('Enter Key Widget Title', 'glome_plugin'); ?>:</label>
         <input class="widefat" id="<?php echo $this->get_field_id('widget_title'); ?>" name="<?php echo $this->get_field_name('widget_title'); ?>" type="text" value="<?php echo $instance ['widget_title']; ?>" />
       </p>
       <p>
-        <input type="checkbox" id="<?php echo $this->get_field_id('widget_hide_for_logged_in_users', 'glome_scanner_widget'); ?>" name="<?php echo $this->get_field_name('widget_hide_for_logged_in_users'); ?>" type="text" value="1" <?php echo (!empty ($instance ['widget_hide_for_logged_in_users']) ? 'checked="checked"' : ''); ?> />
+        <input type="checkbox" id="<?php echo $this->get_field_id('widget_hide_for_logged_in_users', 'glome_enter_key_widget'); ?>" name="<?php echo $this->get_field_name('widget_hide_for_logged_in_users'); ?>" type="text" value="1" <?php echo (!empty ($instance ['widget_hide_for_logged_in_users']) ? 'checked="checked"' : ''); ?> />
         <label for="<?php echo $this->get_field_id('widget_hide_for_logged_in_users'); ?>"><?php _e('Tick to hide the widget for logged-in users', 'glome_plugin'); ?></label>
       </p>
       <p>
-        <input type="checkbox" id="<?php echo $this->get_field_id('widget_hide_for_visitors', 'glome_scanner_widget'); ?>" name="<?php echo $this->get_field_name('widget_hide_for_visitors'); ?>" type="text" value="1" <?php echo (!empty ($instance ['widget_hide_for_visitors']) ? 'checked="checked"' : ''); ?> />
+        <input type="checkbox" id="<?php echo $this->get_field_id('widget_hide_for_visitors', 'glome_enter_key_widget'); ?>" name="<?php echo $this->get_field_name('widget_hide_for_visitors'); ?>" type="text" value="1" <?php echo (!empty ($instance ['widget_hide_for_visitors']) ? 'checked="checked"' : ''); ?> />
         <label for="<?php echo $this->get_field_id('widget_hide_for_visitors'); ?>"><?php _e('Tick to hide the widget for visitors', 'glome_plugin'); ?></label>
       </p>
     <?php
@@ -105,22 +108,6 @@ function glome_ajax_authenticate_with_key()
         'glomeid' => $json->user->glomeid
       ];
     }
-
-    //~ $token = $json->user->token || false;
-    //~ $glomeid = $json->user->glomeid || false;
-
-    //~ if ($token and $glomeid)
-    //~ {
-      //~ if (mywp_user_exists($token) === false)
-      //~ {
-        //~ mywp_create_user($token, $glomeid);
-      //~ }
-      //~ mywp_login_user($token, $glomeid);
-
-      //~ setcookie('magic', '', time() - 3600);  /* delete */
-
-      //~ redirect_if_needed();
-    //~ }
   }
 
   echo $ret;

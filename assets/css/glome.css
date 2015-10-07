@@ -168,6 +168,14 @@ h4.glomeid
   height: 5em;
 }
 
+#widget-area aside {
+  margin-bottom: 2em;
+/*
+  border-top: 1px dotted;
+  padding-top: 1em;
+*/
+}
+
 .share .qr
 {
   margin: 0 0 1em 0;

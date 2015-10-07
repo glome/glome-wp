@@ -1,9 +1,7 @@
 /**
- * Enter Key JS code
+ * Key Authentication JS code
  *
- * requires jquery.qrcode
  */
-// it is initiated by calling the wp localize script; see ui.php
 var key_auth_params = key_auth_params || {};
 
 jQuery(document).ready(function()
@@ -14,11 +12,6 @@ jQuery(document).ready(function()
 
 jQuery(document).on('initkeyauth', function(event, params)
 {
-  console.log('take off');
-
-  /**
-   * init the stuff
-   */
   jQuery('.enter.key .hint').on('dblclick swipe', function(e)
   {
     jQuery('.enter .scanwrap').toggleClass('hidden');
@@ -29,7 +22,7 @@ jQuery(document).on('initkeyauth', function(event, params)
   });
 
   /**
-   * handle the click
+   * handle the submitting
    */
   jQuery("input[name='glome_key_auth']").on('click', function(e)
   {

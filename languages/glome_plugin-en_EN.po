@@ -1,8 +1,8 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: Glome plugin for Wordpress\n"
-"POT-Creation-Date: 2015-10-07 14:02+0300\n"
-"PO-Revision-Date: 2015-10-07 14:03+0300\n"
+"POT-Creation-Date: 2015-10-07 23:18+0300\n"
+"PO-Revision-Date: 2015-10-07 23:18+0300\n"
 "Last-Translator: Ferenc Székely <ferenc@glome.me>\n"
 "Language-Team: Glome Inc. <contact@glome.me>\n"
 "Language: en\n"
@@ -21,21 +21,17 @@ msgstr ""
 msgid "Allow your users to pair up using a key code."
 msgstr "Allow users to pair up with Glome Key."
 
-#: includes/enter_key_widget.php:54
+#: includes/enter_key_widget.php:57 includes/enter_key_widget.php:65
 msgid "Enter Key Widget Title"
 msgstr "Enter Glome Key"
 
-#: includes/enter_key_widget.php:62 includes/scanner_widget.php:62
-msgid "Scanner Widget Title"
-msgstr "Glome Scanner Widget"
-
-#: includes/enter_key_widget.php:67 includes/one_time_login_widget.php:77
+#: includes/enter_key_widget.php:70 includes/one_time_login_widget.php:77
 #: includes/scanner_widget.php:67 includes/show_key_widget.php:78
 #: includes/show_qr_widget.php:65
 msgid "Tick to hide the widget for logged-in users"
 msgstr "Tick to hide key widget for logged-in users."
 
-#: includes/enter_key_widget.php:71 includes/scanner_widget.php:71
+#: includes/enter_key_widget.php:74 includes/scanner_widget.php:71
 msgid "Tick to hide the widget for visitors"
 msgstr "Tick to hide key widget for visitors."
 
@@ -59,6 +55,10 @@ msgstr "Allow your users to pair up using QR code and a scanner."
 msgid "Glome Scanner Widget Title"
 msgstr "Glome Scanner"
 
+#: includes/scanner_widget.php:62
+msgid "Scanner Widget Title"
+msgstr "Glome Scanner Widget"
+
 #: includes/show_key_widget.php:13
 msgid "Allow your visitors to login with Glome Key."
 msgstr "Allow your visitors to login with Glome Key."
@@ -75,18 +75,18 @@ msgstr "Show a QR code for pairing."
 msgid "Show QR Widget Title"
 msgstr "Show QR Widget"
 
-#: templates/enter_key.php:3 templates/enter_key.php:4
-#: templates/enter_key.php:5
+#: templates/enter_key.php:2 templates/enter_key.php:3
+#: templates/enter_key.php:4
 msgid "key code part"
 msgstr "...."
 
-#: templates/enter_key.php:8
+#: templates/enter_key.php:7
 msgid "submit glome key"
 msgstr "Submit Key"
 
-#: templates/enter_key.php:9
+#: templates/enter_key.php:8
 msgid "scan hint"
-msgstr "Double click or swipe to open code scanner"
+msgstr "Swipe or double click to open code scanner."
 
 #: templates/glome_api_feedback.php:6
 msgid "api pairing failed"
@@ -114,7 +114,7 @@ msgstr "Valid until"
 
 #: templates/key_login.php:7 templates/show_qr.php:9
 msgid "share qr hint"
-msgstr "Swipe or double click the code."
+msgstr "Swipe or double click to see the code in text."
 
 #: templates/one_time_login.php:3
 msgid "one-time access"

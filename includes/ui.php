@@ -25,6 +25,12 @@ function render_show_qr($source, $args = array ())
   include __DIR__ . '/../templates/show_qr.php';
 }
 
+function render_enter_key($source, $args = array ())
+{
+  include __DIR__ . '/../templates/enter_key.php';
+}
+
+
 function glome_add_styles()
 {
   $filepath = plugins_url('../assets/css/glome.css', __FILE__);
@@ -65,6 +71,12 @@ function glome_add_scripts()
   $filepath = plugins_url('../assets/js/unpairing.js', __FILE__);
   wp_enqueue_script('unpairing', $filepath, false);
   wp_localize_script('unpairing', 'unpairing_params', array(
+    'ajax_url' => admin_url('admin-ajax.php')
+  ));
+
+  $filepath = plugins_url('../assets/js/key_authentication.js', __FILE__);
+  wp_enqueue_script('key_auth', $filepath, false);
+  wp_localize_script('key_auth', 'key_auth_params', array(
     'ajax_url' => admin_url('admin-ajax.php')
   ));
 

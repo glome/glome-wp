@@ -91,4 +91,5 @@ function handle_pairing()
 }
 add_action('admin_post_pairing', 'handle_pairing');
 add_action('admin_post_nopriv_pairing', 'handle_pairing');
+
 ?>

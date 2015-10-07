@@ -136,12 +136,15 @@ This is the first release, hence this section is irrelevant for now.
 
 == Screenshots ==
 
-1. The "One-Time Access" and the "Key for Glome Wallet" widgets are available to gain access to the Wordpress site.
+1. The "One-Time Access" and the "Glome Key" widgets are available to gain access to the Wordpress site.
 
 2. After gaining access one will be able to pair other devices. It can be done by scanning a QR code, or opening the corresponding URL.
 We also take advantage of modern browsers that can work with cameras directly (via WebRTC).
 
 == Changelog ==
+= 1.4 =
+* New widget for entering / scanning Glome key codes
+
 = 1.3 =
 * Wordpress 4.3 compatibilty changes.
 * Improved Glome profile page.

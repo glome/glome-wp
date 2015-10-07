@@ -101,7 +101,7 @@ function glome_plugin_admin_page()
 add_action('admin_menu', 'glome_plugin_admin_page');
 
 /**
- * handler for requesting Glome API access
+ * AJAX handler for requesting Glome API access
  */
 function glome_ajax_request_api_access()
 {

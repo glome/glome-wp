@@ -1,13 +1,13 @@
 <?php
 /**
  * @package Glome Plugin for Wordpress
- * @version 1.3
+ * @version 1.4
  */
 /*
 Plugin Name: Glome
 Plugin URI: http://wordpress.org/plugins/glome/
 Description: Glome Plugin for Wordpress
-Version: 1.3
+Version: 1.4
 Author: Glome Oy - http://glome.me
 */
 
@@ -108,10 +108,18 @@ function glome_start()
     session_start();
   }
 
+//$_SESSION['glome'] = [];
+
   // we don't save this into DB or file, no need to sanitze further
   if (isset($_POST['one_time_access']))
   {
     $_SESSION['glome'] = glome_create_user();
+  }
+
+  if (array_key_exists('glome', $_SESSION) and
+      array_key_exists('token', $_SESSION['glome']) and
+      array_key_exists('glomeid', $_SESSION['glome']))
+  {
     $token = $_SESSION['glome']['token'];
     $glomeid = $_SESSION['glome']['glomeid'];
   }
@@ -225,7 +233,8 @@ function redirect_if_needed()
 include __DIR__ . '/includes/ui.php';
 include __DIR__ . '/includes/pairing_common.php';
 include __DIR__ . '/includes/one_time_login_widget.php';
-include __DIR__ . '/includes/key_widget.php';
 include __DIR__ . '/includes/scanner_widget.php';
 include __DIR__ . '/includes/show_qr_widget.php';
 include __DIR__ . '/includes/gnb_widget.php';
+include __DIR__ . '/includes/show_key_widget.php';
+include __DIR__ . '/includes/enter_key_widget.php';

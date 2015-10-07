@@ -171,6 +171,7 @@ function glome_get_key()
 function glome_create_pairing_code($kind = 'b')
 {
   $ret = null;
+  $now = null;
   $glomeid = mywp_current_glomeid();
 
   if ($glomeid)
@@ -321,6 +322,28 @@ function glome_request_api_access($details)
     'application[requester]' => $details['requester'],
     'application[username]' => $details['username'],
     'application[email]' => $details['email'],
+  ]);
+
+  if (isset($response['body']))
+  {
+    $ret = $response['body'];
+  }
+
+  return $ret;
+}
+
+/**
+ * Post a key code for authenticating
+ */
+function glome_post_key_code($code_part_1, $code_part_2, $code_part_3)
+{
+  $ret = null;
+
+  $query = '/auth.json';
+  $response = glome_post($query, [
+    'key[code_1]' => $code_part_1,
+    'key[code_2]' => $code_part_2,
+    'key[code_3]' => $code_part_3
   ]);
 
   if (isset($response['body']))

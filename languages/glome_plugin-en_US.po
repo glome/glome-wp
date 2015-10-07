@@ -1,15 +1,15 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: Glome plugin for Wordpress\n"
-"POT-Creation-Date: 2015-09-01 12:03+0300\n"
-"PO-Revision-Date: 2015-09-01 12:03+0300\n"
+"POT-Creation-Date: 2015-10-07 14:02+0300\n"
+"PO-Revision-Date: 2015-10-07 14:03+0300\n"
 "Last-Translator: Ferenc Székely <ferenc@glome.me>\n"
 "Language-Team: Glome Inc. <contact@glome.me>\n"
 "Language: en\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
-"X-Generator: Poedit 1.8.4\n"
+"X-Generator: Poedit 1.8.5\n"
 "X-Poedit-Basepath: ..\n"
 "Plural-Forms: nplurals=2; plural=(n != 1);\n"
 "X-Poedit-KeywordsList: __;_e\n"
@@ -17,22 +17,31 @@ msgstr ""
 "X-Poedit-SearchPath-0: includes\n"
 "X-Poedit-SearchPath-1: templates\n"
 
+#: includes/enter_key_widget.php:13
+msgid "Allow your users to pair up using a key code."
+msgstr "Allow users to pair up with Glome Key."
+
+#: includes/enter_key_widget.php:54
+msgid "Enter Key Widget Title"
+msgstr "Enter Glome Key"
+
+#: includes/enter_key_widget.php:62 includes/scanner_widget.php:62
+msgid "Scanner Widget Title"
+msgstr "Glome Scanner Widget"
+
+#: includes/enter_key_widget.php:67 includes/one_time_login_widget.php:77
+#: includes/scanner_widget.php:67 includes/show_key_widget.php:78
+#: includes/show_qr_widget.php:65
+msgid "Tick to hide the widget for logged-in users"
+msgstr "Tick to hide key widget for logged-in users."
+
+#: includes/enter_key_widget.php:71 includes/scanner_widget.php:71
+msgid "Tick to hide the widget for visitors"
+msgstr "Tick to hide key widget for visitors."
+
 #: includes/gnb_widget.php:13
 msgid "GNB widget description"
 msgstr "GNB widget handles communication with the Glome API via websockets."
-
-#: includes/key_widget.php:13
-msgid "Allow your visitors to login with Glome Key."
-msgstr "Allow your visitors to login with Glome Key."
-
-#: includes/key_widget.php:66 includes/key_widget.php:73
-msgid "Key Widget Title"
-msgstr "Key Widget Title"
-
-#: includes/key_widget.php:78 includes/one_time_login_widget.php:77
-#: includes/scanner_widget.php:67 includes/show_qr_widget.php:65
-msgid "Tick to hide the widget for logged-in users"
-msgstr "Tick to hide key widget for logged-in users."
 
 #: includes/one_time_login_widget.php:13
 msgid "Allow your visitors to login with Glome."
@@ -40,19 +49,23 @@ msgstr "Allow your visitors to login with Glome."
 
 #: includes/one_time_login_widget.php:65 includes/one_time_login_widget.php:72
 msgid "One-time Login Widget Title"
-msgstr "One-time Login Widget Title"
+msgstr "One-time Access"
 
 #: includes/scanner_widget.php:13
 msgid "Allow your users to pair up using QR code and a scanner."
 msgstr "Allow your users to pair up using QR code and a scanner."
 
-#: includes/scanner_widget.php:54 includes/scanner_widget.php:62
-msgid "Scanner Widget Title"
-msgstr "Scanner Widget Title"
+#: includes/scanner_widget.php:54
+msgid "Glome Scanner Widget Title"
+msgstr "Glome Scanner"
 
-#: includes/scanner_widget.php:71
-msgid "Tick to hide the widget for visitors"
-msgstr "Tick to hide key widget for visitors."
+#: includes/show_key_widget.php:13
+msgid "Allow your visitors to login with Glome Key."
+msgstr "Allow your visitors to login with Glome Key."
+
+#: includes/show_key_widget.php:66 includes/show_key_widget.php:73
+msgid "Key Widget Title"
+msgstr "Glome Key"
 
 #: includes/show_qr_widget.php:13
 msgid "Show a QR code for pairing."
@@ -60,7 +73,20 @@ msgstr "Show a QR code for pairing."
 
 #: includes/show_qr_widget.php:53 includes/show_qr_widget.php:60
 msgid "Show QR Widget Title"
-msgstr "Show QR Widget Title"
+msgstr "Show QR Widget"
+
+#: templates/enter_key.php:3 templates/enter_key.php:4
+#: templates/enter_key.php:5
+msgid "key code part"
+msgstr "...."
+
+#: templates/enter_key.php:8
+msgid "submit glome key"
+msgstr "Submit Key"
+
+#: templates/enter_key.php:9
+msgid "scan hint"
+msgstr "Double click or swipe to open code scanner"
 
 #: templates/glome_api_feedback.php:6
 msgid "api pairing failed"
@@ -74,9 +100,9 @@ msgstr "Pairing succeeded."
 msgid "Glome Profile"
 msgstr "Glome Profile"
 
-#: templates/glome_profile.php:3
+#: templates/glome_profile.php:5
 msgid "Your Glome ID"
-msgstr "Your Glome ID"
+msgstr "Your Soft Account"
 
 #: templates/key_login.php:4
 msgid "pairing code title"
@@ -92,7 +118,7 @@ msgstr "Swipe or double click the code."
 
 #: templates/one_time_login.php:3
 msgid "one-time access"
-msgstr "One-Time Access"
+msgstr "Glome Go"
 
 #: templates/paired_devices.php:14
 msgid "Paired devices title"
@@ -112,7 +138,7 @@ msgstr "You currently do not have any paired devices."
 
 #: templates/paired_devices.php:32
 msgid "Pair Info Glome ID"
-msgstr "Glome ID"
+msgstr "Soft Account"
 
 #: templates/paired_devices.php:38
 msgid "Unpair"
@@ -238,6 +264,15 @@ msgstr "Tracking"
 #: templates/user_preferences.php:18
 msgid "Allow tracking me"
 msgstr "Allow tracking me on this site"
+
+#~ msgid "Enter Key Label"
+#~ msgstr "Enter the Glome Key"
+
+#~ msgid "key code part1"
+#~ msgstr "...."
+
+#~ msgid "Glome Scanner Widget"
+#~ msgstr "Glome Scanner"
 
 #~ msgid "User preferences"
 #~ msgstr "Glome preferences"

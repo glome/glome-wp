@@ -2,14 +2,14 @@
 /**
  * Glome Key Widget
  */
-class glome_key_widget extends WP_Widget
+class glome_show_key_widget extends WP_Widget
 {
   /**
    * Constructor
    */
   public function __construct()
   {
-    parent::__construct('glome_key', 'Glome Key Login', array(
+    parent::__construct('glome_show_key', 'Show Glome Key', array(
       'description' => __('Allow your visitors to login with Glome Key.', 'glome_plugin')
     ));
   }
@@ -74,7 +74,7 @@ class glome_key_widget extends WP_Widget
         <input class="widefat" id="<?php echo $this->get_field_id('widget_title'); ?>" name="<?php echo $this->get_field_name('widget_title'); ?>" type="text" value="<?php echo $instance ['widget_title']; ?>" />
       </p>
       <p>
-        <input type="checkbox" id="<?php echo $this->get_field_id('widget_hide_for_logged_in_users', 'glome_key_widget'); ?>" name="<?php echo $this->get_field_name('widget_hide_for_logged_in_users'); ?>" type="text" value="1" <?php echo (!empty ($instance ['widget_hide_for_logged_in_users']) ? 'checked="checked"' : ''); ?> />
+        <input type="checkbox" id="<?php echo $this->get_field_id('widget_hide_for_logged_in_users', 'glome_show_key_widget'); ?>" name="<?php echo $this->get_field_name('widget_hide_for_logged_in_users'); ?>" type="text" value="1" <?php echo (!empty ($instance ['widget_hide_for_logged_in_users']) ? 'checked="checked"' : ''); ?> />
         <label for="<?php echo $this->get_field_id('widget_hide_for_logged_in_users'); ?>"><?php _e('Tick to hide the widget for logged-in users', 'glome_plugin'); ?></label>
       </p>
     <?php
@@ -91,4 +91,4 @@ class glome_key_widget extends WP_Widget
     return $instance;
   }
 }
-add_action ('widgets_init', create_function('', 'return register_widget("glome_key_widget");'));
+add_action ('widgets_init', create_function('', 'return register_widget("glome_show_key_widget");'));

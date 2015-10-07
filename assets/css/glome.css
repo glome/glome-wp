@@ -254,3 +254,13 @@ h4.glomeid
 .devices .list .device button {
   width: 60px;
 }
+
+.enter.key input.keycode {
+  display: inline-block;
+  width: 70px;
+  margin: 0 0 5px 0;
+}
+
+div.hint {
+  font-size: 12px;
+}

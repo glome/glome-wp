@@ -1,16 +1,16 @@
 <?php
 /**
- * Glome Scanner Widget
+ * Glome Enter Key Widget
  */
-class glome_scanner_widget extends WP_Widget
+class glome_enter_key_widget extends WP_Widget
 {
   /**
    * Constructor
    */
   public function __construct()
   {
-    parent::__construct('glome_scanner', 'Glome Scanner', array(
-      'description' => __('Allow your users to pair up using QR code and a scanner.', 'glome_plugin')
+    parent::__construct('glome_enter_key', 'Enter Glome Key', array(
+      'description' => __('Allow your users to pair up using a key code.', 'glome_plugin')
     ));
   }
 
@@ -20,7 +20,7 @@ class glome_scanner_widget extends WP_Widget
   public function widget($args, $instance)
   {
     //Hide the widget for not logged in visitors?
-    if (! empty($instance['widget_hide_for_visitors']) && ! is_user_logged_in()) return;
+    if (! empty($instance['widget_hide_for_visitors'])) return;
 
     // check api access
     if (glome_check_app() == false)
@@ -38,7 +38,7 @@ class glome_scanner_widget extends WP_Widget
     }
 
     //Content
-    echo render_scanner('widget', $instance);
+    echo render_enter_key('widget', $instance);
 
     //After Widget
     echo $args['after_widget'];
@@ -51,8 +51,8 @@ class glome_scanner_widget extends WP_Widget
   {
     //Default settings
     $default_settings = array(
-      'widget_title' => __('Glome Scanner Widget Title', 'glome_plugin'),
-      'widget_hide_for_logged_in_users' => '0',
+      'widget_title' => __('Enter Key Widget Title', 'glome_plugin'),
+      'widget_hide_for_logged_in_users' => '1',
       'widget_hide_for_visitors' => '0'
     );
 
@@ -85,4 +85,48 @@ class glome_scanner_widget extends WP_Widget
     return $instance;
   }
 }
-add_action ('widgets_init', create_function('', 'return register_widget("glome_scanner_widget");'));
+add_action ('widgets_init', create_function('', 'return register_widget("glome_enter_key_widget");'));
+
+/**
+ * AJAX handler for key authentication
+ */
+function glome_ajax_authenticate_with_key()
+{
+  $ret = glome_post_key_code($_POST['code_part_1'], $_POST['code_part_2'], $_POST['code_part_3']);
+  $json = json_decode($ret);
+
+  if (! property_exists($json, 'error'))
+  {
+    // create a proper WP account and login the user
+    if (property_exists($json, 'user'))
+    {
+      $_SESSION['glome'] = [
+        'token' => $json->user->token,
+        'glomeid' => $json->user->glomeid
+      ];
+    }
+
+    //~ $token = $json->user->token || false;
+    //~ $glomeid = $json->user->glomeid || false;
+
+    //~ if ($token and $glomeid)
+    //~ {
+      //~ if (mywp_user_exists($token) === false)
+      //~ {
+        //~ mywp_create_user($token, $glomeid);
+      //~ }
+      //~ mywp_login_user($token, $glomeid);
+
+      //~ setcookie('magic', '', time() - 3600);  /* delete */
+
+      //~ redirect_if_needed();
+    //~ }
+  }
+
+  echo $ret;
+
+  die();
+}
+add_action('wp_ajax_nopriv_authenticate_with_key', 'glome_ajax_authenticate_with_key');
+
+?>

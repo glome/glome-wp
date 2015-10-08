@@ -54,13 +54,6 @@ jQuery(document).on('initpairing', function(event, params)
   {
     scanner = new Scanner();
 
-    // check if we need to authenticate or just pairing
-    var visible = jQuery('.widget_glome_enter_key').is(':visible');
-    if (visible)
-    {
-      mode = 'authenticate';
-    }
-
     jQuery('.receive .ok').toggleClass('hidden');
 
     /**
@@ -72,6 +65,13 @@ jQuery(document).on('initpairing', function(event, params)
       {
         jQuery('.receive .data').attr('data-code', result);
         scanner.stop();
+
+        // check if we need to authenticate or just pairing
+        var visible = jQuery('.widget_glome_enter_key').is(':visible');
+        if (visible)
+        {
+          mode = 'authenticate';
+        }
 
         switch (mode)
         {

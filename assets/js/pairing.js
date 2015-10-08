@@ -55,7 +55,7 @@ jQuery(document).on('initpairing', function(event, params)
     scanner = new Scanner();
 
     // check if we need to authenticate or just pairing
-    var visible = jQuery('aside.widget_glome_enter_key:visible').length > 0;
+    var visible = jQuery('.widget_glome_enter_key:visible').length > 0;
     if (visible) {
       mode = 'authenticate';
     }
@@ -70,12 +70,13 @@ jQuery(document).on('initpairing', function(event, params)
       if (result.length == 12)
       {
         jQuery('.receive .data').attr('data-code', result);
-        console.log('redirect to URL: ' + url + result);
         scanner.stop();
+
         switch (mode)
         {
           case 'pairing':
             // redirect to handle pairing request
+            console.log('redirect to URL: ' + url + result);
             window.location.href = url + result;
             break;
           case 'authenticate':

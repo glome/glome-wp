@@ -55,8 +55,9 @@ jQuery(document).on('initpairing', function(event, params)
     scanner = new Scanner();
 
     // check if we need to authenticate or just pairing
-    var visible = jQuery('.widget_glome_enter_key:visible').length > 0;
-    if (visible) {
+    var visible = jQuery('.widget_glome_enter_key').is(':visible');
+    if (visible)
+    {
       mode = 'authenticate';
     }
 

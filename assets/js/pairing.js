@@ -16,6 +16,12 @@ jQuery(document).on('initpairing', function(event, params)
   var cnt = 0;
   var scanID = null;
   var stream = null;
+  // default mode: pairing
+  // possible values: pairing, authenticate
+  // will redirect with the scanned code to params['pairing_url']
+  var mode = 'pairing';
+  // the url where we redirect if the scanning went OK
+  var url = params['pairing_url'];
 
   /**
    * Show info when clicking the QR code in the widget area
@@ -48,6 +54,12 @@ jQuery(document).on('initpairing', function(event, params)
   {
     scanner = new Scanner();
 
+    // check if we need to authenticate or just pairing
+    var visible = jQuery('aside.widget_glome_enter_key:visible').length > 0;
+    if (visible) {
+      mode = 'authenticate';
+    }
+
     jQuery('.receive .ok').toggleClass('hidden');
 
     /**
@@ -58,14 +70,67 @@ jQuery(document).on('initpairing', function(event, params)
       if (result.length == 12)
       {
         jQuery('.receive .data').attr('data-code', result);
-        console.log('pairing URL: ' + params['pairing_url'] + result);
-        //jQuery('.receive .data').text(params['pairing_url'] + result);
+        console.log('redirect to URL: ' + url + result);
         scanner.stop();
-        // redirect to handle pairing request
-        window.location.href = params['pairing_url'] + result;
+        switch (mode)
+        {
+          case 'pairing':
+            // redirect to handle pairing request
+            window.location.href = url + result;
+            break;
+          case 'authenticate':
+            send_code_via_ajax(result);
+            break;
+        }
       }
     }
     qrcode.callback = parseQrCode;
+
+    /**
+     * in case of authenticate mode we need to send the code via ajax
+     */
+    function send_code_via_ajax(code = '')
+    {
+      if (code == '' || code.length != 12) return;
+
+      var data = {
+        'action': 'authenticate_with_key',
+        'code_part_1': code.slice(0, 4),
+        'code_part_2': code.slice(4, 8),
+        'code_part_3': code.slice(8, 12),
+      };
+
+      // TODO: this function should be extracted somewhere; reusable
+      jQuery.ajax({
+        type: "POST",
+        url: params['ajax_url'],
+        data: data,
+        success: function(resp)
+        {
+          try
+          {
+            //console.log('ajax response data: ' + resp);
+            var json = jQuery.parseJSON(resp);
+            if (json.id)
+            {
+              // Just reload the page, we will log in :)
+              document.location.reload(true);
+            }
+          }
+          catch (e)
+          {
+            console.log(e);
+            return;
+          }
+
+          if (! json || typeof json.error != 'undefined')
+          {
+            console.log(json.error);
+            return;
+          }
+        }
+      });
+    }
 
     /**
      * callback when the stream starts
@@ -180,43 +245,46 @@ jQuery(document).on('initpairing', function(event, params)
     })
   }
 
-  // fetch pairing code via ajax
-  var data = {
-    'action': 'create_pairing_code',
-    'kind': 'b'
-  };
+  if (mode == 'pairing')
+  {
+    // fetch pairing code via ajax
+    var data = {
+      'action': 'create_pairing_code',
+      'kind': 'b'
+    };
 
-  jQuery.ajax({
-    type: "POST",
-    url: params['ajax_url'],
-    data: data,
-    success: function(data)
-    {
-      if (data == '0') return;
-
-      try
+    jQuery.ajax({
+      type: "POST",
+      url: params['ajax_url'],
+      data: data,
+      success: function(data)
       {
-        var json = jQuery.parseJSON(data);
-      }
-      catch (e)
-      {
-        console.log(e);
-        return;
-      }
+        if (data == '0') return;
 
-      if (! json) return;
+        try
+        {
+          var json = jQuery.parseJSON(data);
+        }
+        catch (e)
+        {
+          console.log(e);
+          return;
+        }
 
-      jQuery('.loading').toggleClass('hidden');
-      jQuery('.pairing').toggleClass('hidden');
-      jQuery('.share .url').text(params['pairing_url'] + json.code);
+        if (! json) return;
 
-      jQuery('.share .qrcode').attr('data-code', json.code);
-      jQuery('.share .qrcode').qrcode({width: 120, height: 120, text: json.code});
-      //jQuery('.pairing .qrtext').attr('value', json.expires_at_friendly);
+        jQuery('.loading').toggleClass('hidden');
+        jQuery('.pairing').toggleClass('hidden');
+        jQuery('.share .url').text(params['pairing_url'] + json.code);
 
-      jQuery('.share .clock').attr('data-countdown', json.countdown);
-      jQuery('.share .clock').attr('data-expires', json.expires_at);
-      jQuery('.share .clock .until').text(json.expires_at_friendly);
-    },
-  });
+        jQuery('.share .qrcode').attr('data-code', json.code);
+        jQuery('.share .qrcode').qrcode({width: 120, height: 120, text: json.code});
+        //jQuery('.pairing .qrtext').attr('value', json.expires_at_friendly);
+
+        jQuery('.share .clock').attr('data-countdown', json.countdown);
+        jQuery('.share .clock').attr('data-expires', json.expires_at);
+        jQuery('.share .clock .until').text(json.expires_at_friendly);
+      },
+    });
+  }
 });

@@ -33,6 +33,7 @@ jQuery(document).on('initkeyauth', function(event, params)
       'code_part_3': jQuery("input[name='code_part_3']").val()
     };
 
+    // TODO: this function should be extracted somewhere; reusable
     jQuery.ajax({
       type: "POST",
       url: params['ajax_url'],

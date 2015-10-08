@@ -45,7 +45,7 @@ function Scanner()
                              navigator.mozGetUserMedia ||
                              navigator.msGetUserMedia);
 
-      console.log('navi getM: ' + navigator.getMedia);
+      //console.log('navi getM: ' + navigator.getMedia);
 
       if (typeof navigator.getMedia === 'undefined')
       {

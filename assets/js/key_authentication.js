@@ -12,6 +12,19 @@ jQuery(document).ready(function()
 
 jQuery(document).on('initkeyauth', function(event, params)
 {
+  // move the focus upon completing a code input
+  jQuery('.keycode').on('keyup', function(event, params)
+  {
+    if (jQuery(this).val().length == 4)
+    {
+      jQuery(this).next().focus();
+      if (jQuery(this).hasClass('last'))
+      {
+        jQuery(this).next('button.submit').focus();
+      }
+    }
+  });
+
   jQuery('.enter.key .hint').on('dblclick swipe', function(e)
   {
     jQuery('.enter .scanwrap').toggleClass('hidden');

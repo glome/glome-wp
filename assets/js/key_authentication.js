@@ -23,6 +23,14 @@ jQuery(document).on('initkeyauth', function(event, params)
         jQuery(this).next('button.submit').focus();
       }
     }
+    if (jQuery('.keycode:invalid').length == 0)
+    {
+      jQuery('.enter input.button').prop('disabled', false);
+    }
+    else
+    {
+      jQuery('.enter input.button').prop('disabled', true);
+    }
   });
 
   jQuery('.enter.key .hint').on('dblclick swipe', function(e)

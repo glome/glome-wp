@@ -18,14 +18,15 @@ jQuery(document).on('initkeyauth', function(event, params)
     if (jQuery(this).val().length == 4)
     {
       jQuery(this).next().focus();
-      if (jQuery(this).hasClass('last'))
-      {
-        jQuery(this).next('button.submit').focus();
-      }
     }
     if (jQuery('.keycode:invalid').length == 0)
     {
       jQuery('.enter input.button').prop('disabled', false);
+      if (event.keyCode === 13)
+      {
+        // if enter was hit submit the code
+        jQuery('.enter input.button').trigger('click');
+      }
     }
     else
     {

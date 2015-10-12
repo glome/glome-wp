@@ -7,6 +7,7 @@ function get_api_domain()
 {
   $default_glome_api_server = 'https://api.glome.me/';
   $domain = esc_url_raw(get_option('glome_api_domain'));
+  // Todo: is $domain a valid API server?
 
   if (filter_var($domain, FILTER_VALIDATE_URL) === FALSE)
   {

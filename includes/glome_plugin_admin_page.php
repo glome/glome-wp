@@ -118,13 +118,17 @@ function glome_ajax_request_api_access()
     );
 
     $ret = glome_request_api_access($application);
-    $json = json_decode($ret);
 
-    if (! property_exists($json, 'error'))
+    if ($ret)
     {
-      // save the API credentials to the local WP instance
-      update_option('glome_api_uid', $json->uid);
-      update_option('glome_api_key', $json->apikey);
+      $json = json_decode($ret);
+
+      if ($json && ! property_exists($json, 'error'))
+      {
+        // save the API credentials to the local WP instance
+        update_option('glome_api_uid', $json->uid);
+        update_option('glome_api_key', $json->apikey);
+      }
     }
 
     echo $ret;

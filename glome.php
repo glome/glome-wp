@@ -47,8 +47,6 @@ register_activation_hook(__FILE__, 'glome_plugin_activate');
 
 function glome_plugin_redirect()
 {
-  var_dump(get_option('glome_plugin_do_activation_redirect'));
-
   if (get_option('glome_plugin_do_activation_redirect', false))
   {
     delete_option('glome_plugin_do_activation_redirect');

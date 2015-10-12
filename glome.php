@@ -1,13 +1,13 @@
 <?php
 /**
  * @package Glome Plugin for Wordpress
- * @version 1.4
+ * @version 1.5
  */
 /*
 Plugin Name: Glome
 Plugin URI: http://wordpress.org/plugins/glome/
 Description: Glome Plugin for Wordpress
-Version: 1.4
+Version: 1.5
 Author: Glome Oy - http://glome.me
 */
 
@@ -30,6 +30,8 @@ add_action('init', 'load_locales');
  */
 function glome_plugin_activate()
 {
+  add_option('glome_plugin_do_activation_redirect', true);
+
   if (! function_exists ('register_post_status'))
   {
     deactivate_plugins(basename(dirname(__FILE__)) . '/' . basename(__FILE__));
@@ -41,7 +43,22 @@ function glome_plugin_activate()
   // the function will sanitize the value; see glome_api.php
   $domain = get_api_domain();
 }
-register_activation_hook (__FILE__, 'glome_plugin_activate');
+register_activation_hook(__FILE__, 'glome_plugin_activate');
+
+function glome_plugin_redirect()
+{
+  var_dump(get_option('glome_plugin_do_activation_redirect'));
+
+  if (get_option('glome_plugin_do_activation_redirect', false))
+  {
+    delete_option('glome_plugin_do_activation_redirect');
+    if( ! isset($_GET['activate-multi']))
+    {
+      wp_redirect('/wp-admin/options-general.php?page=glome_settings');
+    }
+  }
+}
+add_action('admin_init', 'glome_plugin_redirect');
 
 /**
  *

@@ -149,7 +149,8 @@ function glome_get_key()
   if ($data == null)
   {
     $query = '/key.json';
-    $response = glome_post($query, ['synchronization[session]' => session_id()]);
+    $params = ['synchronization[session]' => session_id()];
+    $response = glome_post($query, $params);
     $json = $response['body'];
     $data = json_decode($json, true);
   }

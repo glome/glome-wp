@@ -105,7 +105,7 @@ add_action('admin_menu', 'glome_plugin_admin_page');
  */
 function glome_ajax_request_api_access()
 {
-  $ret = [];
+  $ret = array();
   $current_user = wp_get_current_user();
 
   if (is_super_admin($current_user->ID))

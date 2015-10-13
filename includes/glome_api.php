@@ -21,7 +21,7 @@ function get_api_domain()
 /**
  * Generic Glome API GET wrapper
  */
-function glome_get($query, $params = [])
+function glome_get($query, $params = array())
 {
   $domain = get_api_domain();
   $uid = get_option('glome_api_uid');
@@ -40,7 +40,7 @@ function glome_get($query, $params = [])
 /**
  * Generic Glome API POST wrapper
  */
-function glome_post($query, $params = [])
+function glome_post($query, $params = array())
 {
   $domain = get_api_domain();
   $uid = get_option('glome_api_uid');

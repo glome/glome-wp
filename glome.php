@@ -1,13 +1,13 @@
 <?php
 /**
  * @package Glome Plugin for Wordpress
- * @version 1.6
+ * @version 1.7
  */
 /*
 Plugin Name: Glome
 Plugin URI: http://wordpress.org/plugins/glome/
 Description: Glome Plugin for Wordpress
-Version: 1.6
+Version: 1.7
 Author: Glome Oy - http://glome.me
 */
 
@@ -15,7 +15,7 @@ include __DIR__ . '/includes/wp_bindings.php';
 include __DIR__ . '/includes/glome_api.php';
 
 /**
- *
+ * Language files
  */
 function load_locales()
 {
@@ -26,7 +26,7 @@ function load_locales()
 add_action('init', 'load_locales');
 
 /**
- *
+ * Hook this to the activation phase
  */
 function glome_plugin_activate()
 {
@@ -45,6 +45,9 @@ function glome_plugin_activate()
 }
 register_activation_hook(__FILE__, 'glome_plugin_activate');
 
+/**
+ * Redirect to the Settings page upon succesful activation
+ */
 function glome_plugin_redirect()
 {
   if (get_option('glome_plugin_do_activation_redirect', false))
@@ -59,7 +62,7 @@ function glome_plugin_redirect()
 add_action('admin_init', 'glome_plugin_redirect');
 
 /**
- *
+ * Links to the Settings menu
  */
 function glome_plugin_add_setup_link($links, $file)
 {
@@ -79,38 +82,11 @@ function glome_plugin_add_setup_link($links, $file)
 }
 add_filter('plugin_action_links', 'glome_plugin_add_setup_link', 10, 2);
 
-/**
- * NOT IN USE
- *
- * Redirect user after successful login.
- *
- * @param string $redirect_to URL to redirect to.
- * @param string $request URL the user is coming from.
- * @param object $user Logged user's data.
- * @return string
- */
-function glome_login_redirect($to, $request, $user)
-{
-  $ret = $to;
-  global $user;
-
-  if (isset($user->roles) && is_array($user->roles) )
-  {
-    if (! $current_user->has_prop('glomeid'))
-    {
-      // no glome user -> go home
-      $ret = home_url();
-    }
-  }
-  return $ret;
-}
-//add_filter('login_redirect', 'glome_login_redirect', 10, 3);
-
 include __DIR__ . '/includes/glome_plugin_admin_page.php';
 include __DIR__ . '/includes/glome_plugin_profile_page.php';
 
 /**
- *
+ * Where it all begins; hooked to the init phase
  */
 function glome_start()
 {
@@ -119,11 +95,9 @@ function glome_start()
 
   if (session_status() != PHP_SESSION_ACTIVE)
   {
-    $_SESSION['glome'] = [];
+    $_SESSION['glome'] = array();
     session_start();
   }
-
-//$_SESSION['glome'] = [];
 
   // we don't save this into DB or file, no need to sanitze further
   if (isset($_POST['one_time_access']))
@@ -215,7 +189,7 @@ function glome_start()
 add_action('init', 'glome_start');
 
 /**
- *
+ * Internal method for auto reloading pages in certain cases
  */
 function redirect_if_needed()
 {

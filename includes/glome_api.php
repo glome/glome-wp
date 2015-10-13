@@ -275,7 +275,7 @@ function glome_get_brothers()
     $data = json_decode($json, true);
 
     // process the original Glome response and take only what we need
-    $pair = [];
+    $pair = array();
     foreach($data as $key => $value)
     {
 

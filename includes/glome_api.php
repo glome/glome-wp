@@ -21,8 +21,12 @@ function get_api_domain()
 /**
  * Generic Glome API GET wrapper
  */
-function glome_get($query, $params = array())
+function glome_get($query, $params = false)
 {
+  if (! $params)
+  {
+    $params = array();
+  }
   $domain = get_api_domain();
   $uid = get_option('glome_api_uid');
   $key = get_option('glome_api_key');
@@ -40,8 +44,12 @@ function glome_get($query, $params = array())
 /**
  * Generic Glome API POST wrapper
  */
-function glome_post($query, $params = array())
+function glome_post($query, $params = false)
 {
+  if (! $params)
+  {
+    $params = array();
+  }
   $domain = get_api_domain();
   $uid = get_option('glome_api_uid');
   $key = get_option('glome_api_key');

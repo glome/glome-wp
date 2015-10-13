@@ -142,6 +142,9 @@ This is the first release, hence this section is irrelevant for now.
 We also take advantage of modern browsers that can work with cameras directly (via WebRTC).
 
 == Changelog ==
+= 1.10 =
+* More array related fixes for stone aged PHP.
+
 = 1.9 =
 * Workarounds for array declaration to work with older PHP versions.
 

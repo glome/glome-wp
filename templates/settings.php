@@ -4,7 +4,7 @@
             <?php
               if ((empty($settings['api_key']) or empty($settings['api_uid'])) and isset($email))
               {
-                include __DIR__ . '/request_api_access.php';
+                include plugin_dir_path(__FILE__) . 'request_api_access.php';
               }
               else
               {

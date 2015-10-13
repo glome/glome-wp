@@ -87,7 +87,7 @@ function glome_plugin_admin_page()
       'clone_name' => get_option('glome_clone_name')
     );
     $email = $current_user->email;
-    include __DIR__ . '/../templates/settings.php';
+    include plugin_dir_path(__FILE__) . '../templates/settings.php';
   }
 
   add_options_page(

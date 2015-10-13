@@ -28,7 +28,7 @@ function glome_profile_page()
     $settings = array(
       'allow_tracking_me' => $current_user->get('allow_tracking_me')
     );
-    include __DIR__ . '/../templates/glome_profile.php';
+    include plugin_dir_path(__FILE__) . '../templates/glome_profile.php';
   }
   add_users_page(
     'Glome',

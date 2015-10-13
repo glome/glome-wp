@@ -2,34 +2,34 @@
 
 function render_gnb()
 {
-  include __DIR__ . '/../templates/gnb.php';
+
+  include plugin_dir_path(__FILE__) . '../templates/gnb.php';
 }
 
 function render_one_time_login($source, $args = array ())
 {
-  include __DIR__ . '/../templates/one_time_login.php';
+  include plugin_dir_path(__FILE__) . '../templates/one_time_login.php';
 }
 
 function render_key_login($source, $args = array ())
 {
-  include __DIR__ . '/../templates/key_login.php';
+  include plugin_dir_path(__FILE__) . '../templates/key_login.php';
 }
 
 function render_scanner($source, $args = array ())
 {
-  include __DIR__ . '/../templates/scanner.php';
+  include plugin_dir_path(__FILE__) . '../templates/scanner.php';
 }
 
 function render_show_qr($source, $args = array ())
 {
-  include __DIR__ . '/../templates/show_qr.php';
+  include plugin_dir_path(__FILE__) . '../templates/show_qr.php';
 }
 
 function render_enter_key($source, $args = array ())
 {
-  include __DIR__ . '/../templates/enter_key.php';
+  include plugin_dir_path(__FILE__) . '../templates/enter_key.php';
 }
-
 
 function glome_add_styles()
 {

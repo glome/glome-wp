@@ -1,18 +1,18 @@
 <?php
 /**
  * @package Glome Plugin for Wordpress
- * @version 1.7
+ * @version 1.8
  */
 /*
 Plugin Name: Glome
 Plugin URI: http://wordpress.org/plugins/glome/
 Description: Glome Plugin for Wordpress
-Version: 1.7
+Version: 1.8
 Author: Glome Oy - http://glome.me
 */
 
-include __DIR__ . '/includes/wp_bindings.php';
-include __DIR__ . '/includes/glome_api.php';
+include plugin_dir_path(__FILE__) . 'includes/wp_bindings.php';
+include plugin_dir_path(__FILE__) . 'includes/glome_api.php';
 
 /**
  * Language files
@@ -219,11 +219,11 @@ function redirect_if_needed()
 // this could be used to check if the WP account has a corresponding Glome ID
 // add_action('set_current_user', 'glome_get_user_profile');
 
-include __DIR__ . '/includes/ui.php';
-include __DIR__ . '/includes/pairing_common.php';
-include __DIR__ . '/includes/one_time_login_widget.php';
-include __DIR__ . '/includes/scanner_widget.php';
-include __DIR__ . '/includes/show_qr_widget.php';
-include __DIR__ . '/includes/gnb_widget.php';
-include __DIR__ . '/includes/show_key_widget.php';
-include __DIR__ . '/includes/enter_key_widget.php';
+include plugin_dir_path(__FILE__) . 'includes/ui.php';
+include plugin_dir_path(__FILE__) . 'includes/pairing_common.php';
+include plugin_dir_path(__FILE__) . 'includes/one_time_login_widget.php';
+include plugin_dir_path(__FILE__) . 'includes/scanner_widget.php';
+include plugin_dir_path(__FILE__) . 'includes/show_qr_widget.php';
+include plugin_dir_path(__FILE__) . 'includes/gnb_widget.php';
+include plugin_dir_path(__FILE__) . 'includes/show_key_widget.php';
+include plugin_dir_path(__FILE__) . 'includes/enter_key_widget.php';
